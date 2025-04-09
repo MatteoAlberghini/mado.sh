@@ -1,6 +1,7 @@
 <!-- script -->
 <script lang="ts">
   /* imports  */
+  import { draggable } from '@neodrag/svelte'
 	import type { DesktopButtonProps } from './buttons.types'
   import FolderIcon from '../icons/folder.icon.svelte'
   import MailIcon from '../icons/mail.icon.svelte'
@@ -20,6 +21,7 @@
   function onBlur() { hover = false }
   function onClick(e: Event) { e.preventDefault() }
   function onDoubleClick(e: Event) {
+    e.preventDefault()
     if (type === 'external') {
       return
     }
@@ -28,13 +30,13 @@
 </script>
 
 <!-- template -->
-<a
-  href={url}
+<button
   aria-label={text}
   onmouseenter={onHover}
   onmouseleave={onBlur}
   onclick={onClick}
   ondblclick={onDoubleClick}
+  use:draggable={{ bounds: 'parent' }}
 >
   {#if type === 'folder'}
     <FolderIcon animate={hover} />
@@ -58,12 +60,11 @@
   <span>
     {text}
   </span>
-</a>
+</button>
 
 <!-- styles -->
 <style>
-  a {
-    text-decoration: none;
+  button {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -77,12 +78,13 @@
     padding-right: 3px;
     padding-bottom: 4px;
     user-select: none;
+    background: transparent;
   }
-  a:hover, a:focus {
+  button:hover, button:focus {
     background-color: color-mix(in srgb, var(--primary-color) 30%, transparent);
     box-shadow: inset 0 0 0 1px var(--primary-color);
   }
-  a > :global(svg) {
+  button > :global(svg) {
     width: 60px;
     height: 60px;
   }
@@ -99,7 +101,7 @@
   }
 
   @media only screen and (min-width: 900px) {
-    a > :global(svg) {
+    button > :global(svg) {
       width: 63px;
       height: 63px;
     }

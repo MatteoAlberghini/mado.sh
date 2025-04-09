@@ -14,6 +14,9 @@ importers:
       '@eslint/js':
         specifier: ^9.23.0
         version: 9.23.0
+      '@neodrag/svelte':
+        specifier: ^2.3.2
+        version: 2.3.2(svelte@5.25.6)
       '@sveltejs/adapter-vercel':
         specifier: ^5.5.2
         version: 5.6.3(@sveltejs/kit@2.20.2(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.25.6)(vite@6.2.4))(svelte@5.25.6)(vite@6.2.4))(rollup@4.38.0)
@@ -460,6 +463,11 @@ packages:
     resolution: {integrity: sha512-llMXd39jtP0HpQLVI37Bf1m2ADlEb35GYSh1SDSLsBhR+5iCxiNGlT31yqbNtVHygHAtMy6dWFERpU2JgufhPg==}
     engines: {node: '>=18'}
     hasBin: true
+
+  '@neodrag/svelte@2.3.2':
+    resolution: {integrity: sha512-1aPgnv2LqikkPEoTVgCPCqtXUXOD7OjCHLAIssTv0hkmyHLG9i697Cu+Tzco4/Q4KgOQXCDnLsa4Fvya5wXP9g==}
+    peerDependencies:
+      svelte: ^3.0.0 || ^4.0.0 || ^5.0.0
 
   '@nodelib/fs.scandir@2.1.5':
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -1749,6 +1757,10 @@ snapshots:
     transitivePeerDependencies:
       - encoding
       - supports-color
+
+  '@neodrag/svelte@2.3.2(svelte@5.25.6)':
+    dependencies:
+      svelte: 5.25.6
 
   '@nodelib/fs.scandir@2.1.5':
     dependencies:
