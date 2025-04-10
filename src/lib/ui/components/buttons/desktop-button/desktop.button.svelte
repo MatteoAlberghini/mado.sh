@@ -2,19 +2,21 @@
 <script lang="ts">
   /* imports  */
   import { draggable } from '@neodrag/svelte'
-	import type { DesktopButtonProps } from './buttons.types'
-  import FolderIcon from '../icons/folder.icon.svelte'
-  import MailIcon from '../icons/mail.icon.svelte'
-  import MusicIcon from '../icons/music.icon.svelte'
-  import PCIcon from '../icons/pc.icon.svelte'
-  import GlobIcon from '../icons/globe.icon.svelte'
-  import TextIcon from '../icons/text.icon.svelte'
-  
+	import type { DesktopButtonProps } from '$lib/ui/components/buttons/desktop-button/desktop.button.types'
+  import FolderIcon from '$lib/ui/icons/folder.icon.svelte'
+  import MailIcon from '$lib/ui/icons/mail.icon.svelte'
+  import MusicIcon from '$lib/ui/icons/music.icon.svelte'
+  import PCIcon from '$lib/ui/icons/pc.icon.svelte'
+  import GlobIcon from '$lib/ui/icons/globe.icon.svelte'
+  import TextIcon from '$lib/ui/icons/text.icon.svelte'
+  import Modal from '$lib/ui/components/buttons/desktop-button/modal.svelte'
+
   /* props */
   let { id, type, text, url, modal, position, children }: DesktopButtonProps = $props()
 
   /* states */
   let hover: boolean = $state(false)
+  let open: boolean = $state(false)
 
   /* callbacks */
   function onHover() { hover = true }
@@ -23,8 +25,10 @@
   function onDoubleClick(e: Event) {
     e.preventDefault()
     if (type === 'external') {
+      // TODO: open link here
       return
     }
+    open = true
   }
 
 </script>
@@ -37,6 +41,8 @@
   onclick={onClick}
   ondblclick={onDoubleClick}
   use:draggable={{ bounds: 'parent' }}
+  style:grid-row={position.row}
+  style:grid-column={position.column}
 >
   {#if type === 'folder'}
     <FolderIcon animate={hover} />
@@ -61,6 +67,16 @@
     {text}
   </span>
 </button>
+
+{#if open}
+  <Modal
+    id={id}
+    top="300px"
+    left="400px"
+  >
+    test text
+  </Modal>
+{/if}
 
 <!-- styles -->
 <style>

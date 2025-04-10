@@ -10,8 +10,8 @@ TODO:
 <script lang="ts">
   /* imports */
 	import type { Snippet } from 'svelte'
-  import DesktopButton from '../ui/atoms/buttons/desktop.button.svelte'
-	import { UniqueID } from '../ui/atoms/buttons/buttons.types'
+  import DesktopButton from '$lib/ui/components/buttons/desktop-button/desktop.button.svelte'
+	import { UniqueID } from '$lib/ui/components/buttons/desktop-button/desktop.button.data'
   
   /* props */
   let { children }: { children?: Snippet } = $props()
@@ -30,46 +30,6 @@ TODO:
       text="projects.dir"
       id={UniqueID.changelog}
       type="folder"
-      url="https://google.com"
-      modal={{}}
-      position={{ row: '1', column: '1' }}
-    />
-    <DesktopButton
-      text="text.md"
-      id={UniqueID.changelog}
-      type="text"
-      url="https://google.com"
-      modal={{}}
-      position={{ row: '1', column: '1' }}
-    />
-    <DesktopButton
-      text="contact.sh"
-      id={UniqueID.changelog}
-      type="mail"
-      url="https://google.com"
-      modal={{}}
-      position={{ row: '1', column: '1' }}
-    />
-    <DesktopButton
-      text="player.sh"
-      id={UniqueID.changelog}
-      type="music"
-      url="https://google.com"
-      modal={{}}
-      position={{ row: '1', column: '1' }}
-    />
-    <DesktopButton
-      text="settings.sh"
-      id={UniqueID.changelog}
-      type="pc"
-      url="https://google.com"
-      modal={{}}
-      position={{ row: '1', column: '1' }}
-    />
-    <DesktopButton
-      text="link.link"
-      id={UniqueID.changelog}
-      type="external"
       url="https://google.com"
       modal={{}}
       position={{ row: '1', column: '1' }}

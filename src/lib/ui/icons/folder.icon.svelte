@@ -1,7 +1,7 @@
 <!-- script -->
 <script lang="ts">
-	import type { IconProps } from './icons.types'
-
+	/* imports */
+  import type { IconProps } from '$lib/ui/icons/icons.types'
 
   /* props */
   let { animate = false }: IconProps = $props()
