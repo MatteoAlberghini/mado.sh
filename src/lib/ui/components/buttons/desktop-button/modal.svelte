@@ -1,7 +1,7 @@
 <!-- script -->
 <script lang="ts">
   /* imports */
-  import type { ModalProps } from '$lib/ui/components/buttons/desktop-button/desktop.button.types'
+  import type { Drag, ModalProps } from '$lib/ui/components/buttons/desktop-button/desktop.button.types'
 
   /* props */
   let { id, width = '550px', height = '450px', top = '0px', left = '0px', color = '#312454',  children }: ModalProps = $props()
@@ -14,9 +14,108 @@
   let bottomLeftHandle: HTMLDivElement
   let bottomRightHandle: HTMLDivElement
   let content: HTMLDivElement
+
+  /* constants */
+  let drag: Drag | null = null
+  let position: { x: number, y: number } | null = null
+  let rect: { width: number, height: number, left: number, top: number, bottom: number, right: number } | null = null
+  let x: number | null = null
+  let y: number | null = null
+
+  /* callbacks */
+  function onMouseDown(e: MouseEvent, type: Drag) {
+    if (!container) return
+
+    // set focus depending on id here
+    drag = type
+    if (type === 'top') {
+      x = e.clientX
+      y = e.clientY
+      return
+    }
+    const clientRect = container.getBoundingClientRect()
+    const parentRect = container.parentElement?.getBoundingClientRect()
+    if (!parentRect) { return }
+    rect = {
+      width: clientRect.width,
+      height: clientRect.height,
+      left: clientRect.left - parentRect.left,
+      right: parentRect.right - clientRect.right,
+      top: clientRect.top - parentRect.top,
+      bottom: parentRect.bottom - clientRect.bottom
+    }
+    position = { x: e.pageX, y: e.pageY }
+  }
+  function onMouseUp(e: MouseEvent) {
+    rect = null
+    position = null
+    x = null
+    y = null
+    drag = null
+  }
+  function onMouseMove(e: MouseEvent) {
+    if (!container) return
+    // dragging
+    if (drag === 'top' && x && y) {
+      const left = x - e.clientX
+      const top = y - e.clientY
+      x = e.clientX
+      y = e.clientY
+      container.style.top = `${container.offsetTop - top}px`
+      container.style.left = `${container.offsetLeft - left}px`
+      return
+    }
+    /// expanding
+    if (!bottomRightHandle || !bottomLeftHandle || !leftBar || !rightBar || !bottomLeftHandle || !bottomBar || !position || !rect) return
+    let direction = ''
+    let delta: number = 0
+    if (drag === 'bottom-right') {
+      direction = bottomRightHandle.getAttribute('data-direction') || ''
+    } else if (drag === 'bottom-left') {
+      direction = bottomLeftHandle.getAttribute('data-direction') || ''
+    } else if (drag === 'bottom') {
+      direction = bottomBar.getAttribute('data-direction') || ''
+    } else if (drag === 'left') {
+      direction = leftBar.getAttribute('data-direction') || ''
+    } else if (drag === 'right') {
+      direction = rightBar.getAttribute('data-direction') || ''
+    }
+    if (direction.match('right')) {
+				delta = e.pageX - position.x
+        let width = rect.width + delta
+        if (width < 550) { width = 550 }
+				container.style.width = `${width}px`				
+		}
+    if (direction.match('left')) {
+      delta = position.x - e.pageX
+      let width = rect.width + delta
+      if (width < 550) {
+        width = 550
+        container.style.width = `${width}px`
+        return
+      }
+      container.style.width = `${width}px`
+      container.style.left = `${rect.left - delta}px`
+    }
+    if (direction.match('up')) {
+      delta = position.y - e.pageY
+      let height = rect.height + delta
+      if (height < 550) { height = 550 }
+      container.style.top = `${rect.top - delta}px`
+      container.style.height = `${height}px`
+    }
+    if (direction.match('bottom')) {
+      delta = e.pageY - position.y
+      let height = rect.height + delta
+      if (height < 550) { height = 550 }
+      container.style.height = `${height}px`
+    }
+  }
+
 </script>
 
 <!-- template -->
+<svelte:window onmouseup={onMouseUp} onmousemove={onMouseMove} />
 <div
   bind:this={container}
   style:width={width}
@@ -28,7 +127,7 @@
   style:box-shadow={`${color}30 1px 1px 1px 1px`}
   class="container"
 >
-  <div class="top-bar">
+  <div role="button" tabindex="0" class="top-bar" onmousedown={(e) => onMouseDown(e, 'top')}>
     <span class="title">
       <a draggable="false" href="/">
         this should be the title
@@ -40,11 +139,11 @@
     {@render children?.()}
   </div>
 
-  <div class="left-bar" bind:this={leftBar}></div>
-  <div class="right-bar" bind:this={rightBar}></div>
-  <div class="bottom-bar" bind:this={bottomBar}></div>
-  <div class="bottom-right-handle" bind:this={bottomRightHandle}></div>
-  <div class="bottom-left-handle" bind:this={bottomLeftHandle}></div>
+  <div role="button" tabindex="0" class="left-bar" bind:this={leftBar} onmousedown={(e) => onMouseDown(e, 'left')} data-direction="left"></div>
+  <div role="button" tabindex="0" class="right-bar" bind:this={rightBar} onmousedown={(e) => onMouseDown(e, 'right')} data-direction="right"></div>
+  <div role="button" tabindex="0" class="bottom-bar" bind:this={bottomBar} onmousedown={(e) => onMouseDown(e, 'bottom')} data-direction="bottom"></div>
+  <div role="button" tabindex="0" class="bottom-right-handle" bind:this={bottomRightHandle} onmousedown={(e) => onMouseDown(e, 'bottom-right')} data-direction="bottom-right"></div>
+  <div role="button" tabindex="0" class="bottom-left-handle" bind:this={bottomLeftHandle} onmousedown={(e) => onMouseDown(e, 'bottom-left')} data-direction="bottom-left"></div>
 </div>
 
 <!-- styles -->

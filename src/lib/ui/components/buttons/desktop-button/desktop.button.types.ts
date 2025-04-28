@@ -7,6 +7,10 @@ import type { UniqueID } from '$lib/ui/components/buttons/desktop-button/desktop
  */
 type Icon = 'text' | 'pc' | 'folder' | 'mail' | 'music' | 'external'
 /**
+ * Drag types
+ */
+export type Drag = 'top' | 'bottom' | 'left' | 'right' | 'bottom-left' | 'bottom-right'
+/**
  * Props for desktop button component
  */
 export type DesktopButtonProps = {
