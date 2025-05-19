@@ -1,0 +1,21 @@
+/* scrollbar */
+.simplebar-scrollbar:before {
+  background: var(--primary-color);
+  border-radius: 0px;
+}
+.simplebar-scrollbar.simplebar-visible:before {
+  opacity: 1;
+}
+.simplebar-content-wrapper:focus {
+  background-color: initial;
+  box-shadow: initial;
+}
+
+/* track */
+.simplebar-track.simplebar-vertical {
+  background-color: var(--background-color);
+  background-image: url(/images/general/bg-texture.png);
+  margin-top: 2px;
+  margin-right: 1px;
+  margin-bottom: 34px;
+}

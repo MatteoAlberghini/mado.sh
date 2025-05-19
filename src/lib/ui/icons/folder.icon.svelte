@@ -17,8 +17,6 @@
 <!-- template -->
 <svg
   viewBox="0 0 1024 1024"
-  width="67px"
-  height="67px"
   fill="none"
   xmlns="http://www.w3.org/2000/svg"
   xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -29,3 +27,11 @@
     href={href}
   />
 </svg>
+
+<!-- styles -->
+<style>
+  svg {
+    width: calc(67px * var(--icon-size));
+    height: auto;
+  }
+</style>

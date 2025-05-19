@@ -28,6 +28,7 @@ export default ts.config(
 			'max-len': 'off', // remove max length error
 			'no-console': 1, // warning on console usage
 			'quotes': ['error', 'single'], // error on usage of non-single quotes
+			'prefer-template': ['error'], // prefer template to concat strings
 		}
 	},
 	{
