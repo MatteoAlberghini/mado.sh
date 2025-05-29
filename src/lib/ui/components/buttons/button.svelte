@@ -5,7 +5,16 @@
 	import { clickSoundElement } from '$lib/data/settings/sound.data'
 
   /* props */
-  let { height, width, onClick, children }: ButtonProps = $props()
+  let { height, width, type = 'button', loading, onClick, children }: ButtonProps = $props()
+
+  /* state */
+  let stateLoading: boolean = $state(false)
+  let loadingTags: number[] = $state([])
+  
+  /* constants */
+  let timeout: NodeJS.Timeout | null = null
+  let firstMount: boolean = true
+  let run: boolean = false
 
   /* callbacks */
   /**
@@ -16,9 +25,78 @@
     if (e.key === 'Enter') {
       e.preventDefault()
       $clickSoundElement.play()
-      onClick()
+      if (onClick) onClick()
     }
   }
+
+  /* functions */
+  /**
+   * start animation cycle for loading animation
+   */
+  function startAnimation() {
+    loadingTags = [...loadingTags, 0]
+    if (loadingTags.length === 15) {
+      if (timeout) { clearTimeout(timeout) }
+      return
+    }
+    timeout = setTimeout(() => {
+      startAnimation()
+    }, 300)
+  }
+  /**
+   * recursive function to add more animation values to the loader
+   * @param callback function as callback
+   */
+  function endAnimation(callback: () => void) {
+    if (loadingTags.length === 15) {
+      if (timeout) { clearTimeout(timeout) }
+      callback()
+      return
+    }
+    loadingTags = [...loadingTags, 0]
+    timeout = setTimeout(() => {
+      endAnimation(callback)
+    }, 50)
+  }
+  /**
+   * start loading and start animation
+   */
+  function startLoading() {
+    stateLoading = true
+    startAnimation()
+  }
+  /**
+   * stop loading after end animation is called
+   */
+  function endLoading() {
+    if (timeout) { clearTimeout(timeout) }
+    if (firstMount === true) {
+      firstMount = false
+      return
+    }
+    endAnimation(() => {
+      stateLoading = false
+      loadingTags = []
+    })
+  }
+
+  /* effects */
+  /**
+   * trigger start / end loading based on prop change
+  */
+  $effect(() => {
+    if (run) {
+      loading = loading
+      run = false
+    } else {
+      if (loading === true) {
+        startLoading() 
+      } else if (loading === false) {
+        endLoading()
+      }
+      run = true
+    }
+  })
 
 </script>
 
@@ -28,6 +106,7 @@
   style:width={`${width}px`}
 >
   <button
+    type={type}
     onclick={onClick}
     onkeydown={onKeyDown}
     style:width={`${width}px`}
@@ -36,18 +115,55 @@
     <span
       style:height={`${height - 2}px`}
     >
-      {@render children?.()}
+      {#if !stateLoading}
+        {@render children?.()}
+      {/if}
+      {#if stateLoading}
+        <div class="loading-container" style:height={`${height / 1.7}px`}>
+          {#each loadingTags as t, i (i)}
+            <div class="loading-tag" data-tag={t}></div>
+          {/each}
+        </div>
+      {/if}
     </span>
   </button>
 </div>
 
 <!-- style -->
 <style>
+  /* animations */
+  @keyframes loading-tag-in {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+
   /* containers */
   .container {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+  }
+  .loading-container {
+    width: calc(100% - 22px);
+    background-color: color-mix(in srgb, var(--primary-color) 30%, transparent);
+    background-image: url(/images/general/bg-texture.png);
+    border: 1px solid var(--primary-color);
+    border-bottom-width: 3px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    column-gap: 4px;
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+  .loading-tag {
+    height: calc(100% - 4px);
+    width: 14px;
+    background-color: var(--primary-color);
+    background-image: url(/images/general/bg-texture.png);
+    flex-shrink: 0;
+    animation: loading-tag-in 50ms linear;
+    animation-fill-mode: both;
   }
 
   /* button */

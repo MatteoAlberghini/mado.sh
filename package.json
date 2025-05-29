@@ -15,22 +15,23 @@
 	},
 	"devDependencies": {
 		"@eslint/compat": "^1.2.9",
-		"@eslint/js": "^9.25.1",
+		"@eslint/js": "^9.27.0",
 		"@neodrag/svelte": "^2.3.2",
-		"@sveltejs/adapter-vercel": "^5.7.1",
-		"@sveltejs/kit": "^2.20.8",
+		"@neondatabase/serverless": "^1.0.0",
+		"@sveltejs/adapter-vercel": "^5.7.2",
+		"@sveltejs/kit": "^2.21.1",
 		"@sveltejs/vite-plugin-svelte": "^5.0.3",
-		"eslint": "^9.25.1",
-		"eslint-config-prettier": "^10.1.2",
-		"eslint-plugin-svelte": "^3.5.1",
-		"globals": "^16.0.0",
+		"eslint": "^9.27.0",
+		"eslint-config-prettier": "^10.1.5",
+		"eslint-plugin-svelte": "^3.9.0",
+		"globals": "^16.1.0",
 		"prettier": "^3.5.3",
-		"prettier-plugin-svelte": "^3.3.3",
-		"svelte": "^5.28.2",
-		"svelte-check": "^4.1.6",
+		"prettier-plugin-svelte": "^3.4.0",
+		"svelte": "^5.32.1",
+		"svelte-check": "^4.2.1",
 		"typescript": "^5.8.3",
-		"typescript-eslint": "^8.31.1",
-		"vite": "^6.3.4"
+		"typescript-eslint": "^8.32.1",
+		"vite": "^6.3.5"
 	},
 	"pnpm": {
 		"onlyBuiltDependencies": [
@@ -38,6 +39,6 @@
 		]
 	},
 	"dependencies": {
-		"simplebar": "^6.3.0"
+		"simplebar": "^6.3.1"
 	}
 }

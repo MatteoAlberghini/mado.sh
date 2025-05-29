@@ -8,7 +8,7 @@ export const ICON_SIZES: { id: string, step: number, value: number }[] = [
   {
     id: 'small',
     step: 0,
-    value: 0.8,
+    value: 0.9,
   },
   {
     id: 'medium',
@@ -18,7 +18,7 @@ export const ICON_SIZES: { id: string, step: number, value: number }[] = [
   {
     id: 'large',
     step: 100,
-    value: 1.5,
+    value: 1.1,
   }
 ]
 
@@ -36,7 +36,7 @@ export function setIconSize(size: number) {
  */
 export function getIconSize(): number {
   const value = parseFloat(document.documentElement.getAttribute('data-icon-size') || '1')
-  if (value && isNaN(value)) { return value }
+  if (value && !isNaN(value)) { return value }
   return 1
 }
 /**

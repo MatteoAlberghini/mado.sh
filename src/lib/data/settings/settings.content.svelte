@@ -41,7 +41,7 @@
   </div>
 </div>
 
-<!-- style -->
+<!-- styles -->
 <style>
   /* containers */
   .header-buttons {

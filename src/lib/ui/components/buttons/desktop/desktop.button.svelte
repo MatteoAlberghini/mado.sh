@@ -176,14 +176,14 @@
   }
   span {
     color: var(--text-color);
-    font-size: 18px;
+    font-size: calc(18px * var(--icon-size));
     font-weight: 400;
     max-width: 100%;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: wrap;
     text-align: center;
-    margin-top: 3px;
+    margin-top: calc(3px * var(--icon-size));
   }
 
   /* media queries */

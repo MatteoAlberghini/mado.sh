@@ -16,15 +16,18 @@ export const handle: Handle = async({ event, resolve }) => {
       let screen = event.cookies.get('screen')
       let sound = event.cookies.get('sound')
       let volume = event.cookies.get('volume')
+      let iconSize = event.cookies.get('icon-size')
       if (!theme) theme = 'lavender'
       if (!screen) screen = 'roaming-fishes'
       if (!sound) sound = 'true'
       if (!volume) volume = '0.05'
+      if (!iconSize) iconSize = '1'
       return html
         .replace('data-theme="lavender"', `data-theme="${theme}"`)
         .replace('data-screen="roaming-fishes"', `data-screen="${screen}"`)
         .replace('data-sound="true"', `data-sound="${sound}"`)
         .replace('data-volume="0.05"', `data-volume="${volume}"`)
+        .replace('data-icon-size="1"', `data-icon-size="${iconSize}"`)
     }
   })
 }

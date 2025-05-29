@@ -57,7 +57,7 @@ export function getSoundActive(): boolean {
  */
 export function setSoundVolume(vol: number) {
   setCookie('volume', vol.toString())
-  document.documentElement.setAttribute('data-sound', vol.toString())
+  document.documentElement.setAttribute('data-volume', vol.toString())
   soundVolume.set(vol)
 }
 /**
@@ -65,8 +65,8 @@ export function setSoundVolume(vol: number) {
  * @returns value of volume
  */
 export function getSoundVolume(): number {
-  const value = parseFloat(document.documentElement.getAttribute('data-sound-volume') || '0.05')
-  if (value && isNaN(value)) { return value }
+  const value = parseFloat(document.documentElement.getAttribute('data-volume') || '0.05')
+  if (value && !isNaN(value)) { return value }
   return 0.05
 }
 /**

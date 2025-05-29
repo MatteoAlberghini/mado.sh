@@ -7,6 +7,8 @@ import type { Snippet } from 'svelte'
 export type ButtonProps = {
   width: number,
   height: number,
-  onClick: () => void,
+  loading?: boolean,
+  type?: 'button' | 'reset' | 'submit',
+  onClick?: () => void,
   children?: Snippet,
 }

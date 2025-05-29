@@ -9,13 +9,14 @@ TODO:
 <!-- script -->
 <script lang="ts">
   /* imports */
-  import 'simplebar/dist/simplebar.css'
+  import 'simplebar/dist/simplebar.min.css'
   import '$lib/styles/scrollbars.css'
 	import { onMount, type Snippet } from 'svelte'
   import { DESKTOP_ICONS } from '$lib/data/desktop/desktop.data'
   import { getScreenSaverID, screenPlaying, setScreenSaver, currentScreen, SCREENS } from '$lib/data/settings/screen.saver.data'
 	import DesktopButton from '$lib/ui/components/buttons/desktop/desktop.button.svelte'
 	import { getSoundActive, getSoundVolume, setSoundActive, setSoundVolume, soundActive, clickSoundElement, soundVolume } from '$lib/data/settings/sound.data'
+	import { getIconSize, setIconSize } from '$lib/data/settings/icon.data'
   
   /* props */
   let { children }: { children?: Snippet } = $props()
@@ -40,6 +41,7 @@ TODO:
     setScreenSaver(getScreenSaverID())
     setSoundActive(getSoundActive())
     setSoundVolume(getSoundVolume())
+    setIconSize(getIconSize())
   })
 </script>
 
@@ -75,6 +77,7 @@ TODO:
     --background-color: #B682FF;
     --primary-color: #FFD200;
     --text-color: #27213C;
+    --error-color: #BF354B;
     --selection-color: #FFD200;
     --selection-background-color: #BF354B;
     --shadow-primary-color: #0FD2FF;
@@ -85,6 +88,8 @@ TODO:
 
     --transition-timing-fast: 85ms;
     --transition-timing-medium: 120ms;
+
+    --icon-size: 1;
   }
   [data-theme='lavender']:root {
     --background-color: #B682FF;
@@ -107,14 +112,14 @@ TODO:
     --shadow-primary-color: #0FD2FF;
     --shadow-secondary-color: #FFD200;
   }
-  [data-icon-size="0.8"]:root {
-    --icon-size: 0.8;
+  [data-icon-size="0.9"]:root {
+    --icon-size: 0.9;
   }
   [data-icon-size="1"]:root {
     --icon-size: 1;
   }
-  [data-icon-size="1.5"]:root {
-    --icon-size: 1.5;
+  [data-icon-size="1.1"]:root {
+    --icon-size: 1.1;
   }
   :global {
     html, body {
@@ -196,8 +201,8 @@ TODO:
     height: 100%;
     width: 100%;
     max-width: 100dvw;
-    grid-template-columns: repeat(auto-fill, 91px);
-    grid-template-rows: repeat(auto-fill, 91px);
+    grid-template-columns: repeat(auto-fill, calc(91px * var(--icon-size)));
+    grid-template-rows: repeat(auto-fill, calc(91px * var(--icon-size)));
     column-gap: 16px;
     row-gap: 16px;
     padding-left: 8px;
@@ -209,8 +214,8 @@ TODO:
   /* media queries */
   @media only screen and (min-width: 1280px) {
     .content {
-      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-      grid-template-rows: repeat(auto-fill, minmax(100px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(calc(100px * var(--icon-size)), 1fr));
+      grid-template-rows: repeat(auto-fill, minmax(calc(100px * var(--icon-size)), 1fr));
       column-gap: 8px;
       row-gap: 8px;
       grid-auto-flow: column;
