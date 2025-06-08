@@ -1,10 +1,94 @@
 <!doctype html>
-<html lang="en">
+<html
+	lang="en"
+	data-theme="lavender"
+	data-screen="roaming-fishes"
+	data-sound="true"
+	data-volume="0.05"
+	data-icon-size="1"
+>
 	<head>
 		<meta charset="utf-8" />
-		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="apple-touch-icon" sizes="180x180" href="%sveltekit.assets%/images/favicon/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="%sveltekit.assets%/images/favicon/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="%sveltekit.assets%/images/favicon/favicon-16x16.png">
+		<link rel="manifest" href="%sveltekit.assets%/images/favicon/site.webmanifest">
+		<meta name="viewport" content="width=device-width" />
 		%sveltekit.head%
+		<style>
+			@font-face {
+				font-family: 'Dosis';
+				src: url('%sveltekit.assets%/fonts/Dosis-SemiBold.eot');
+				src: local('Dosis SemiBold'), local('Dosis-SemiBold'),
+					url('%sveltekit.assets%/fonts/Dosis-SemiBold.eot?#iefix') format('embedded-opentype'),
+					url('%sveltekit.assets%/fonts/Dosis-SemiBold.woff2') format('woff2'),
+					url('%sveltekit.assets%/fonts/Dosis-SemiBold.woff') format('woff'),
+					url('%sveltekit.assets%/fonts/Dosis-SemiBold.ttf') format('truetype');
+				font-weight: 600;
+				font-style: normal;
+				font-display: block;
+			}
+			@font-face {
+				font-family: 'Dosis';
+				src: url('%sveltekit.assets%/fonts/Dosis-Medium.eot');
+				src: local('Dosis Medium'), local('Dosis-Medium'),
+					url('%sveltekit.assets%/fonts/Dosis-Medium.eot?#iefix') format('embedded-opentype'),
+					url('%sveltekit.assets%/fonts/Dosis-Medium.woff2') format('woff2'),
+					url('%sveltekit.assets%/fonts/Dosis-Medium.woff') format('woff'),
+					url('%sveltekit.assets%/fonts/Dosis-Medium.ttf') format('truetype');
+				font-weight: 500;
+				font-style: normal;
+				font-display: block;
+			}
+			@font-face {
+				font-family: 'Dosis';
+				src: url('%sveltekit.assets%/fonts/Dosis-Light.eot');
+				src: local('Dosis Light'), local('Dosis-Light'),
+					url('%sveltekit.assets%/fonts/Dosis-Light.eot?#iefix') format('embedded-opentype'),
+					url('%sveltekit.assets%/fonts/Dosis-Light.woff2') format('woff2'),
+					url('%sveltekit.assets%/fonts/Dosis-Light.woff') format('woff'),
+					url('%sveltekit.assets%/fonts/Dosis-Light.ttf') format('truetype');
+				font-weight: 300;
+				font-style: normal;
+				font-display: block;
+			}
+			@font-face {
+				font-family: 'Dosis';
+				src: url('%sveltekit.assets%/fonts/Dosis-ExtraLight.eot');
+				src: local('Dosis ExtraLight'), local('Dosis-ExtraLight'),
+					url('%sveltekit.assets%/fonts/Dosis-ExtraLight.eot?#iefix') format('embedded-opentype'),
+					url('%sveltekit.assets%/fonts/Dosis-ExtraLight.woff2') format('woff2'),
+					url('%sveltekit.assets%/fonts/Dosis-ExtraLight.woff') format('woff'),
+					url('%sveltekit.assets%/fonts/Dosis-ExtraLight.ttf') format('truetype');
+				font-weight: 200;
+				font-style: normal;
+				font-display: block;
+			}
+			@font-face {
+				font-family: 'Dosis';
+				src: url('%sveltekit.assets%/fonts/Dosis-ExtraBold.eot');
+				src: local('Dosis ExtraBold'), local('Dosis-ExtraBold'),
+					url('%sveltekit.assets%/fonts/Dosis-ExtraBold.eot?#iefix') format('embedded-opentype'),
+					url('%sveltekit.assets%/fonts/Dosis-ExtraBold.woff2') format('woff2'),
+					url('%sveltekit.assets%/fonts/Dosis-ExtraBold.woff') format('woff'),
+					url('%sveltekit.assets%/fonts/Dosis-ExtraBold.ttf') format('truetype');
+				font-weight: bold;
+				font-style: normal;
+				font-display: block;
+			}
+			@font-face {
+				font-family: 'Dosis';
+				src: url('%sveltekit.assets%/fonts/Dosis-Bold.eot');
+				src: local('Dosis Bold'), local('Dosis-Bold'),
+					url('%sveltekit.assets%/fonts/Dosis-Bold.eot?#iefix') format('embedded-opentype'),
+					url('/%sveltekit.assets%/fonts/Dosis-Bold.woff2') format('woff2'),
+					url('%sveltekit.assets%/fonts/Dosis-Bold.woff') format('woff'),
+					url('%sveltekit.assets%/fonts/Dosis-Bold.ttf') format('truetype');
+				font-weight: bold;
+				font-style: normal;
+				font-display: block;
+			}
+		</style>
 	</head>
 	<body data-sveltekit-preload-data="hover">
 		<div style="display: contents">%sveltekit.body%</div>
