@@ -2,9 +2,9 @@
 <script lang="ts">
 	/* imports */
   import { request, URLs } from '$lib/managers/request.manager'
-	import Button from '$lib/ui/components/buttons/button.svelte';
-  import Input from '$lib/ui/components/interactive/input/input.svelte'
-	import TextArea from '$lib/ui/components/interactive/text-area/text.area.svelte'
+	import Button from '$lib/ui/components/buttons/button.svelte'
+  import Input from '$lib/ui/components/input/input.svelte'
+	import TextArea from '$lib/ui/components/text-area/text.area.svelte'
 
   /* state */
   let loading: boolean = $state(false)
@@ -25,15 +25,15 @@
       message = { error: true, text: '[ username is required ]' }
       return
     }
-    if (!data.has('message') || data.get('username') === '') {
+    if (!data.has('message') || data.get('message') === '') {
       loading = false
       message = { error: true, text: '[ message is required ]' }
       return
     }
-    const res = await request<{ success: boolean }>(URLs.form, 'POST', data)
+    const res = await request<{ success: boolean, message: string }>(URLs.form, 'POST', data)
     if (res.success === false) {
       loading = false
-      message = { error: true, text: '[ server error, try again later ]' }
+      message = { error: true, text: res.message }
       return
     }
     loading = false
@@ -66,12 +66,12 @@
         type="submit"
         loading={loading}
         width={300}
-        height={40}
+        height={41}
       >
         <span>submit</span>
       </Button>
     </div>
-    <div class="input-container">
+    <div class="input-container mt-4">
       {#if message.text !== ''}
         <p class="message" data-error={message.error}>{message.text}</p>
       {/if}
@@ -98,28 +98,32 @@
     display: flex;
     align-self: flex-start;
     flex-direction: column;
-    width: 100%;
+    width: calc(100% - 10px);
     max-width: 500px;
-    margin-left: 10px;
-    margin-right: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
     margin-top: 10px;
   }
   .button {
     margin-top: 32px;
   }
+  .mt-4 {
+    margin-top: 4px;
+  }
 
   /* text */
   span {
-    font-size: 16px;
+    font-size: 17px;
     font-weight: 400;
   }
   .message {
-    margin-top: 4px;
     font-size: 16px;
     font-weight: 400;
     color: var(--primary-color);
   }
   .message[data-error=true] {
-    color: var(--error-color);
+    --shadow-primary-color: var(--selection-background-color);
+    --shadow-secondary-color: var(--text-color);
+    color: var(--red-color);
   }
 </style>

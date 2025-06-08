@@ -5,8 +5,8 @@
 	import { currentScreen, getScreenSaverValue, SCREEN_SAVERS, screenPlaying, setScreenSaver } from '$lib/data/settings/screen.saver.data'
 	import PlayIcon from '$lib/ui/icons/play.icon.svelte'
 
-  /* state */
-  let saver = $state(getScreenSaverValue())
+  /* derived */
+  let saver = $derived(getScreenSaverValue())
 
   /* callbacks */
   /**

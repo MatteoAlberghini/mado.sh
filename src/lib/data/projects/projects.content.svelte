@@ -4,18 +4,10 @@
   import { page } from '$app/state'
 	import { BASE_PROJECTS, PROJECTS } from '$lib/data/projects/projects.data'
 	import type { Project } from '$lib/data/projects/projects.types'
+  import FolderButton from '$lib/ui/components/buttons/folder/folder.button.svelte'
 
   /* state */
   let content: Project | null = $state(null)
-
-  /* callbacks */
-  /**
-   * set selected item as content
-   * @param item project item to set as content
-   */
-  function onClick(item: Project) {
-    content = item
-  }
 
   /* effects */
   /**
@@ -34,16 +26,70 @@
 </script>
 
 <!-- template -->
-<div>
+<div class="container">
   {#if content === null}
-    <div>
+    <div class="projects-container">
+      <span>PAST WORK</span>
       {#each PROJECTS as p (p.path)}
-        <a href={p.path} onclick={() => onClick(p)}>
-          {p.text}
-        </a>
+        <FolderButton
+          text={p.text}
+          path={p.path}
+          external={false}
+        />
       {/each}
     </div>
   {:else}
     {@render content.element()}
   {/if}
 </div>
+
+<!-- style -->
+<style>
+  /* containers */
+  .container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    row-gap: 1px;
+  }
+  .projects-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    flex-direction: row;
+    border: 1px solid var(--background-color);
+    border-bottom-width: 3px;
+    width: 100%;
+    min-height: 155px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    padding-top: 24px;
+    padding-bottom: 24px;
+    padding-left: 16px;
+    padding-right: 16px;
+    column-gap: 16px;
+    row-gap: 16px;
+    position: relative;
+  }
+
+  /* text */
+  span {
+    font-size: 18px;
+    font-weight: 400;
+    position: absolute;
+    top: -14px;
+    color: var(--primary-color);
+    background-color: var(--modal-background-color);
+    background-image: url(/images/general/bg-texture.png);
+    padding-left: 8px;
+    padding-right: 8px;
+    margin-left: 3px;
+  }
+</style>

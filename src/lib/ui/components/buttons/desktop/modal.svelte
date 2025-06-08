@@ -1,13 +1,15 @@
   <!-- script -->
   <script lang="ts">
     /* imports */
+	  import { goto } from '$app/navigation'
     import { onMount } from 'svelte'
     import SimpleBar from 'simplebar'
     import type { Drag, ModalProps } from '$lib/ui/components/buttons/desktop/desktop.button.types'
+    import { focusedModal } from '$lib/ui/components/buttons/desktop/modal.store'
     import CloseIcon from '$lib/ui/icons/x.icon.svelte'
     import ExpandIcon from '$lib/ui/icons/expand.icon.svelte'
     import ShrinkIcon from '$lib/ui/icons/shrink.icon.svelte'
-    import { focusedModal } from '$lib/ui/components/buttons/desktop/modal.store'
+	  import HomeIcon from '$lib/ui/icons/home.icon.svelte'
 
     /* props */
     let { id, width = '550px', height = '550px', top = '0px', left = '0px', color = '#312454', path, close,  children }: ModalProps = $props()
@@ -177,6 +179,12 @@
       container.style.width = `${window.innerWidth}px`
       container.style.height = `${window.innerHeight}px`
     }
+    /**
+     * navigate to the main home link
+     */
+    function navigateHome() {
+      goto(path[0].path)
+    }
 
     /* effects */
     /**
@@ -227,20 +235,30 @@
         tabindex="-1"
         onmousedown={(e) => onMouseDown(e, 'top')}
       >
-        <span class="title">
-          {#each path as p, i (p.path)}
-            {#if i > 0}
-              >>
-            {/if}
-            <a draggable="false" href={p.path}>
-              {p.text}
-            </a>
-          {/each}
-        </span>
+        <div class="buttons">
+          <button
+            onclick={navigateHome}
+            class="br"
+            style:border-color={color}
+          >
+            <HomeIcon />
+          </button>
+          <span class="title">
+            {#each path as p, i (p.path)}
+              {#if i > 0}
+                >>
+              {/if}
+              <a draggable="false" href={p.path}>
+                {p.text}
+              </a>
+            {/each}
+          </span>
+        </div>
       </div>
       <div class="buttons">
         <button
           onclick={toggleFullScreen}
+          class="fullscreen-button"
           style:border-color={color}
         >
           {#if isFullScreen}
@@ -248,7 +266,6 @@
           {:else}
             <ExpandIcon />
           {/if}
-          
         </button>
         <button
           onclick={close}
@@ -278,17 +295,20 @@
       position: absolute;
       overflow: hidden;
       background-image: url(/images/general/bg-texture.png);
+      display: grid;
+      grid-template-columns: 4px calc(100% - 8px) 4px;
+      grid-template-rows: 30px calc(100% - 34px) 4px;
+      border: 1px solid var(--text-color);
     }
     .content {
       display: flex;
       width: 100%;
+      align-self: center;
       height: 100%;
-      margin-top: 28px;
-      margin-bottom: 4px;
-      padding-bottom: 32px;
       position: relative;
-      z-index: 4;
       user-select: none;
+      grid-row: 2;
+      grid-column: 2;
     }
     .content:active {
       background: initial;
@@ -296,21 +316,17 @@
 
     /* top bar */
     .top-bar {
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 3;
-      width: calc(100% - 2px);
-      height: 28px;
+      grid-row: 1;
+      grid-column: 1 / -1;
+      width: 100%;
+      height: 30px;
       background-color: var(--background-color);
       background-image: url(/images/general/bg-texture.png);
-      margin-left: 1px;
-      margin-right: 1px;
-      margin-top: 1px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       user-select: none;
+      border-bottom: 1px solid var(--text-color);
     }
     .draggable-top-bar {
       display: flex;
@@ -327,7 +343,7 @@
     }
     .title {
       color: var(--text-color);
-      font-size: 16px;
+      font-size: 17px;
       text-transform: uppercase;
       font-weight: 400;
       margin-left: 8px;
@@ -339,8 +355,10 @@
       color: var(--text-color);
       text-decoration: underline;
     }
-    .title > a:hover {
-      color: var(--primary-color)
+    .title > a:hover, .title > a:focus {
+      color: var(--primary-color);
+      background-color: initial;
+      box-shadow: initial;
     }
 
     /* buttons */
@@ -357,7 +375,7 @@
       height: 100%;
       background-color: transparent;
       border-left-width: 1px;
-      border-left-style: solid;
+      border-style: solid;
       font-size: 14px;
       display: flex;
       align-items: center;
@@ -365,55 +383,46 @@
       align-self: flex-end;
       position: relative;
       transition: background-color var(--transition-timing-medium) ease-out;
+      border-bottom: 0px;
     }
     button:hover, button:focus, button:focus-visible {
       background-color: color-mix(in srgb, var(--primary-color) 40%, transparent);
       box-shadow: initial;
     }
+    .br {
+      border-left-width: 0px;
+      border-right-width: 1px;
+    }
 
     /* draggable bars */
     .bottom-bar {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      z-index: 5;
-      width: calc(100% - 2px);
-      height: 4px;
-      background-color: var(--background-color);
+      grid-column: 1 / -1;
+      grid-row: 3;
+      height: 100%;
+      border-bottom: 3px solid var(--background-color);
       background-image: url(/images/general/bg-texture.png);
-      margin-left: 1px;
-      margin-right: 1px;
       margin-bottom: 1px;
       cursor: s-resize;
     }
     .left-bar {
-      position: absolute;
-      left: 0;
-      top: 0;
-      z-index: 5;
-      width: 2px;
-      height: calc(100% - 36px);
-      background-color: var(--background-color);
+      grid-column: 1;
+      grid-row: 2;
+      width: 100%;
+      height: calc(100% - 1px);
+      border-left: 2px solid var(--background-color);
       background-image: url(/images/general/bg-texture.png);
-      margin-left: 1px;
-      margin-right: 1px;
       margin-bottom: 4px;
-      margin-top: 30px;
+      margin-top: 1px;
       cursor: w-resize;
     }
     .right-bar {
-      position: absolute;
-      right: 0;
-      top: 0;
-      z-index: 5;
-      width: 2px;
-      height: calc(100% - 36px);
-      background-color: var(--background-color);
+      grid-column: 3;
+      grid-row: 2;
+      width: 100%;
+      height: calc(100% - 1px);
+      border-right: 2px solid var(--background-color);
       background-image: url(/images/general/bg-texture.png);
-      margin-left: 1px;
-      margin-right: 1px;
-      margin-bottom: 4px;
-      margin-top: 30px;
+      margin-top: 1px;
       cursor: w-resize;
     }
     .bottom-right-handle {
@@ -448,6 +457,12 @@
         bottom: 0px !important;
         top: 0px !important;
         right: 0px !important;
+      }
+      .title {
+        font-size: 16px;
+      }
+      .fullscreen-button {
+        display: none;
       }
     }
   </style>

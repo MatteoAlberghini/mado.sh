@@ -2,9 +2,9 @@
 import type { Snippet } from 'svelte'
 import { setCookie } from '$lib/utils/cookies'
 import { writable, type Writable } from 'svelte/store'
-import FishScreen from '$lib/ui/components/screen-savers/fish.screen.svelte'
-import RainScreen from '$lib/ui/components/screen-savers/rain.screen.svelte'
-import PlanetScreen from '$lib/ui/components/screen-savers/planet.screen.svelte'
+import FishScreen from '$lib/ui/macro/screen-savers/fish.screen.svelte'
+import RainScreen from '$lib/ui/macro/screen-savers/rain.screen.svelte'
+import PlanetScreen from '$lib/ui/macro/screen-savers/planet.screen.svelte'
 
 /**
  * all possible screen savers

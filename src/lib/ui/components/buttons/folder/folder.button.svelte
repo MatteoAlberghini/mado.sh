@@ -1,0 +1,125 @@
+<!-- scripts -->
+<script lang="ts">
+  /* imports */
+  import { goto } from '$app/navigation'
+  import type { FolderButtonProps } from '$lib/ui/components/buttons/folder/folder.types'
+  import FolderIcon from '$lib/ui/icons/folder.icon.svelte'
+
+  /* props */
+  let { text, path, external }: FolderButtonProps = $props()
+
+  /* state */
+  let hover: boolean = $state(false)
+
+  /* support */
+  /**
+   * handle click of the button to open link if external, or go to pathname if internal
+   */
+  function handleButtonClick() {
+    if (external) {
+      window.open(path, '_blank')
+      return
+    }
+    goto(path)
+  }
+
+  /* callbacks */
+  /**
+   * mouse hover
+   */
+  function onHover() {
+    hover = true
+  }
+  /**
+   * mouse blur
+   */
+  function onBlur() {
+    hover = false
+  }
+  /**
+   * on click, prevent single click
+   * @param e mouse event
+   */
+  function onClick(e: Event) {
+    e.preventDefault()
+    if (window.innerWidth < 1280) {
+      handleButtonClick()
+    }
+  }
+  /**
+   * on double click
+   * @param e mouse event
+   */
+  function onDoubleClick(e: Event) {
+    e.preventDefault()
+    if (window.innerWidth >= 1280) {
+      handleButtonClick()
+    }
+  }
+  /**
+   * on key down, handles enter event
+   * @param e keyboard event
+   */
+  function onKeyDown(e: KeyboardEvent) {
+    if (e.key === 'Enter') {
+      e.preventDefault()
+      handleButtonClick()
+      return
+    }
+  }
+</script>
+
+<!-- template -->
+<button
+  aria-label={text}
+  ondblclick={onDoubleClick}
+  onclick={onClick}
+  onmouseenter={onHover}
+  onmouseleave={onBlur}
+  onfocus={onHover}
+  onblur={onBlur}
+  onkeydown={onKeyDown}
+>
+  <FolderIcon
+    animate={hover}
+  />
+  <span>{text}</span>
+</button>
+
+<!-- styles -->
+<style>
+  /* buttons */
+  button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: all 75ms ease-out;
+    padding-left: 3px;
+    padding-right: 3px;
+    padding-bottom: 4px;
+    user-select: none;
+    background: transparent;
+    max-width: 110px;
+    max-height: 110px;
+    width: 110px;
+    height: 110px;
+    aspect-ratio: 1 / 1;
+  }
+  button:hover, button:focus {
+    background-color: color-mix(in srgb, var(--primary-color) 30%, transparent);
+    box-shadow: inset 0 0 0 1px var(--primary-color);
+  }
+
+  /* text */
+  span {
+    color: var(--primary-color);
+    font-size: 17px;
+    font-weight: 400;
+    max-width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: wrap;
+    text-align: center;
+  }
+</style>

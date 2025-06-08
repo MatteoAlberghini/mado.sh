@@ -3,6 +3,7 @@
   /* imports  */
 	import type { ButtonProps } from '$lib/ui/components/buttons/button.types'
 	import { clickSoundElement } from '$lib/data/settings/sound.data'
+	import { untrack } from 'svelte'
 
   /* props */
   let { height, width, type = 'button', loading, onClick, children }: ButtonProps = $props()
@@ -14,7 +15,6 @@
   /* constants */
   let timeout: NodeJS.Timeout | null = null
   let firstMount: boolean = true
-  let run: boolean = false
 
   /* callbacks */
   /**
@@ -85,16 +85,14 @@
    * trigger start / end loading based on prop change
   */
   $effect(() => {
-    if (run) {
-      loading = loading
-      run = false
-    } else {
-      if (loading === true) {
-        startLoading() 
-      } else if (loading === false) {
+    if (loading === true) {
+      untrack(() => {
+        startLoading()
+      }) 
+    } else if (loading === false) {
+      untrack(() => {
         endLoading()
-      }
-      run = true
+      })
     }
   })
 
@@ -119,7 +117,7 @@
         {@render children?.()}
       {/if}
       {#if stateLoading}
-        <div class="loading-container" style:height={`${height / 1.7}px`}>
+        <div class="loading-bar" style:height={`${height / 1.7}px`}>
           {#each loadingTags as t, i (i)}
             <div class="loading-tag" data-tag={t}></div>
           {/each}
@@ -143,7 +141,7 @@
     flex-direction: column;
     align-items: flex-start;
   }
-  .loading-container {
+  .loading-bar {
     width: calc(100% - 22px);
     background-color: color-mix(in srgb, var(--primary-color) 30%, transparent);
     background-image: url(/images/general/bg-texture.png);

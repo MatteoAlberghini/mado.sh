@@ -23,6 +23,9 @@
   let currentPath: [{ text: string, path: string }, ...{ text: string, path: string }[]] = $state([pathname[0]])
 
   /* support */
+  /**
+   * handle click of the button to open link if external, or go to pathname if internal
+   */
   function handleButtonClick() {
     if (type === 'external') {
       window.open(url, '_blank')
@@ -65,6 +68,10 @@
       handleButtonClick()
     }
   }
+  /**
+   * on key down, handles enter event
+   * @param e keyboard event
+   */
   function onKeyDown(e: KeyboardEvent) {
     if (e.key === 'Enter') {
       e.preventDefault()
@@ -112,6 +119,8 @@
   onmouseleave={onBlur}
   onclick={onClick}
   ondblclick={onDoubleClick}
+  onfocus={onHover}
+  onblur={onBlur}
   onkeydown={onKeyDown}
   use:draggable={{ bounds: 'parent' }}
   style:grid-row={position.row}
@@ -183,7 +192,7 @@
     overflow: hidden;
     white-space: wrap;
     text-align: center;
-    margin-top: calc(3px * var(--icon-size));
+    margin-top: 3px;
   }
 
   /* media queries */

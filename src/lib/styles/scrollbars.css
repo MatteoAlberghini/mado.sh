@@ -15,7 +15,6 @@
 .simplebar-track.simplebar-vertical {
   background-color: var(--background-color);
   background-image: url(/images/general/bg-texture.png);
-  margin-top: 2px;
-  margin-right: 1px;
-  margin-bottom: 34px;
+  margin-top: 1px;
+  margin-bottom: 1px;
 }

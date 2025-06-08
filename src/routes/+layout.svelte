@@ -49,6 +49,7 @@ TODO:
 <svelte:head>
   <link rel="preload" as="image" href="/cursors/bg2/cursor.png" />
   <link rel="preload" as="image" href="/cursors/bg2/cursor_click.png" />
+  <link rel="preload" as="image" href="/images/general/bg-texture.png" />
 </svelte:head>
 
 <svelte:window onclick={onClick} />
@@ -76,31 +77,35 @@ TODO:
   :root {
     --background-color: #B682FF;
     --primary-color: #FFD200;
+    --secondary-color: #E8492C;
     --text-color: #27213C;
-    --error-color: #BF354B;
     --selection-color: #FFD200;
-    --selection-background-color: #BF354B;
+    --selection-background-color: #E8492C;
     --shadow-primary-color: #0FD2FF;
     --shadow-secondary-color: #F60099;
+
+    --red-color: #F44336;
+    --white-color: #FFF4E9;
     
     --cursor-idle: url(/cursors/bg2/cursor.png);
     --cursor-click: url(/cursors/bg2/cursor_click.png);
 
     --transition-timing-fast: 85ms;
     --transition-timing-medium: 120ms;
-
-    --icon-size: 1;
+    --transition-timing-long: 400ms;
   }
   [data-theme='lavender']:root {
     --background-color: #B682FF;
     --primary-color: #FFD200;
+    --secondary-color: #E8492C;
     --text-color: #27213C;
     --shadow-primary-color: #0FD2FF;
     --shadow-secondary-color: #F60099;
   }
   [data-theme='jordy-blue']:root {
-    --background-color: #8fb5f5;
+    --background-color: #8FB5F5;
     --primary-color: #FFD200;
+    --secondary-color: #E8492C;
     --text-color: #27213C;
     --shadow-primary-color: #0FD2FF;
     --shadow-secondary-color: #F60099;
@@ -108,9 +113,10 @@ TODO:
   [data-theme='pistachio']:root {
     --background-color: #ADD074;
     --primary-color: #E8492C;
+    --secondary-color: #B682FF;
     --text-color: #27213C;
     --shadow-primary-color: #0FD2FF;
-    --shadow-secondary-color: #FFD200;
+    --shadow-secondary-color: #ADD074;
   }
   [data-icon-size="0.9"]:root {
     --icon-size: 0.9;
