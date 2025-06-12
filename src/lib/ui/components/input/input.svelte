@@ -49,7 +49,7 @@
     color: var(--text-color);
   }
   input:focus-within, input:focus {
-    box-shadow: initial;
+    outline: initial;
     background-color: var(--background-color);
   }
 </style>

@@ -1,7 +1,6 @@
 <!-- script -->
 <script lang="ts">
   /* imports  */
-  import { draggable } from '@neodrag/svelte'
   import { page } from '$app/state'
   import { goto } from '$app/navigation'
 	import type { DesktopButtonProps } from '$lib/ui/components/buttons/desktop/desktop.button.types'
@@ -9,7 +8,7 @@
   import MailIcon from '$lib/ui/icons/mail.icon.svelte'
   import MusicIcon from '$lib/ui/icons/music.icon.svelte'
   import PCIcon from '$lib/ui/icons/pc.icon.svelte'
-  import GlobIcon from '$lib/ui/icons/globe.icon.svelte'
+  import GlobeIcon from '$lib/ui/icons/globe.icon.svelte'
   import TextIcon from '$lib/ui/icons/text.icon.svelte'
   import Modal from '$lib/ui/components/buttons/desktop/modal.svelte'
 	import { focusedModal } from '$lib/ui/components/buttons/desktop/modal.store'
@@ -21,6 +20,17 @@
   let hover: boolean = $state(false)
   let open: boolean = $state(false)
   let currentPath: [{ text: string, path: string }, ...{ text: string, path: string }[]] = $state([pathname[0]])
+
+  /* refs */
+  let container: HTMLButtonElement
+
+  /* constants */
+  let x: number = 0
+  let y: number = 0
+  let dragX: number = 0
+  let dragY: number = 0
+  let frame: number = 0
+  let dragging: boolean = false
 
   /* support */
   /**
@@ -79,6 +89,39 @@
       return
     }
   }
+  /**
+   * on mouse down, handles drag event
+   * @param e mouse event
+   */
+  function onMouseDown(e: MouseEvent) {
+    if (!container) return
+    x = e.pageX
+    y = e.pageY
+    dragging = true
+  }
+  /**
+   * on mouse up, stop drag event
+   */
+  function onMouseUp() {
+    dragging = false
+  }
+  /**
+   * on mouse move, handles animation frame and drag calculation
+   * @param e mouse event
+   */
+  function onMouseMove(e: MouseEvent) {
+    if (!container || !dragging) return
+    const deltaX = x - e.pageX
+    const deltaY = y - e.pageY
+    x = e.pageX
+    y = e.pageY
+    dragX -= deltaX
+    dragY -= deltaY
+    cancelAnimationFrame(frame)
+    frame = requestAnimationFrame(() => {
+      container.style.transform = `translate3d(${dragX}px, ${dragY}px, 0)`
+    })
+  }
 
   /* functions */
   /**
@@ -112,8 +155,12 @@
 
 </script>
 
-<!-- template -->
+<!-- template
+  use:draggable={{ bounds: 'parent' }} 
+-->
+<svelte:window onmouseup={onMouseUp} onmousemove={onMouseMove} />
 <button
+  bind:this={container}
   aria-label={text}
   onmouseenter={onHover}
   onmouseleave={onBlur}
@@ -122,7 +169,7 @@
   onfocus={onHover}
   onblur={onBlur}
   onkeydown={onKeyDown}
-  use:draggable={{ bounds: 'parent' }}
+  onmousedown={onMouseDown}
   style:grid-row={position.row}
   style:grid-column={position.column}
 >
@@ -139,7 +186,7 @@
     <PCIcon />
   {/if}
   {#if type === 'external'}
-    <GlobIcon />
+    <GlobeIcon />
   {/if}
   {#if type === 'text'}
     <TextIcon />
@@ -149,6 +196,7 @@
     {text}
   </span>
 </button>
+<div class="tooltip">{`${external ? 'goto' : 'open'} >> ${text}`}</div>
 
 {#if open}
   <Modal
@@ -172,7 +220,7 @@
     width: 100%;
     max-height: 100%;
     max-width: 100%;
-    transition: all 75ms ease-out;
+    transition: background-color var(--transition-timing-fast) ease-out;
     padding-left: 3px;
     padding-right: 3px;
     padding-bottom: 4px;
@@ -180,8 +228,11 @@
     background: transparent;
   }
   button:hover, button:focus {
+    outline: 2px var(--primary-color) dashed;
     background-color: color-mix(in srgb, var(--primary-color) 30%, transparent);
-    box-shadow: inset 0 0 0 1px var(--primary-color);
+  }
+  button:hover + .tooltip, button:focus + .tooltip {
+    visibility: visible;
   }
   span {
     color: var(--text-color);
@@ -195,11 +246,35 @@
     margin-top: 3px;
   }
 
+  /* tooltip */
+  .tooltip {
+    position: fixed;
+    visibility: hidden;
+    width: max-content;
+    background-color: var(--secondary-background-color);
+    background-image: url(/images/general/bg-texture.png);
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-bottom: 3px;
+    padding-top: 1px;
+    border: 1px solid var(--primary-color);
+    border-bottom-width: 2px;
+    left: 4px;
+    bottom: 4px;
+    z-index: 2;
+    font-size: 17px;
+    font-weight: 400;
+    color: var(--primary-color);
+  }
+
   /* media queries */
   @media only screen and (max-width: 900px) {
     button {
       grid-row: auto !important;
       grid-column: auto !important;
+    }
+    .tooltip {
+      display: none;
     }
   }
 </style>

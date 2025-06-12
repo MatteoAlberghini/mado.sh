@@ -2,7 +2,7 @@
 <script lang="ts">
   /* imports */
   import { page } from '$app/state'
-	import { BASE_PROJECTS, PROJECTS } from '$lib/data/projects/projects.data'
+	import { BASE_PROJECTS, PROJECTS, REPOSITORIES } from '$lib/data/projects/projects.data'
 	import type { Project } from '$lib/data/projects/projects.types'
   import FolderButton from '$lib/ui/components/buttons/folder/folder.button.svelte'
 
@@ -29,7 +29,7 @@
 <div class="container">
   {#if content === null}
     <div class="projects-container">
-      <span>PAST WORK</span>
+      <span>WORK</span>
       {#each PROJECTS as p (p.path)}
         <FolderButton
           text={p.text}
@@ -38,7 +38,17 @@
         />
       {/each}
     </div>
-  {:else}
+    <div class="projects-container">
+      <span>REPOSITORIES</span>
+      {#each REPOSITORIES as p (p.path)}
+        <FolderButton
+          text={p.text}
+          path={p.path}
+          external={true}
+        />
+      {/each}
+    </div>
+  {:else if content.element}
     {@render content.element()}
   {/if}
 </div>

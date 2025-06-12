@@ -47,6 +47,7 @@ TODO:
 
 <!-- template -->
 <svelte:head>
+  <meta name="darkreader-lock">
   <link rel="preload" as="image" href="/cursors/bg2/cursor.png" />
   <link rel="preload" as="image" href="/cursors/bg2/cursor_click.png" />
   <link rel="preload" as="image" href="/images/general/bg-texture.png" />
@@ -76,6 +77,7 @@ TODO:
   /* global #B682FF; */
   :root {
     --background-color: #B682FF;
+    --secondary-background-color: #402F6E;
     --primary-color: #FFD200;
     --secondary-color: #E8492C;
     --text-color: #27213C;
@@ -96,6 +98,7 @@ TODO:
   }
   [data-theme='lavender']:root {
     --background-color: #B682FF;
+    --secondary-background-color: #402F6E;
     --primary-color: #FFD200;
     --secondary-color: #E8492C;
     --text-color: #27213C;
@@ -104,6 +107,7 @@ TODO:
   }
   [data-theme='jordy-blue']:root {
     --background-color: #8FB5F5;
+    --secondary-background-color: #402F6E;
     --primary-color: #FFD200;
     --secondary-color: #E8492C;
     --text-color: #27213C;
@@ -112,6 +116,7 @@ TODO:
   }
   [data-theme='pistachio']:root {
     --background-color: #ADD074;
+    --secondary-background-color: #19323C;
     --primary-color: #E8492C;
     --secondary-color: #B682FF;
     --text-color: #27213C;
@@ -151,8 +156,7 @@ TODO:
       cursor: var(--cursor-click) 0 12, pointer;
     }
     *:focus-visible {
-      background-color: color-mix(in srgb, var(--primary-color) 40%, transparent);
-      box-shadow: inset 0 0 0 1px var(--primary-color);
+      outline: 2px var(--primary-color) dashed;
     }
     *::selection {
       color: var(--selection-color);
@@ -222,8 +226,8 @@ TODO:
     .content {
       grid-template-columns: repeat(auto-fill, minmax(calc(100px * var(--icon-size)), 1fr));
       grid-template-rows: repeat(auto-fill, minmax(calc(100px * var(--icon-size)), 1fr));
-      column-gap: 8px;
-      row-gap: 8px;
+      column-gap: calc(8px * var(--icon-size));
+      row-gap: calc(8px * var(--icon-size));
       grid-auto-flow: column;
       padding-left: 8px;
       padding-right: 16px;
