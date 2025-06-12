@@ -50,7 +50,7 @@
     color: var(--text-color);
   }
   textarea:focus-within, textarea:focus {
-    box-shadow: initial;
+    outline: initial;
     background-color: var(--background-color);
   }
 </style>

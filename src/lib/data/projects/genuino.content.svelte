@@ -1,10 +1,11 @@
+<!-- script -->
 <script lang="ts">
   /* imports */
 	import Image from '$lib/ui/components/media/image/image.svelte'
 	import Video from '$lib/ui/components/media/video/video.svelte'
   import Header from '$lib/ui/macro/headers/horizontal-header/horizontal.header.svelte'
-
 </script>
+
 <!-- template -->
 <div class="container">
   <div class="image-container">
@@ -34,9 +35,6 @@
       <li><a draggable="false" href="https://reactnative.dev/" target="_blank">React Native</a> (with custom native hooks) for mobile app, interfacing with NFC tags</li>
       <li>Custom made <a draggable="false" href="https://en.wikipedia.org/wiki/Near-field_communication" target="_blank">NFC</a> tags that interface with in-house low-level auth system via app</li>
     </ul>
-    <div class="media-container">
-      <Video text="custom carousel in javascript" src="/videos/carousel_genuino.mp4" />
-    </div>
     <h3>PROJECT OVERVIEW</h3>
     <p>
       I was involved in the total creation of the product: from the design to the building of the
@@ -61,6 +59,10 @@
       The <a draggable="false" href="https://www.genuino.world/">website</a> is the marketplace and the way to obtain
       different tokens, both via purchasing the token itself and by purchasing "gamify" version of card packs.
     </p>
+    <h3>MORE COOL THINGS</h3>
+    <div class="media-container">
+      <Video text="custom carousel in javascript" src="/videos/carousel_genuino.mp4" />
+    </div>
   </article>
 </div>
 
@@ -107,8 +109,6 @@
     word-break: keep-all;
   }
   a:hover, a:focus, a:focus-visible {
-    background-color: initial;
-    box-shadow: initial;
     color: var(--secondary-color);
   }
   h3 {

@@ -7,6 +7,8 @@
 	import MobileIcon from '$lib/ui/icons/mobile.icon.svelte'
 	import IotIcon from '$lib/ui/icons/iot.icon.svelte'
 	import EthereumIcon from '$lib/ui/icons/ethereum.icon.svelte'
+  import DataIcon from '$lib/ui/icons/data.icon.svelte'
+	import ServerIcon from '$lib/ui/icons/server.icon.svelte'
 
   /* props */
   let { title, external, tags }: HeaderProps = $props()
@@ -36,6 +38,12 @@
             {/if}
             {#if t.type === 'blockchain'}
               <EthereumIcon />
+            {/if}
+            {#if t.type === 'data'}
+              <DataIcon />
+            {/if}
+            {#if t.type === 'backend'}
+              <ServerIcon />
             {/if}
           </div>
         </button>
@@ -101,8 +109,6 @@
     word-break: keep-all;
   }
   a:hover, a:focus, a:focus-visible {
-    background-color: initial;
-    box-shadow: initial;
     color: var(--secondary-color);
   }
 
@@ -117,10 +123,6 @@
   button {
     background: none;
   }
-  button:focus {
-    box-shadow: initial;
-    background-color: initial;
-  }
   button:hover > .tooltip, button:active > .tooltip, button:focus > .tooltip {
     visibility: visible;
   }
@@ -133,6 +135,7 @@
     visibility: hidden;
     width: max-content;
     background-color: var(--modal-background-color);
+    background-image: url(/images/general/bg-texture.png);
     padding-left: 4px;
     padding-right: 4px;
     padding-bottom: 3px;

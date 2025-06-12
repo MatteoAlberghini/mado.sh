@@ -7,5 +7,5 @@ import type { Snippet } from 'svelte'
 export type Project = {
   text: string,
   path: string,
-  element: Snippet,
+  element?: Snippet,
 }

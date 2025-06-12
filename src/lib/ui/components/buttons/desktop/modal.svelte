@@ -289,11 +289,9 @@
 
   <!-- styles -->
   <style>
-
     /* containers */
     .container {
       position: absolute;
-      overflow: hidden;
       background-image: url(/images/general/bg-texture.png);
       display: grid;
       grid-template-columns: 4px calc(100% - 8px) 4px;
@@ -386,8 +384,8 @@
       border-bottom: 0px;
     }
     button:hover, button:focus, button:focus-visible {
+      outline: 2px var(--primary-color) dashed;
       background-color: color-mix(in srgb, var(--primary-color) 40%, transparent);
-      box-shadow: initial;
     }
     .br {
       border-left-width: 0px;

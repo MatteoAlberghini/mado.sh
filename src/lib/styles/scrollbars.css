@@ -6,10 +6,6 @@
 .simplebar-scrollbar.simplebar-visible:before {
   opacity: 1;
 }
-.simplebar-content-wrapper:focus {
-  background-color: initial;
-  box-shadow: initial;
-}
 
 /* track */
 .simplebar-track.simplebar-vertical {

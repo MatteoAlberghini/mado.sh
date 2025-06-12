@@ -4,5 +4,5 @@
 export type HeaderProps = {
   title: string,
   external: { text: string, url: string },
-  tags: { type: 'mobile' | 'website' | 'iot' | 'blockchain', text: string }[],
+  tags: { type: 'mobile' | 'website' | 'iot' | 'blockchain' | 'data' | 'backend', text: string }[],
 }

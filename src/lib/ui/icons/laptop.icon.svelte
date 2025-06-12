@@ -16,11 +16,10 @@
   />
 </svg>
 
-
 <!-- styles -->
 <style>
   svg {
-    width: 24px;
+    width: 25px;
     height: auto;
     z-index: 3;
     stroke: var(--primary-color);
@@ -29,7 +28,7 @@
   .before {
     position: absolute;
     z-index: 2;
-    margin-left: 1px;
+    margin-left: 3px;
     stroke: var(--shadow-secondary-color);
   }
 </style>

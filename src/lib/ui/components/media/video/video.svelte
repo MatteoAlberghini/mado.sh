@@ -79,6 +79,8 @@
     justify-content: center;
     align-items: center;
     flex-shrink: 0;
+    border: 2px solid var(--primary-color);
+    border-bottom-width: 4px;
   }
 
   /* text */
@@ -107,8 +109,6 @@
     max-width: 430px;
     min-width: 430px;
     object-fit: cover;
-    border: 2px solid var(--primary-color);
-    border-bottom-width: 4px;
   }
 
   /* loading */
