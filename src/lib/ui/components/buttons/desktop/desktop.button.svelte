@@ -196,7 +196,7 @@
     {text}
   </span>
 </button>
-<div class="tooltip">{`${external ? 'goto' : 'open'} >> ${text}`}</div>
+<div class="tooltip">{`${type === 'external' ? 'goto' : 'open'} >> ${text}`}</div>
 
 {#if open}
   <Modal
