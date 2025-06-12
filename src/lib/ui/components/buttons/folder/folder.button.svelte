@@ -10,6 +10,7 @@
   let { text, path, external }: FolderButtonProps = $props()
 
   /* state */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   let hover: boolean = $state(false)
 
   /* support */
