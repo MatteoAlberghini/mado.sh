@@ -74,6 +74,9 @@
     cursor: grab;
     margin-top: 3px;
   }
+  input:focus-visible {
+    outline: 2px var(--primary-color) dashed;
+  }
   input:active {
     cursor: grabbing;
   }

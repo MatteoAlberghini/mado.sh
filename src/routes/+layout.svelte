@@ -17,6 +17,7 @@ TODO:
 	import DesktopButton from '$lib/ui/components/buttons/desktop/desktop.button.svelte'
 	import { getSoundActive, getSoundVolume, setSoundActive, setSoundVolume, soundActive, clickSoundElement, soundVolume } from '$lib/data/settings/sound.data'
 	import { getIconSize, setIconSize } from '$lib/data/settings/icon.data'
+	import Topbar from '$lib/ui/macro/topbar/topbar.svelte'
   
   /* props */
   let { children }: { children?: Snippet } = $props()
@@ -65,6 +66,7 @@ TODO:
   <audio src="/audio/click.ogg" bind:this={$clickSoundElement} muted={!$soundActive} volume={$soundVolume}></audio>
   <div class="grain"></div>
   <div class="content">
+    <Topbar />
     {#each DESKTOP_ICONS as icon (icon.id)}
       <DesktopButton {...icon} />
     {/each}
@@ -74,9 +76,9 @@ TODO:
 
 <!-- styles -->
 <style>
-  /* global #B682FF; */
+  /* global */
   :root {
-    --background-color: #B682FF;
+    --background-color: #B077FF;
     --secondary-background-color: #402F6E;
     --primary-color: #FFD200;
     --secondary-color: #E8492C;
@@ -95,9 +97,11 @@ TODO:
     --transition-timing-fast: 85ms;
     --transition-timing-medium: 120ms;
     --transition-timing-long: 400ms;
+
+    --opacity-low: 30%;
   }
   [data-theme='lavender']:root {
-    --background-color: #B682FF;
+    --background-color: #B077FF;
     --secondary-background-color: #402F6E;
     --primary-color: #FFD200;
     --secondary-color: #E8492C;
@@ -107,7 +111,7 @@ TODO:
   }
   [data-theme='jordy-blue']:root {
     --background-color: #8FB5F5;
-    --secondary-background-color: #402F6E;
+    --secondary-background-color: #3D5A80;
     --primary-color: #FFD200;
     --secondary-color: #E8492C;
     --text-color: #27213C;
@@ -115,22 +119,22 @@ TODO:
     --shadow-secondary-color: #F60099;
   }
   [data-theme='pistachio']:root {
-    --background-color: #ADD074;
+    --background-color: #89AB51;
     --secondary-background-color: #19323C;
     --primary-color: #E8492C;
-    --secondary-color: #B682FF;
-    --text-color: #27213C;
-    --shadow-primary-color: #0FD2FF;
-    --shadow-secondary-color: #ADD074;
-  }
-  [data-icon-size="0.9"]:root {
-    --icon-size: 0.9;
+    --secondary-color: #FFD200;
+    --text-color: #0D0A17;
+    --shadow-primary-color: #5AB1BB;
+    --shadow-secondary-color: #F6AE2D;
   }
   [data-icon-size="1"]:root {
-    --icon-size: 1;
+    --icon-size: 1.0;
   }
   [data-icon-size="1.1"]:root {
     --icon-size: 1.1;
+  }
+  [data-icon-size="1.2"]:root {
+    --icon-size: 1.2;
   }
   :global {
     html, body {

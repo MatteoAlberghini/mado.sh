@@ -22,6 +22,6 @@
   label="color theme"
   selected={theme}
   items={THEMES}
-  height={38}
+  height={40}
   onClick={onClick}
 />

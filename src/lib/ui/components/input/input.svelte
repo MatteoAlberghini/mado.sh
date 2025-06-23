@@ -47,9 +47,9 @@
     padding-bottom: 1px;
     font-weight: 400;
     color: var(--text-color);
+    outline-offset: 2px;
   }
-  input:focus-within, input:focus {
+  input:focus {
     outline: initial;
-    background-color: var(--background-color);
   }
 </style>

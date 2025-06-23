@@ -18,9 +18,6 @@ importers:
       '@eslint/js':
         specifier: ^9.27.0
         version: 9.27.0
-      '@neodrag/svelte':
-        specifier: ^2.3.2
-        version: 2.3.2(svelte@5.32.1)
       '@neondatabase/serverless':
         specifier: ^1.0.0
         version: 1.0.0
@@ -320,11 +317,6 @@ packages:
     resolution: {integrity: sha512-llMXd39jtP0HpQLVI37Bf1m2ADlEb35GYSh1SDSLsBhR+5iCxiNGlT31yqbNtVHygHAtMy6dWFERpU2JgufhPg==}
     engines: {node: '>=18'}
     hasBin: true
-
-  '@neodrag/svelte@2.3.2':
-    resolution: {integrity: sha512-1aPgnv2LqikkPEoTVgCPCqtXUXOD7OjCHLAIssTv0hkmyHLG9i697Cu+Tzco4/Q4KgOQXCDnLsa4Fvya5wXP9g==}
-    peerDependencies:
-      svelte: ^3.0.0 || ^4.0.0 || ^5.0.0
 
   '@neondatabase/serverless@1.0.0':
     resolution: {integrity: sha512-XWmEeWpBXIoksZSDN74kftfTnXFEGZ3iX8jbANWBc+ag6dsiQuvuR4LgB0WdCOKMb5AQgjqgufc0TgAsZubUYw==}
@@ -1595,10 +1587,6 @@ snapshots:
     transitivePeerDependencies:
       - encoding
       - supports-color
-
-  '@neodrag/svelte@2.3.2(svelte@5.32.1)':
-    dependencies:
-      svelte: 5.32.1
 
   '@neondatabase/serverless@1.0.0':
     dependencies:

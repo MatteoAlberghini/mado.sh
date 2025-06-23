@@ -29,6 +29,7 @@ export default ts.config(
 			'no-console': 1, // warning on console usage
 			'quotes': ['error', 'single'], // error on usage of non-single quotes
 			'prefer-template': ['error'], // prefer template to concat strings
+			'svelte/no-at-html-tags': 'off',
 		}
 	},
 	{
