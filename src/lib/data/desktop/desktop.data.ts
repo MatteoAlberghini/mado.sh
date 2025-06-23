@@ -4,6 +4,7 @@ import Projects from '$lib/data/projects/projects.content.svelte'
 import Settings from '$lib/data/settings/settings.content.svelte'
 import type { DesktopButtonProps } from '$lib/ui/components/buttons/desktop/desktop.button.types'
 import { BASE_PROJECTS, PROJECTS } from '$lib/data/projects/projects.data'
+import type { MultilevelSelectorItem } from '$lib/ui/components/selectors/selector.types'
 
 /**
  * connects each type of 'desktop application' to a unique id
@@ -23,7 +24,7 @@ export const DESKTOP_ICONS: DesktopButtonProps[] = [
     id: DesktopUniqueID.projects,
     type: 'folder',
     text: BASE_PROJECTS.text,
-    url: 'todo change',
+    url: BASE_PROJECTS.path,
     modal: { left: '1216px', top: '946px', width: '1000px', height: '730px', color: '#0F2F5F' },
     position: { row: '1', column: '1' },
     pathname: [
@@ -37,7 +38,7 @@ export const DESKTOP_ICONS: DesktopButtonProps[] = [
     id: DesktopUniqueID.contact,
     type: 'mail',
     text: 'contact.sh',
-    url: 'todo change',
+    url: '/contact',
     modal: { left: '966px', top: '786px', width: '750px', height: '570px', color: '#2B4162' },
     position: { row: '2', column: '1' },
     pathname: [{ text: 'contact.sh', path: '/contact' }],
@@ -48,7 +49,7 @@ export const DESKTOP_ICONS: DesktopButtonProps[] = [
     id: DesktopUniqueID.settings,
     type: 'pc',
     text: 'settings.sh',
-    url: 'todo change',
+    url: '/settings',
     modal: { left: '745px', top: '816px', width: '900px', height: '600px', color: '#312454' },
     position: { row: '3', column: '1' },
     pathname: [{ text: 'settings.sh', path: '/settings' }],
@@ -73,4 +74,28 @@ export const DESKTOP_ICONS: DesktopButtonProps[] = [
     position: { row: '2', column: '-2' },
     pathname: [{ text: 'linkedin.link', path: '/external-linkedin' }],
   },
+]
+/**
+ * array used for navigation in the topbar of desktop
+ */
+export const DESKTOP_NAVIGATION: MultilevelSelectorItem[] = [
+  {
+    label: 'contact.sh',
+    value: '/contact', 
+  },
+  {
+    label: 'settings.sh',
+    value: '/settings',
+  },
+  {
+    label: 'projects.dir',
+    value: '/projects',
+    items: PROJECTS.map((p) => ({ label: p.text, value: p.path }))
+  }
+]
+
+export const MESSAGES_OF_THE_DAY: string[] = [
+  'happy to see you here :)',
+  'check out my <a href="/projects" draggable="false">projects :D</a>',
+  'you can <a href="/settings" draggable="false">customize</a> your experience!',
 ]

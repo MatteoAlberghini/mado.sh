@@ -7,13 +7,13 @@ TODO:
 <!-- script -->
 <script lang="ts">
 	/* imports */
-  import type { SelectorProps } from '$lib/ui/components/selectors/selector.types'
+  import type { MultiLevelSelectorProps } from '$lib/ui/components/selectors/selector.types'
 	import DropdownIcon from '$lib/ui/icons/dropdown.icon.svelte'
 	import { expoOut } from 'svelte/easing'
 	import { slide } from 'svelte/transition'
 
   /* props */
-  let { label, selected, items, height, onClick }: SelectorProps = $props()
+  let { label, selected, items, height, onClick }: MultiLevelSelectorProps = $props()
 
   /* state */
   let open: boolean = $state(false)
@@ -48,7 +48,11 @@ TODO:
    * handle click on item on the list
    * @param val string value from the map
    */
-  function onItemClick(val: string) {
+  function onItemClick(val: string, e?: MouseEvent) {
+    if (e) {
+      e.preventDefault()
+      e.stopPropagation()
+    }
     onClick(val)
     toggleSelector()
   }
@@ -131,16 +135,38 @@ TODO:
       id={`listbox-${label}`}
       transition:slide={{ duration: 85, easing: expoOut }}
     >
-      {#each items as item (item[0])}
+      {#each items as item (item.value)}
       <li
         role="option"
-        aria-selected={selected === item[1]}
+        aria-selected={selected === item.label}
         style:height={`${height + 4}px`}
-        onclick={() => onItemClick(item[0])}
-        onkeydown={(e) => onItemKeyDown(e, item[0])}
+        onclick={() => onItemClick(item.value)}
+        onkeydown={(e) => onItemKeyDown(e, item.value)}
         tabindex="0"
       >
-        {item[1]}
+        {item.label}
+        {#if item.items}
+          <span>&gt;</span>
+          <ul
+            class="child"
+            role="listbox"
+            id={`listbox-child-${item.label}`}
+            style:--height={`${height + 4}px`}
+          >
+            {#each item.items as i (i.value)}
+              <li
+                role="option"
+                aria-selected={selected === i.label}
+                style:height={`${height + 4}px`}
+                onclick={(e) => onItemClick(i.value, e)}
+                onkeydown={(e) => onItemKeyDown(e, i.value)}
+                tabindex="0"
+              >
+                {i.label}
+              </li>
+            {/each}
+          </ul>
+        {/if}
       </li>
       {/each}
     </ul>
@@ -193,7 +219,7 @@ TODO:
     background-image: url(/images/general/bg-texture.png);
     color: var(--text-color);
     border: 1px solid var(--primary-color);
-    border-bottom-width: 3px;
+    border-bottom-width: 4px;
     padding-left: 7px;
     font-size: 18px;
     font-weight: 400;
@@ -210,7 +236,6 @@ TODO:
     align-items: flex-start;
     justify-content: flex-start;
     flex-direction: column;
-    user-select: none;
   }
   li {
     width: 100%;
@@ -226,13 +251,25 @@ TODO:
     justify-content: flex-start;
     align-items: center;
     position: relative;
-    overflow: hidden;
     padding-left: 7px;
-    user-select: none;
+    padding-right: 7px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
   }
   li:hover, li:focus {
     background-color: var(--secondary-background-color);
     color: var(--primary-color);
-    outline: initial;
+  }
+  .child {
+    visibility: hidden;
+    position: absolute;
+    left: 100%;
+    top: -1px;
+    pointer-events: none;
+  }
+  li:hover > .child, li:focus > .child, .child:hover {
+    visibility: visible;
+    pointer-events: auto; 
   }
 </style>

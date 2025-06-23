@@ -48,9 +48,9 @@
     font-size: 17px;
     font-weight: 400;
     color: var(--text-color);
+    outline-offset: 2px;
   }
-  textarea:focus-within, textarea:focus {
+  textarea:focus {
     outline: initial;
-    background-color: var(--background-color);
   }
 </style>

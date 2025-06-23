@@ -8,7 +8,7 @@ import type { Project } from './projects.types'
  * base text/url of projects page
  */
 export const BASE_PROJECTS: { text: string, path: string } = {
-  text: 'projects.sh',
+  text: 'projects.dir',
   path: '/projects',
 }
 /**

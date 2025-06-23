@@ -155,9 +155,7 @@
 
 </script>
 
-<!-- template
-  use:draggable={{ bounds: 'parent' }} 
--->
+<!-- template -->
 <svelte:window onmouseup={onMouseUp} onmousemove={onMouseMove} />
 <button
   bind:this={container}
@@ -229,7 +227,7 @@
   }
   button:hover, button:focus {
     outline: 2px var(--primary-color) dashed;
-    background-color: color-mix(in srgb, var(--primary-color) 30%, transparent);
+    background-color: color-mix(in srgb, var(--primary-color) var(--opacity-low), transparent);
   }
   button:hover + .tooltip, button:focus + .tooltip {
     visibility: visible;
@@ -268,13 +266,20 @@
   }
 
   /* media queries */
-  @media only screen and (max-width: 900px) {
+  @media only screen and (max-width: 1280px) {
     button {
       grid-row: auto !important;
       grid-column: auto !important;
     }
     .tooltip {
       display: none;
+    }
+    span {
+      font-size: 18px;
+      margin-top: 4px;
+    }
+    button > :global(svg) {
+      max-width: 65px;
     }
   }
 </style>

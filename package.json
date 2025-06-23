@@ -16,7 +16,6 @@
 	"devDependencies": {
 		"@eslint/compat": "^1.2.9",
 		"@eslint/js": "^9.27.0",
-		"@neodrag/svelte": "^2.3.2",
 		"@neondatabase/serverless": "^1.0.0",
 		"@sveltejs/adapter-vercel": "^5.7.2",
 		"@sveltejs/kit": "^2.21.1",

@@ -38,7 +38,7 @@
     label="screen saver"
     selected={saver}
     items={SCREEN_SAVERS}
-    height={38}
+    height={40}
     onClick={onClick}
   />
   <button
@@ -62,8 +62,8 @@
 
   /* buttons */
   button {
-    height: 38px;
-    width: 42px;
+    height: 40px;
+    width: 44px;
     border: 1px solid var(--primary-color);
     border-bottom-width: 3px;
     background-color: var(--background-color);

@@ -384,8 +384,9 @@
       border-bottom: 0px;
     }
     button:hover, button:focus, button:focus-visible {
+      outline-offset: -2px;
       outline: 2px var(--primary-color) dashed;
-      background-color: color-mix(in srgb, var(--primary-color) 40%, transparent);
+      background-color: color-mix(in srgb, var(--primary-color) var(--opacity-low), transparent);
     }
     .br {
       border-left-width: 0px;
