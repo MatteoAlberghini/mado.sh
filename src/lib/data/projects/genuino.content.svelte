@@ -9,7 +9,7 @@
 <!-- template -->
 <div class="container">
   <div class="image-container">
-    <Image src="/images/projects/genuino.jpg" alt="genuino.world intro" />
+    <Image src="/images/projects/genuino.webp" alt="genuino.world intro" />
   </div>
 
   <Header

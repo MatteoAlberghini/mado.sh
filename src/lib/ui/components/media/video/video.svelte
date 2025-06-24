@@ -48,7 +48,7 @@
 <!-- template -->
 <div class="container">
   <p>{text}</p>
-  <video muted autoplay loop style:opacity={loading ? '0' : '1'} onloadeddata={onLoad}>
+  <video muted autoplay loop style:opacity={loading ? '0' : '1'} onloadeddata={onLoad} preload="none">
     <source src={src} type="video/mp4" />
   </video>
   {#if loading}

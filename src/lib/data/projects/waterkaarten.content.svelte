@@ -8,7 +8,7 @@
 <!-- template -->
 <div class="container">
   <div class="image-container">
-    <Image src="/images/projects/waterkaarten.jpg" alt="waterkaarten intro" />
+    <Image src="/images/projects/waterkaarten.webp" alt="waterkaarten intro" />
   </div>
 
   <Header
