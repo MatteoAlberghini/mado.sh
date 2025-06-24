@@ -81,6 +81,11 @@
     flex-shrink: 0;
     border: 2px solid var(--primary-color);
     border-bottom-width: 4px;
+    max-height: 300px;
+    height: 300px;
+    max-height: 300px;
+    width: 430px;
+    max-width: 100%;
   }
 
   /* text */
@@ -102,12 +107,7 @@
   /* video */
   video {
     width: 100%;
-    max-height: 300px;
-    height: 300px;
-    min-height: 300px;
-    width: 430px;
-    max-width: 430px;
-    min-width: 430px;
+    height: 100%;
     object-fit: cover;
   }
 

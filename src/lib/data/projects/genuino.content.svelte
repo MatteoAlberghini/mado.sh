@@ -120,6 +120,9 @@
   ul {
     list-style-position: inside;
   }
+  li {
+    padding-inline-start: -12px;
+  }
 
   /* images */
   .image-container > :global(figure) {
