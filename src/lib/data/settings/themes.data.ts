@@ -15,7 +15,7 @@ export const THEMES = new Map<string, string>([
  * @returns value of the map
  */
 export function getThemeValue(): string {
-  return THEMES.get(document.documentElement.getAttribute('data-theme') || 'jordy-blue') || 'jordy-blue'
+  return THEMES.get(THEMES.get(document.documentElement.getAttribute('data-theme') || 'jordy-blue') || 'jordy-blue') || 'jordy blue'
 }
 /**
  * set a string as theme
@@ -25,5 +25,5 @@ export function getThemeValue(): string {
 export function setTheme(theme: string): string {
   setCookie('theme', theme)
   document.documentElement.setAttribute('data-theme', theme)
-  return THEMES.get(document.documentElement.getAttribute('data-theme') || 'jordy-blue') || 'jordy-blue'
+  return THEMES.get(THEMES.get(document.documentElement.getAttribute('data-theme') || 'jordy-blue') || 'jordy-blue') || 'jordy blue'
 }
