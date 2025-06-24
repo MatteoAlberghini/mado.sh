@@ -371,7 +371,6 @@
       height: 100%;
     }
     button {
-      min-width: 48px;
       width: 48px;
       height: 100%;
       background-color: transparent;
