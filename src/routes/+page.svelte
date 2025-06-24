@@ -8,4 +8,7 @@
     addicted to building things.
     "
   />
+  <meta property="og:title" content="0x6d61646f.sh" />
+  <meta property="og:description" content="software developer" />
+  <meta property="og:url" content="https://matteoalberghini.com" />
 </svelte:head>

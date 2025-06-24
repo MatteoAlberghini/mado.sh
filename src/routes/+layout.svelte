@@ -48,7 +48,6 @@ TODO:
 
 <!-- template -->
 <svelte:head>
-  <meta name="darkreader-lock">
   <link rel="preload" as="image" href="/cursors/bg2/cursor.png" />
   <link rel="preload" as="image" href="/cursors/bg2/cursor_click.png" />
   <link rel="preload" as="image" href="/images/general/bg-texture.png" />
