@@ -274,9 +274,40 @@
       left: calc((100% / 3));
     }
   }
-  @media only screen and (max-width: 1280px) {
+  @media only screen and (min-width: 520px) and (max-width: 618px) {
     .container {
-      display: none;
+      top: initial;
+      left: initial;
+      right: 0px;
+      bottom: 0px;
+      z-index: 49;
+    }
+    p {
+      font-size: 16px;
+    }
+  }
+  @media only screen and (min-width: 619px) and (max-width: 1280px) {
+    .container {
+      top: initial;
+      left: initial;
+      right: 0px;
+      bottom: 0px;
+      z-index: 49;
+    }
+  }
+  @media only screen and (max-width: 520px) {
+    .container {
+      top: initial;
+      left: initial;
+      bottom: 52px;
+      right: 0;
+      z-index: 49;
+    }
+    .date {
+      border-bottom-width: 2px;
+    }
+    p {
+      font-size: 16px;
     }
   }
 </style>

@@ -246,9 +246,11 @@
           <span class="title">
             {#each path as p, i (p.path)}
               {#if i > 0}
-                >>
+                <span class={i === 1 ? 'home-span' : undefined}>
+                  >>
+                </span>
               {/if}
-              <a draggable="false" href={p.path}>
+              <a class={i === 0 ? 'home' : undefined} draggable="false" href={p.path}>
                 {p.text}
               </a>
             {/each}
@@ -457,10 +459,15 @@
         top: 0px !important;
         right: 0px !important;
       }
-      .title {
-        font-size: 16px;
-      }
       .fullscreen-button {
+        display: none;
+      }
+    }
+    @media only screen and (max-width: 450px) {
+      .home {
+        display: none;
+      }
+      .home-span {
         display: none;
       }
     }

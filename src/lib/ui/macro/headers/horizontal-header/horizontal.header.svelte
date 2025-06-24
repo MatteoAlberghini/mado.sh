@@ -154,6 +154,9 @@
 
   /* media queries */
   @media only screen and (max-width: 600px) {
+    header {
+      flex-direction: column;
+    }
     .info-container {
       align-items: flex-start;
     }

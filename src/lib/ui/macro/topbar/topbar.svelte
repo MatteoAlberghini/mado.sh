@@ -101,29 +101,27 @@
   bind:this={container}
   onmousedown={onMouseDown}
 >
-  <div class="navigation">
-    <div class="navigator">
-      <MultiLevelSelector
-        selected="open >>"
-        height={42}
-        items={DESKTOP_NAVIGATION}
-        onClick={onNavigationClick}
-      />
-    </div>
-    <div class="buttons">
-      <ScreenSaverButton />
-      <QuitButton />
-      <SettingsButton />
-    </div>
-    <div class="messages">
-      {#key message}
-        <p
-          in:slide={{ duration: 120, easing: expoOut }}
-        >
-          {@html message}
-        </p>
-      {/key}
-    </div>
+  <div class="navigator">
+    <MultiLevelSelector
+      selected="open >>"
+      height={42}
+      items={DESKTOP_NAVIGATION}
+      onClick={onNavigationClick}
+    />
+  </div>
+  <div class="buttons">
+    <ScreenSaverButton />
+    <QuitButton />
+    <SettingsButton />
+  </div>
+  <div class="messages">
+    {#key message}
+      <p
+        in:slide={{ duration: 120, easing: expoOut }}
+      >
+        {@html message}
+      </p>
+    {/key}
   </div>
 </header>
 
@@ -151,6 +149,10 @@
     border-bottom-width: 3px;
     outline-offset: 1px;
     z-index: 80;
+    padding-left: 6px;
+    padding-right: 8px;
+    padding-top: 6px;
+    padding-bottom: 6px;
   }
   header:hover:not(:has(button[aria-expanded=true])) {
     outline: 2px var(--primary-color) dashed;
@@ -185,18 +187,6 @@
     color: var(--secondary-color);
   }
 
-  /* navigation */
-  .navigation {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    padding-left: 6px;
-    padding-right: 8px;
-    padding-top: 6px;
-    padding-bottom: 6px;
-  }
-
   /* media queries */
   @media only screen and (min-width: 1920px) {
     header {
@@ -205,7 +195,31 @@
   }
   @media only screen and (max-width: 1280px) {
     header {
+      top: initial;
+      bottom: 0px;
+      left: 0px;
+      z-index: 49;
+      height: 52px;
+      width: 100%;
+      max-width: calc(100% - 114px);
+      padding-left: 4px;
+      padding-right: 4px;
+    }
+    .navigator {
       display: none;
+    }
+    .buttons {
+      margin-left: 0px;
+    }
+  }
+  @media only screen and (max-width: 618px) {
+    .messages > p {
+      font-size: 17px;
+    }
+  }
+  @media only screen and (max-width: 520px) {
+    header {
+      max-width: 100%;
     }
   }
 </style>
