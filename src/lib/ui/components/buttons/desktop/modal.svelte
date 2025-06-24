@@ -250,7 +250,7 @@
                   >>
                 </span>
               {/if}
-              <a class={i === 0 ? 'home' : undefined} draggable="false" href={p.path}>
+              <a class={i === 0 && path.length > 1 ? 'home' : undefined} draggable="false" href={p.path}>
                 {p.text}
               </a>
             {/each}

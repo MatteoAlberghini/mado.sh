@@ -193,7 +193,7 @@
       left: calc((100% / 3) + 117px);
     }
   }
-  @media only screen and (max-width: 1280px) {
+  @media only screen and (max-width: 1279px) {
     header {
       top: initial;
       bottom: 0px;

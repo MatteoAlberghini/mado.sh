@@ -57,7 +57,7 @@
     margin-top: 1px;
   }
   span {
-    font-size: 15px;
+    font-size: 16px;
   }
 
   /* input */
