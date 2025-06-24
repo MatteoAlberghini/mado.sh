@@ -286,7 +286,7 @@
       font-size: 16px;
     }
   }
-  @media only screen and (min-width: 619px) and (max-width: 1280px) {
+  @media only screen and (min-width: 619px) and (max-width: 1279px) {
     .container {
       top: initial;
       left: initial;
