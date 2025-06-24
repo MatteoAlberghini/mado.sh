@@ -280,6 +280,7 @@
       left: initial;
       right: 0px;
       bottom: 0px;
+      z-index: 49;
     }
     p {
       font-size: 16px;
@@ -291,6 +292,7 @@
       left: initial;
       right: 0px;
       bottom: 0px;
+      z-index: 49;
     }
   }
   @media only screen and (max-width: 520px) {
@@ -299,6 +301,7 @@
       left: initial;
       bottom: 52px;
       right: 0;
+      z-index: 49;
     }
     .date {
       border-bottom-width: 2px;
