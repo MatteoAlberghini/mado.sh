@@ -4,12 +4,13 @@
 	import Image from '$lib/ui/components/media/image/image.svelte'
 	import Video from '$lib/ui/components/media/video/video.svelte'
   import Header from '$lib/ui/macro/headers/horizontal-header/horizontal.header.svelte'
+  import Hero from '$lib/images/projects/o9solutions.webp?enhanced'
 </script>
 
 <!-- template -->
 <div class="container">
   <div class="image-container">
-    <Image src="/images/projects/o9solutions.webp" alt="o9solutions intro" />
+    <Image src={Hero} alt="o9solutions intro" />
   </div>
 
   <Header

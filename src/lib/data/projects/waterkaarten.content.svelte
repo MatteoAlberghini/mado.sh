@@ -3,12 +3,13 @@
   /* imports */
 	import Image from '$lib/ui/components/media/image/image.svelte'
   import Header from '$lib/ui/macro/headers/horizontal-header/horizontal.header.svelte'
+  import Hero from '$lib/images/projects/waterkaarten.webp?enhanced'
 </script>
 
 <!-- template -->
 <div class="container">
   <div class="image-container">
-    <Image src="/images/projects/waterkaarten.webp" alt="waterkaarten intro" />
+    <Image src={Hero} alt="waterkaarten intro" />
   </div>
 
   <Header
