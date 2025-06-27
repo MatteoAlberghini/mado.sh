@@ -47,7 +47,14 @@
 
 <!-- template -->
 <figure>
-  <img src={src} alt={alt} loading={lazy ? 'lazy' : undefined} draggable="false" onload={onLoad} style:opacity={loading ? '0' : '1'} />
+  <enhanced:img
+    src={src}
+    alt={alt}
+    loading={lazy ? 'lazy' : undefined}
+    draggable="false"
+    onload={onLoad}
+    style:opacity={loading ? '0' : '1'} 
+  />
   {#if loading}
     <div class="loading-container">
       <span>THE IMAGE IS LOADING...</span>
@@ -76,7 +83,11 @@
     justify-content: center;
     align-items: center;
   }
-  img {
+  :global(picture) {
+    width: 100%;
+    height: 100%;
+  }
+  :global(img) {
     width: 100%;
     height: 100%;
     object-fit: cover;
