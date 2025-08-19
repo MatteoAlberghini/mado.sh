@@ -1,7 +1,7 @@
 /**
  * picture type from enhanced image because i cannot import it from anywhere
  */
-interface Picture {
+export interface Picture {
   sources: Record<string, string>,
   img: {
       src: string;

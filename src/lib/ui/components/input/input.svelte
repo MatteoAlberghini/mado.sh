@@ -4,7 +4,7 @@
   import type { InputProps } from '$lib/ui/components/input/input.types'
   
   /* props */
-  let { id, label, required, type, side, max }: InputProps = $props()
+  let { id, label, required, type, side, max, height = 36 }: InputProps = $props()
 </script>
 
 <!-- template -->
@@ -14,7 +14,12 @@
     <span>{side}</span>
   {/if}
 </label>
-<input id={id} name={id} type={type} maxlength={max} required={required} />
+<input
+  id={id}
+  name={id}
+  type={type}
+  maxlength={max}
+  required={required} style:height={`${height}px`} />
 
 <!-- styles -->
 <style>
@@ -38,7 +43,6 @@
     padding-left: 7px;
     padding-right: 7px;
     margin-top: 4px;
-    height: 36px;
     background-color: var(--background-color);
     background-image: url(/images/general/bg-texture.png);
     border: 1px solid var(--primary-color);

@@ -45,6 +45,18 @@
 
   /* callbacks */
   /**
+   * on focus in, when parent or child gets focus
+   */
+  function onFocus() {
+    container.style.zIndex = '51'
+  }
+  /**
+   * on focus out, when parent and child loses focus
+   */
+  function onBlur() {
+    container.style.zIndex = '48'
+  }
+  /**
    * on mouse down, handles drag event
    * @param e mouse event
    */
@@ -100,6 +112,8 @@
   tabindex="0"
   bind:this={container}
   onmousedown={onMouseDown}
+  onfocusin={onFocus}
+  onfocusout={onBlur}
 >
   <div class="navigator">
     <MultiLevelSelector
@@ -148,7 +162,7 @@
     border: 1px solid var(--primary-color);
     border-bottom-width: 3px;
     outline-offset: 1px;
-    z-index: 80;
+    z-index: 48;
     padding-left: 6px;
     padding-right: 8px;
     padding-top: 6px;

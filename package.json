@@ -35,10 +35,12 @@
 	},
 	"pnpm": {
 		"onlyBuiltDependencies": [
-			"esbuild"
+			"esbuild",
+			"sharp"
 		]
 	},
 	"dependencies": {
+		"@vercel/analytics": "^1.5.0",
 		"simplebar": "^6.3.1"
 	}
 }
