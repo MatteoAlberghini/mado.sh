@@ -24,12 +24,12 @@ export default ts.config(
 			'no-undef': 'off', // default
 			'@typescript-eslint/no-unused-expressions': ['error', { allowShortCircuit: true }], // defaults, fixing eslint issues
 			'svelte/no-inner-declarations': ['error', 'functions', { blockScopedFunctions: 'allow' }], // defaults, fixing eslint issues
-			'semi': ['error', 'never'], // error when using semicolons
+			semi: ['error', 'never'], // error when using semicolons
 			'max-len': 'off', // remove max length error
 			'no-console': 1, // warning on console usage
-			'quotes': ['error', 'single'], // error on usage of non-single quotes
+			quotes: ['error', 'single'], // error on usage of non-single quotes
 			'prefer-template': ['error'], // prefer template to concat strings
-			'svelte/no-at-html-tags': 'off',
+			'svelte/no-at-html-tags': 'off'
 		}
 	},
 	{

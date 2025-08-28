@@ -299,6 +299,7 @@
       grid-template-columns: 4px calc(100% - 8px) 4px;
       grid-template-rows: 30px calc(100% - 34px) 4px;
       border: 1px solid var(--text-color);
+      container-type: size;
     }
     .content {
       display: flex;

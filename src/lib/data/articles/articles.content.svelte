@@ -1,16 +1,22 @@
 <script lang="ts">
   /* imports  */
-	import Selector from '$lib/ui/components/selectors/selector.svelte'
-  import Input from '$lib/ui/components/input/input.svelte'
+  import { page } from '$app/state'
+	import { goto } from '$app/navigation'
+  import Selector from '$lib/ui/components/selectors/selector.svelte'
 	import { Categories, type Article, type Category } from '$lib/data/articles/articles.types'
-	import { ARTICLES } from '$lib/data/articles/articles.data'
+	import { ARTICLES, BASE_ARTICLES } from '$lib/data/articles/articles.data'
 	import Image from '$lib/ui/components/media/image/image.svelte'
 
   /* state */
   let filteredArticles: Article[] = $state(ARTICLES)
-  let category: string = $state('everything') 
+  let category: string = $state('everything')
+  let content: Article | null = $state(null)
 
   /* callbacks */
+  /**
+   * handle category changes to filter the shown list
+   * @param value the category to change to
+   */
   function onCategoryClick(value: string) {
     category = value
     if (value === 'everything') {
@@ -19,51 +25,105 @@
     }
     filteredArticles = ARTICLES.filter((a) => a.category.includes(value as Category))
   }
+  /**
+ * on click, prevent single click
+ * @param e mouse event
+ */
+  function onClick(e: Event, path: string) {
+    e.preventDefault()
+    goto(path)
+  }
+  /**
+   * on key down, handles enter event
+   * @param e keyboard event
+   */
+  function onKeyDown(e: KeyboardEvent, path: string) {
+    if (e.key === 'Enter') {
+      e.preventDefault()
+      goto(path)
+      return
+    }
+  }
+
+  /* effects */
+  /**
+   * set correct content based on url path changes
+  */
+  $effect(() => {
+    if (page.url.pathname.includes(BASE_ARTICLES.path)) {
+      if (page.url.pathname === BASE_ARTICLES.path) {
+        content = null
+        return
+      }
+      const currentContent = ARTICLES.find((a) => a.path === page.url.pathname)
+      if (currentContent) { content = currentContent }
+    }
+  })
 
 </script>
 
 <!-- template -->
-<div class="filters">
-  <span>FILTERS</span>
-  <div class="filter">
-    <Selector
-      label="category"
-      selected={category}
-      items={Categories}
-      height={40}
-      onClick={onCategoryClick}
-    />
+<div class="container">
+  {#if content === null}
+  <div class="filters">
+    <span>FILTERS</span>
+    <div class="filter">
+      <Selector
+        label="category"
+        selected={category}
+        items={Categories}
+        height={40}
+        onClick={onCategoryClick}
+      />
+    </div>
   </div>
-</div>
-<div class="content">
-  {#each filteredArticles as a (a.path)}
-    <a draggable="false" href={a.path} class="article">
-      <div class="image-container">
-        <Image src={a.image} alt={a.text} />
-      </div>
-      <div class="article-content">
-        <div>
-          <h3>{@html a.title}</h3>
-          <hr />
-          <p class="date">{a.date}</p>
-          <p class="exerpt">{a.excerpt}</p>
+  <div class="content">
+    {#each filteredArticles as a (a.path)}
+      <button
+        class="article"
+        onclick={(e) => onClick(e, a.path)}
+        onkeydown={(e) => onKeyDown(e, a.path)}
+      >
+        <div class="image-container">
+          <Image src={a.image} alt={a.text} position="0% 0%"/>
         </div>
-        <div>
-          {#each a.category as c (c)}
-            <div class="category">
-              {c}
+        <div class="article-content">
+          <div>
+            <h3>{@html a.title}</h3>
+            <hr />
+            <div class="under-title">
+              <p class="date">{a.date}</p>
+              <div class="categories">
+                {#each a.category as c (c)}
+                  <div class="category">
+                    {c}
+                  </div>
+                {/each}
+              </div>
             </div>
-          {/each}
+            <p class="exerpt">{a.excerpt}</p>
+          </div>
         </div>
-      </div>
-      <div class="tooltip">open >> {a.text}</div>
-    </a>
-  {/each}
+        <div class="tooltip">open >> {a.text}</div>
+      </button>
+    {/each}
+  </div>
+  {:else if content.element}
+    {@render content.element()}
+  {/if}
 </div>
 
 <!-- styles -->
 <style>
   /* filter */
+  .container {
+    display: flex;
+    flex-direction: column;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
+    padding-bottom: 16px;
+  }
   .filters {
     position: relative;
     display: flex;
@@ -72,10 +132,6 @@
     align-items: flex-start;
     border: 1px solid var(--background-color);
     border-bottom-width: 3px;
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-top: 20px;
-    margin-bottom: 16px;
     padding-top: 12px;
     padding-bottom: 12px;
   }
@@ -109,21 +165,29 @@
     justify-content: flex-start;
     align-items: flex-start;
     border-bottom-width: 3px;
-    margin-left: 20px;
-    margin-right: 20px;
     margin-top: 20px;
-    margin-bottom: 16px;
     gap: 20px;
+  }
+  .under-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 14px;
+    padding-right: 16px;
   }
   .article {
     display: flex;
     flex-direction: row;
+    text-align: left;
     width: 100%;
     min-height: 300px;
     border: 1px solid var(--background-color);
     border-bottom-width: 3px;
     transition: background-color var(--transition-timing-medium) ease-out;
     position: relative;
+    user-select: none;
+    background: transparent;
   }
   .article:hover, .article:focus, .article:focus-visible {
     outline-offset: 2px;
@@ -134,10 +198,10 @@
     visibility: visible;
   }
   .image-container {
-    max-width: 33%;
-    min-width: 33%;
-    width: 33%;
-    border-right: 1px solid var(--background-color);
+    max-width: 36%;
+    min-width: 36%;
+    width: 36%;
+    border-right: 2px solid var(--background-color);
   }
   .image-container > :global(figure) {
     object-fit: cover;
@@ -149,8 +213,8 @@
     flex-direction: column;
     justify-content: space-between;
     row-gap: 8px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 16px;
+    padding-right: 16px;
     padding-top: 12px;
     width: 100%;
   }
@@ -165,22 +229,24 @@
   }
   hr {
     margin-top: 15px;
-    border-bottom: 3px solid var(--background-color);
+    margin-right: 16px;
+    border-bottom: 2px solid var(--background-color);
   }
   .date {
-    padding-top: 14px;
-    font-size: 18px;
+    font-size: 16px;
     color: var(--primary-color);
   }
   .exerpt {
-    padding-top: 14px;
+    margin-top: 16px;
     padding-right: 20px;
     font-size: 19px;
     color: var(--primary-color);
   }
-  a {
-    text-decoration: none;
-    word-break: keep-all;
+  .categories {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 6px;
+    column-gap: 3px;
   }
   .category {
     border: 1px solid var(--background-color);
@@ -190,8 +256,9 @@
     padding-left: 3px;
     padding-top: 2px;
     padding-bottom: 2px;
+    font-size: 15px;
+    text-transform: uppercase;
     color: var(--primary-color);
-    margin-bottom: 8px;
   }
 
   /* tooltip */
@@ -207,11 +274,31 @@
     padding-top: 1px;
     border: 1px solid var(--primary-color);
     border-bottom-width: 2px;
-    bottom: 1px;
-    right: 1px;
+    bottom: -3px;
+    right: 0px;
     z-index: 2;
     font-size: 17px;
     font-weight: 400;
     color: var(--primary-color);
+  }
+
+  /* media queries */
+  @media only screen and (max-width: 900px) {
+    .image-container {
+      display: none;
+    }
+    .article-content {
+      padding-left: 12px;
+      padding-right: 12px;
+      padding-bottom: 6px;
+    }
+  }
+  @media only screen and (max-width: 599px) {
+    h3 {
+      font-size: 24px;
+    }
+    .exerpt {
+      font-size: 18px;
+    }
   }
 </style>

@@ -6,7 +6,7 @@ import Articles from '$lib/data/articles/articles.content.svelte'
 import type { DesktopButtonProps } from '$lib/ui/components/buttons/desktop/desktop.button.types'
 import { BASE_PROJECTS, PROJECTS } from '$lib/data/projects/projects.data'
 import type { MultilevelSelectorItem } from '$lib/ui/components/selectors/selector.types'
-import { BASE_ARTICLES } from '$lib/data/articles/articles.data'
+import { ARTICLES, BASE_ARTICLES } from '$lib/data/articles/articles.data'
 
 /**
  * connects each type of 'desktop application' to a unique id
@@ -28,10 +28,11 @@ export const DESKTOP_ICONS: DesktopButtonProps[] = [
     type: 'folder',
     text: BASE_ARTICLES.text,
     url: BASE_ARTICLES.path,
-    modal: { left: '1216px', top: '846px', width: '1224px', height: '790px', color: '#1f3e3eff' },
+    modal: { left: '1216px', top: '846px', width: '1224px', height: '790px', color: 'oklch(0.3118 0.0934 258.7)' },
     position: { row: '1', column: '1' },
     pathname: [
       BASE_ARTICLES,
+      ...ARTICLES,
     ],
     // @ts-expect-error svelte cannot figure out that the two types are the same 
     children: Articles,
@@ -41,7 +42,7 @@ export const DESKTOP_ICONS: DesktopButtonProps[] = [
     type: 'folder',
     text: BASE_PROJECTS.text,
     url: BASE_PROJECTS.path,
-    modal: { left: '1216px', top: '946px', width: '1000px', height: '730px', color: '#0F2F5F' },
+    modal: { left: '1216px', top: '946px', width: '1000px', height: '730px', color: 'oklch(0.3118 0.0934 258.7)' },
     position: { row: '2', column: '1' },
     pathname: [
       BASE_PROJECTS,
@@ -55,7 +56,7 @@ export const DESKTOP_ICONS: DesktopButtonProps[] = [
     type: 'mail',
     text: 'contact.sh',
     url: '/contact',
-    modal: { left: '966px', top: '786px', width: '750px', height: '570px', color: '#2B4162' },
+    modal: { left: '966px', top: '786px', width: '750px', height: '570px', color: 'oklch(0.3732 0.0635 258.28)' },
     position: { row: '3', column: '1' },
     pathname: [{ text: 'contact.sh', path: '/contact' }],
     // @ts-expect-error svelte cannot figure out that the two types are the same 
@@ -66,7 +67,7 @@ export const DESKTOP_ICONS: DesktopButtonProps[] = [
     type: 'pc',
     text: 'settings.sh',
     url: '/settings',
-    modal: { left: '745px', top: '816px', width: '900px', height: '600px', color: '#312454' },
+    modal: { left: '745px', top: '816px', width: '900px', height: '600px', color: 'oklch(0.3024 0.0839 293.21)' },
     position: { row: '4', column: '1' },
     pathname: [{ text: 'settings.sh', path: '/settings' }],
     // @ts-expect-error svelte cannot figure out that the two types are the same 

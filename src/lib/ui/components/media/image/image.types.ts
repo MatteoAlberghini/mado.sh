@@ -16,4 +16,5 @@ export type ImageProps = {
   src: Picture,
   alt: string,
   lazy?: boolean,
+  position?: `${number}% ${number}%`,
 }

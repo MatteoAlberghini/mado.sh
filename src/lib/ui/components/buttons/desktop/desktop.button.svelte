@@ -257,8 +257,8 @@
     padding-top: 1px;
     border: 1px solid var(--primary-color);
     border-bottom-width: 2px;
-    left: 4px;
-    bottom: 4px;
+    left: 0px;
+    bottom: 0px;
     z-index: 2;
     font-size: 17px;
     font-weight: 400;

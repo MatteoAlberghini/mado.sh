@@ -2,6 +2,9 @@
 TODO:
  - make cursor selection a setting
  - add sparks when clicking
+ - remove doubleclick, it feels weird. moving an icon breaks tho
+ - make icons in projects (in each category) being able to move and swap between eachother
+ - text in projects should all be shown, its a bit weird that it gets cut.
 -->
 
 <!-- script -->
@@ -85,18 +88,21 @@ TODO:
 <style>
 	/* global */
 	:root {
-		--background-color: #b684fd;
-		--secondary-background-color: #402f6e;
+		--background-color: oklch(76.982% 0.10133 260.605);
+		--secondary-background-color: oklch(46.196% 0.07141 255.565);
 		--primary-color: #ffd200;
 		--secondary-color: #e8492c;
 		--text-color: #27213c;
-		--selection-color: #ffd200;
+		--selection-color: #fff4e9;
 		--selection-background-color: #e8492c;
 		--shadow-primary-color: #0fd2ff;
 		--shadow-secondary-color: #f60099;
 
+		--code-background-color: #1E1E2E;
+
 		--red-color: #f44336;
 		--white-color: #fff4e9;
+		--gray-color: #b8b8b8;
 
 		--cursor-idle: url(/cursors/bg2/cursor.png);
 		--cursor-click: url(/cursors/bg2/cursor_click.png);
@@ -107,9 +113,11 @@ TODO:
 
 		--opacity-v-low: 8%;
 		--opacity-low: 30%;
+
+		--background-image: url(/images/general/bg-texture.png);
 	}
 	[data-theme='lavender']:root {
-		--background-color: #b684fd;
+		--background-color: #c59cff;
 		--secondary-background-color: #402f6e;
 		--primary-color: #ffd200;
 		--secondary-color: #e8492c;
@@ -118,8 +126,8 @@ TODO:
 		--shadow-secondary-color: #f60099;
 	}
 	[data-theme='jordy-blue']:root {
-		--background-color: #8fb5f5;
-		--secondary-background-color: #3d5a80;
+		--background-color: oklch(76.982% 0.10133 260.605);
+		--secondary-background-color: oklch(46.196% 0.07141 255.565);
 		--primary-color: #ffd200;
 		--secondary-color: #e8492c;
 		--text-color: #27213c;
@@ -127,7 +135,7 @@ TODO:
 		--shadow-secondary-color: #f60099;
 	}
 	[data-theme='pistachio']:root {
-		--background-color: #a8ca72;
+		--background-color: #a4cf5f;
 		--secondary-background-color: #19323c;
 		--primary-color: #e8492c;
 		--secondary-color: #ffd200;
@@ -145,8 +153,7 @@ TODO:
 		--icon-size: 1.2;
 	}
 	:global {
-		html,
-		body {
+		html, body {
 			height: 100%;
 			font-size: 100%;
 			text-rendering: optimizeLegibility;
@@ -160,19 +167,13 @@ TODO:
 			border: 0;
 			outline: 0;
 			font-family: 'Dosis', Arial, sans-serif;
-			cursor:
-				var(--cursor-idle) 0 12,
-				pointer;
+			cursor: var(--cursor-idle) 0 12, pointer;
 		}
 		*:hover {
-			cursor:
-				var(--cursor-idle) 0 12,
-				pointer;
+			cursor: var(--cursor-idle) 0 12, pointer;
 		}
 		*:active {
-			cursor:
-				var(--cursor-click) 0 12,
-				pointer;
+			cursor: var(--cursor-click) 0 12, pointer;
 		}
 		*:focus-visible {
 			outline: 2px var(--primary-color) dashed;
@@ -196,16 +197,13 @@ TODO:
 		button,
 		ul,
 		li {
-			text-shadow:
-				1px 0px var(--shadow-primary-color),
-				0px -1px var(--shadow-secondary-color);
+			text-shadow: 1px 0px var(--shadow-primary-color), 0px -1px var(--shadow-secondary-color);
 		}
 	}
 
 	/* animations */
 	@keyframes grain {
-		0%,
-		100% {
+		0%, 100% {
 			transform: translate(0, 0);
 		}
 		10% {
@@ -244,7 +242,7 @@ TODO:
 		min-height: 100dvh;
 		min-width: 100dvw;
 		background-color: var(--background-color);
-		background-image: url(/images/general/bg-texture.png);
+		background-image: var(--background-image);
 		position: relative;
 		overflow: hidden;
 	}

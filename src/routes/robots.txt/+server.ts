@@ -10,4 +10,4 @@ export async function GET({ url, setHeaders }) {
   const base = `${url.origin}/`
   const robots = `Sitemap: ${base}sitemap.xml`
   return new Response(robots)
-}
+};

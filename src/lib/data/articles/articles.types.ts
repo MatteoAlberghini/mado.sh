@@ -10,7 +10,7 @@ export type Category = 'selfhost' | 'mobile' | 'web'
 /**
  * all potential months used in articles (for date type)
  */
-type Month = 'january' | 'february' | 'march' | 'april' | 'may' | 'june' | 'july' | 'august' | 'september' | 'october' | 'november' | 'december'
+export type Month = 'JAN' | 'FEB' | 'MAR' | 'APR' | 'MAY' | 'JUN' | 'JUL' | 'AUG' | 'SEP' | 'OCT' | 'NOV' | 'DEC'
 
 /**
  * all potential categories
