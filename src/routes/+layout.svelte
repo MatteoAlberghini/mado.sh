@@ -11,7 +11,6 @@ TODO:
  - add dynamic sitemap generation
  - mobile for article archive is kinda weird
  - add visitor book with signature
- - !! reduce padding for container in article wrapper on mobile / tablet !!
 -->
 
 <!-- script -->
