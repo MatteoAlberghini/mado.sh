@@ -1,5 +1,5 @@
 <svelte:head>
-  <title>0x6d61646f.sh</title>
+  <title>mado.sh</title>
   <meta
     name="description"
     content="
@@ -8,7 +8,7 @@
     addicted to building things.
     "
   />
-  <meta property="og:title" content="0x6d61646f.sh" />
+  <meta property="og:title" content="mado.sh" />
   <meta property="og:description" content="software developer" />
-  <meta property="og:url" content="https://matteoalberghini.com" />
+  <meta property="og:url" content="https://mado.sh" />
 </svelte:head>
