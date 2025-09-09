@@ -174,6 +174,7 @@ TODO:
 			outline: 0;
 			font-family: 'Dosis', Arial, sans-serif;
 			cursor: var(--cursor-idle) 0 12, pointer;
+			-webkit-tap-highlight-color: transparent;
 		}
 		*:hover {
 			cursor: var(--cursor-idle) 0 12, pointer;
