@@ -1,13 +1,13 @@
 <!-- seo -->
 <svelte:head>
-  <title>0x6d61646f.sh >> settings</title>
+  <title>mado.sh >> settings</title>
   <meta
     name="description"
     content="
     settings page for matteo alberghini website
     "
   />
-  <meta property="og:title" content="0x6d61646f.sh >> settings" />
+  <meta property="og:title" content="mado.sh >> settings" />
   <meta property="og:description" content="settings for matteo alberghini website" />
-  <meta property="og:url" content="https://matteoalberghini.com/settings" />
+  <meta property="og:url" content="https://mado.sh/settings" />
 </svelte:head>

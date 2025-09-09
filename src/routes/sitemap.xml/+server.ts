@@ -17,10 +17,22 @@ export async function GET({ url, setHeaders }) {
       <priority>0.9</priority>
     </url>
     <url>
+      <loc>${base}articles</loc>
+      <lastmod>2025-09-10</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.9</priority>
+    </url>
+    <url>
+      <loc>${base}articles/selfhosted-piped</loc>
+      <lastmod>2025-09-10</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.8</priority>
+    </url>
+    <url>
       <loc>${base}contact</loc>
       <lastmod>2024-07-20</lastmod>
       <changefreq>monthly</changefreq>
-      <priority>0.8</priority>
+      <priority>0.7</priority>
     </url>
     <url>
       <loc>${base}projects</loc>
@@ -52,7 +64,6 @@ export async function GET({ url, setHeaders }) {
       <changefreq>monthly</changefreq>
       <priority>0.5</priority>
     </url>
-  </urlset>
-  `
+  </urlset>`
   return new Response(sitemap)
 }

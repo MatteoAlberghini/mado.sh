@@ -18,7 +18,7 @@ export type DesktopButtonProps = {
   type: Icon,
   text: string,
   url: string,
-  modal: { width?: `${number}px`, height?: `${number}px`, top?: `${number}px`, left?: `${number}px`, color?: `#${string}` },
+  modal: { width?: `${number}px`, height?: `${number}px`, top?: `${number}px`, left?: `${number}px`, color?: `oklch${string}` },
   position: { row: `${number}`, column: `${number}`},
   pathname: [{ text: string, path: string }, ...{ text: string, path: string }[]],
   children?: Snippet,

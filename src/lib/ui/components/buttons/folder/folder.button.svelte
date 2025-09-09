@@ -43,20 +43,7 @@
    * @param e mouse event
    */
   function onClick(e: Event) {
-    e.preventDefault()
-    if (window.innerWidth < 1280) {
-      handleButtonClick()
-    }
-  }
-  /**
-   * on double click
-   * @param e mouse event
-   */
-  function onDoubleClick(e: Event) {
-    e.preventDefault()
-    if (window.innerWidth >= 1280) {
-      handleButtonClick()
-    }
+    handleButtonClick()
   }
   /**
    * on key down, handles enter event
@@ -74,7 +61,6 @@
 <!-- template -->
 <button
   aria-label={text}
-  ondblclick={onDoubleClick}
   onclick={onClick}
   onmouseenter={onHover}
   onmouseleave={onBlur}

@@ -6,12 +6,14 @@ import globals from 'globals'
 import { fileURLToPath } from 'node:url'
 import ts from 'typescript-eslint'
 import svelteConfig from './svelte.config.js'
+import { jsdoc } from 'eslint-plugin-jsdoc'
 
 const gitignorePath = fileURLToPath(new URL('./.gitignore', import.meta.url))
 
 export default ts.config(
 	includeIgnoreFile(gitignorePath),
 	js.configs.recommended,
+	jsdoc({ config: 'flat/recommended-typescript' }),
 	...ts.configs.recommended,
 	...svelte.configs.recommended,
 	prettier,
@@ -24,12 +26,13 @@ export default ts.config(
 			'no-undef': 'off', // default
 			'@typescript-eslint/no-unused-expressions': ['error', { allowShortCircuit: true }], // defaults, fixing eslint issues
 			'svelte/no-inner-declarations': ['error', 'functions', { blockScopedFunctions: 'allow' }], // defaults, fixing eslint issues
-			'semi': ['error', 'never'], // error when using semicolons
+			semi: ['error', 'never'], // error when using semicolons
 			'max-len': 'off', // remove max length error
 			'no-console': 1, // warning on console usage
-			'quotes': ['error', 'single'], // error on usage of non-single quotes
+			quotes: ['error', 'single'], // error on usage of non-single quotes
 			'prefer-template': ['error'], // prefer template to concat strings
 			'svelte/no-at-html-tags': 'off',
+			'svelte/no-navigation-without-resolve': ['off'], // its super buggy
 		}
 	},
 	{

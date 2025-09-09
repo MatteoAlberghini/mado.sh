@@ -5,7 +5,7 @@
   import type { ImageProps } from '$lib/ui/components/media/image/image.types'
 
   /* props */
-  let { src, alt, lazy }: ImageProps = $props()
+  let { src, alt, lazy, position = '50% 50%' }: ImageProps = $props()
 
   /* state */
   let loading: boolean = $state(true)
@@ -53,7 +53,8 @@
     loading={lazy ? 'lazy' : undefined}
     draggable="false"
     onload={onLoad}
-    style:opacity={loading ? '0' : '1'} 
+    style:opacity={loading ? '0' : '1'}
+    style:object-position={position}
   />
   {#if loading}
     <div class="loading-container">

@@ -1,0 +1,164 @@
+<!-- script -->
+<script lang="ts">
+  /* imports */
+  import { onMount } from 'svelte'
+	import type { CodeProps } from '$lib/ui/components/code/code.types'
+	import FolderConfig from '$lib/ui/icons/folder.config.icon.svelte'
+	import { highlighter } from '$lib/data/articles/articles.data'
+	import { createHighlighter } from 'shiki'
+	import CopyIcon from '$lib/ui/icons/copy.icon.svelte'
+
+  /* props */
+  let { language, code, title }: CodeProps = $props()
+
+  /* state */
+  let sintax = $state('')
+  let tooltip = $state('copy to clipboard')
+
+  /* constansts */
+  let timeout: NodeJS.Timeout | null = null
+
+  /* functions */
+  function copy() {
+    if (timeout) {
+      clearTimeout(timeout)
+      timeout = null
+    }
+    navigator.clipboard.writeText(code).then(() => {
+      tooltip = 'copied to clipboard'
+    })
+    timeout = setTimeout(() => {
+      tooltip = 'copy to cliboard'
+    }, 1000)
+  }
+
+  /* effects */
+  onMount(async () => {
+    if ($highlighter === null) {
+      highlighter.set(await createHighlighter({
+        themes: ['synthwave-84'],
+        langs: ['typescript', 'javascript', 'shellscript', 'apache'],
+      }))
+    }
+    sintax = $highlighter!.codeToHtml(code, {
+      lang: language,
+      theme: 'synthwave-84',
+      colorReplacements: {
+        '#262335': 'oklch(0.3118 0.0934 288.96)',
+      }
+    })
+  })
+</script>
+
+<!-- template -->
+<div class="container">
+  <div class="filebar">
+    <button class="filename" onclick={copy}>
+      <FolderConfig />
+      <h6>
+        {title}
+      </h6>
+    </button>
+    <button class="copy" onclick={copy}>
+      <CopyIcon />
+    </button>
+    <div class="tooltip">{tooltip}</div>
+  </div>
+  {@html sintax}
+</div>
+
+<!-- styles -->
+<style>
+  .container {
+    background-color: var(--code-background-color);
+    border: 1px solid var(--primary-color);
+    border-bottom-width: 3px;
+    position: relative;
+  }
+  .filebar {
+    width: 100%;
+    background-color: oklch(0.3118 0.0934 321.01);
+    border-bottom: 1px solid var(--primary-color);
+    margin-bottom: 1px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-image: var(--background-image);
+    padding-left: 6px;
+    column-gap: 7px;
+  }
+  .filename {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+  }
+  h6 {
+    color: var(--white-color);
+    letter-spacing: 0.3px;
+    line-height: 100%;
+    font-size: 14px;
+    font-family: 'GeistMono';
+    font-weight: 400;
+    text-shadow: 0px 0px var(--shadow-primary-color), 0px 0px var(--shadow-secondary-color);
+    margin-left: 7px;
+  }
+  button {
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .copy {
+    border-left: 1px solid var(--primary-color);
+    height: 29px;
+    width: 32px;
+  }
+  .filename:hover h6 {
+    text-decoration: underline;
+  }
+  .copy:hover, .copy:focus, .copy:focus-visible {
+    outline-offset: -1px;
+    outline: 2px var(--primary-color) dashed;
+    background-color: color-mix(in srgb, var(--primary-color) var(--opacity-v-low), transparent);
+  }
+  .filename:hover ~ .tooltip, .filename:focus ~ .tooltip, .filename:focus-visible ~ .tooltip {
+    visibility: visible;
+  }
+  .copy:hover + .tooltip, .copy:focus + .tooltip, .copy:focus-visible + .tooltip {
+    visibility: visible;
+  }
+  :global(pre) {
+    white-space: pre-wrap;
+    text-shadow: 0px 0px var(--shadow-primary-color), 0px 0px var(--shadow-secondary-color);
+    font-size: 17px;
+    padding-left: 6px;
+    padding-right: 2px;
+    padding-top: 4px;
+    padding-bottom: 2px;
+    background-image: var(--background-image);
+    font-family: 'GeistMono';
+    letter-spacing: 1px;
+    word-break: break-word;
+  }
+  .tooltip {
+    position: absolute;
+    visibility: hidden;
+    width: max-content;
+    background-color: var(--modal-background-color);
+    background-image: url(/images/general/bg-texture.png);
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-bottom: 3px;
+    padding-top: 1px;
+    border: 1px solid var(--primary-color);
+    border-bottom-width: 2px;
+    bottom: -2px;
+    right: -1px;
+    z-index: 2;
+    font-size: 16px;
+  }
+</style>
+

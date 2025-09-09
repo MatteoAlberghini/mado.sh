@@ -2,9 +2,11 @@
 import Contact from '$lib/data/contact/contact.content.svelte'
 import Projects from '$lib/data/projects/projects.content.svelte'
 import Settings from '$lib/data/settings/settings.content.svelte'
+import Articles from '$lib/data/articles/articles.content.svelte'
 import type { DesktopButtonProps } from '$lib/ui/components/buttons/desktop/desktop.button.types'
 import { BASE_PROJECTS, PROJECTS } from '$lib/data/projects/projects.data'
 import type { MultilevelSelectorItem } from '$lib/ui/components/selectors/selector.types'
+import { ARTICLES, BASE_ARTICLES } from '$lib/data/articles/articles.data'
 
 /**
  * connects each type of 'desktop application' to a unique id
@@ -13,20 +15,36 @@ export enum DesktopUniqueID {
   projects = 0,
   contact = 1,
   settings = 2,
-  linkedin = 100,
+  articles = 3,
   github = 99,
+  linkedin = 100,
+  image = 999,
 }
 /**
  * array used to render all icons on the desktop, connects to content folder
  */
 export const DESKTOP_ICONS: DesktopButtonProps[] = [
   {
+    id: DesktopUniqueID.articles,
+    type: 'folder',
+    text: BASE_ARTICLES.text,
+    url: BASE_ARTICLES.path,
+    modal: { left: '300px', top: '150px', width: '1270px', height: '890px', color: 'oklch(0.3118 0.0934 258.7)' },
+    position: { row: '1', column: '1' },
+    pathname: [
+      BASE_ARTICLES,
+      ...ARTICLES,
+    ],
+    // @ts-expect-error svelte cannot figure out that the two types are the same 
+    children: Articles,
+  },
+  {
     id: DesktopUniqueID.projects,
     type: 'folder',
     text: BASE_PROJECTS.text,
     url: BASE_PROJECTS.path,
-    modal: { left: '1216px', top: '946px', width: '1000px', height: '730px', color: '#0F2F5F' },
-    position: { row: '1', column: '1' },
+    modal: { left: '500px', top: '200px', width: '1000px', height: '730px', color: 'oklch(0.3118 0.0934 258.7)' },
+    position: { row: '2', column: '1' },
     pathname: [
       BASE_PROJECTS,
       ...PROJECTS,
@@ -39,8 +57,8 @@ export const DESKTOP_ICONS: DesktopButtonProps[] = [
     type: 'mail',
     text: 'contact.sh',
     url: '/contact',
-    modal: { left: '966px', top: '786px', width: '750px', height: '570px', color: '#2B4162' },
-    position: { row: '2', column: '1' },
+    modal: { left: '400px', top: '350px', width: '750px', height: '570px', color: 'oklch(0.3732 0.0635 258.28)' },
+    position: { row: '3', column: '1' },
     pathname: [{ text: 'contact.sh', path: '/contact' }],
     // @ts-expect-error svelte cannot figure out that the two types are the same 
     children: Contact,
@@ -50,8 +68,8 @@ export const DESKTOP_ICONS: DesktopButtonProps[] = [
     type: 'pc',
     text: 'settings.sh',
     url: '/settings',
-    modal: { left: '745px', top: '816px', width: '900px', height: '600px', color: '#312454' },
-    position: { row: '3', column: '1' },
+    modal: { left: '300px', top: '400px', width: '900px', height: '600px', color: 'oklch(0.3024 0.0839 293.21)' },
+    position: { row: '4', column: '1' },
     pathname: [{ text: 'settings.sh', path: '/settings' }],
     // @ts-expect-error svelte cannot figure out that the two types are the same 
     children: Settings,
@@ -59,7 +77,7 @@ export const DESKTOP_ICONS: DesktopButtonProps[] = [
   {
     id: DesktopUniqueID.github,
     type: 'external',
-    text: 'github.link',
+    text: 'github.me',
     url: 'https://github.com/MatteoAlberghini',
     modal: {},
     position: { row: '1', column: '-2' },
@@ -68,7 +86,7 @@ export const DESKTOP_ICONS: DesktopButtonProps[] = [
   {
     id: DesktopUniqueID.linkedin,
     type: 'external',
-    text: 'linkedin.link',
+    text: 'linkedin.me',
     url: 'https://www.linkedin.com/in/0x6d61646f/',
     modal: {},
     position: { row: '2', column: '-2' },
@@ -81,7 +99,7 @@ export const DESKTOP_ICONS: DesktopButtonProps[] = [
 export const DESKTOP_NAVIGATION: MultilevelSelectorItem[] = [
   {
     label: 'contact.sh',
-    value: '/contact', 
+    value: '/contact',
   },
   {
     label: 'settings.sh',

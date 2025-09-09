@@ -1,17 +1,16 @@
 <!-- script -->
 <script lang="ts">
   /* imports */
-	import Image from '$lib/ui/components/media/image/image.svelte'
 	import Video from '$lib/ui/components/media/video/video.svelte'
   import Header from '$lib/ui/macro/headers/horizontal-header/horizontal.header.svelte'
   import Hero from '$lib/images/projects/o9solutions.webp?enhanced'
+	import HeroImage from '$lib/ui/components/media/hero-image/hero.image.svelte'
+	import Article from '$lib/ui/macro/wrappers/article/article.wrapper.svelte'
 </script>
 
 <!-- template -->
 <div class="container">
-  <div class="image-container">
-    <Image src={Hero} alt="o9solutions intro" />
-  </div>
+  <HeroImage src={Hero} alt="o9solutions intro" />
 
   <Header
     title="O9SOLUTIONS"
@@ -19,7 +18,7 @@
     tags={[{ type: 'website', text: 'react website' }, { type: 'backend', text: 'headless wordpress as CMS'}]}
   />
 
-  <article>
+  <Article>
     <p>Feel free to <a draggable="false" href="/contact">contact me</a> if you have any questions or you want to reach out :)</p>
     <h3>COMPANY DETAILS</h3>
     <p>
@@ -50,7 +49,7 @@
       <Video text="custom carousels in javascript" src="/videos/carousel_o9.mp4" />
       <Video text="blog pages redesign" src="/videos/blog_o9.mp4" />
     </div>
-  </article>
+  </Article>
 </div>
 
 <!-- styles -->
@@ -60,67 +59,5 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-  }
-  article {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    border: 1px solid var(--background-color);
-    border-bottom-width: 3px;
-    border-top-width: 0px;
-    font-size: 19px;
-    font-weight: 400;
-    line-height: 125%;
-    color: var(--white-color);
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 8px;
-    padding-bottom: 8px;
-    row-gap: 7px;
-  }
-  .media-container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    row-gap: 12px;
-    column-gap: 12px;
-    margin-top: 24px;
-  }
-
-  /* text */
-  a {
-    font-size: inherit;
-    font-weight: 400;
-    color: var(--primary-color);
-    text-decoration: underline;
-    word-break: keep-all;
-  }
-  a:hover, a:focus, a:focus-visible {
-    color: var(--secondary-color);
-  }
-  h3 {
-    font-size: 25px;
-    font-weight: 400;
-    color: var(--primary-color);
-    margin-top: 16px;
-  }
-  ul {
-    list-style-position: inside;
-  }
-
-  /* images */
-  .image-container > :global(figure) {
-    width: 100%;
-    height: 450px;
-    max-height: 450px;
-    object-fit: cover;
-    justify-self: flex-start;
-    border: 1px solid var(--background-color);
-    border-bottom-width: 3px;
-  }
-  @media only screen and (max-width: 600px) {
-    .image-container > :global(figure) {
-      height: 300px;
-    }
   }
 </style>

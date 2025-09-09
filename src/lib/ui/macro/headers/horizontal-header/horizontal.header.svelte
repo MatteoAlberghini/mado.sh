@@ -12,12 +12,11 @@
 
   /* props */
   let { title, external, tags }: HeaderProps = $props()
-
 </script>
 
 <!-- template -->
 <header>
-  <h2>{title}</h2>
+  <h2>{@html title}</h2>
 
   <div class="info-container">
     <div class="tag-container">
@@ -49,13 +48,15 @@
         </button>
       {/each}
     </div>
-    <a
-      draggable="false"
-      href={external.url}
-      target="_blank"
-    >
-      {external.text}
-    </a>
+    {#if external}
+      <a
+        draggable="false"
+        href={external.url}
+        target="_blank"
+      >
+        {external.text}
+      </a>
+    {/if}
   </div>
 </header>
 
@@ -89,6 +90,7 @@
     row-gap: 2px;
   }
   .tag-container {
+    padding-top: 2px;
     display: flex;
     flex-direction: row;
     column-gap: 2px;
@@ -99,6 +101,12 @@
     font-size: 40px;
     font-weight: 400;
     color: var(--primary-color);
+    text-transform: uppercase;
+    line-height: 110%;
+    max-width: 80%;
+  }
+  h2 :global(span) {
+    color: var(--secondary-color);
   }
   a {
     font-size: 17px;
@@ -107,6 +115,13 @@
     color: var(--primary-color);
     text-decoration: underline;
     word-break: keep-all;
+  }
+  span {
+    font-size: 17px;
+    text-transform: uppercase;
+    font-weight: 400;
+    text-align: left;
+    color: var(--primary-color);
   }
   a:hover, a:focus, a:focus-visible {
     color: var(--secondary-color);
@@ -146,6 +161,9 @@
     right: -1px;
     z-index: 2;
   }
+  .tooltip span {
+    text-transform: none;
+  }
   span {
     font-size: 17px;
     font-weight: 400;
@@ -164,7 +182,7 @@
       justify-content: flex-start;
     }
     h2 {
-      font-size: 36px;
+      font-size: 34px;
     }
     .tooltip {
       left: -1px;

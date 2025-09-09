@@ -61,6 +61,18 @@
 
   /* callbacks */
   /**
+   * on focus in, when parent or child gets focus
+   */
+  function onFocus() {
+    container.style.zIndex = '51'
+  }
+  /**
+   * on focus out, when parent and child loses focus
+   */
+  function onBlur() {
+    container.style.zIndex = '48'
+  }
+  /**
    * on mouse down, handles drag event
    * @param e mouse event
    */
@@ -110,6 +122,8 @@
   tabindex="0"
   bind:this={container}
   onmousedown={onMouseDown}
+  onfocusin={onFocus}
+  onfocusout={onBlur}
 >
   <div class="clock">
     <div class="face"></div>
@@ -135,7 +149,7 @@
     align-items: center;
     align-self: flex-start;
     width: 114px;
-    z-index: 79;
+    z-index: 47;
   }
   .container:hover, .container:focus {
     outline-offset: 1px;

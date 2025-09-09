@@ -11,4 +11,5 @@ export type InputProps = {
   type?: HTMLInputTypeAttribute,
   side?: string,
   max?: number,
+  height?: number,
 }

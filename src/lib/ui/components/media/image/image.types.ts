@@ -1,7 +1,7 @@
 /**
  * picture type from enhanced image because i cannot import it from anywhere
  */
-interface Picture {
+export interface Picture {
   sources: Record<string, string>,
   img: {
       src: string;
@@ -12,8 +12,9 @@ interface Picture {
 /**
  * props for image component
  */
-export type ImageProps = {
+export interface ImageProps {
   src: Picture,
   alt: string,
   lazy?: boolean,
+  position?: `${number}% ${number}%`,
 }
