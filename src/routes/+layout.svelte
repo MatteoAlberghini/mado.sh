@@ -11,6 +11,7 @@ TODO:
  - add dynamic sitemap generation
  - mobile for article archive is kinda weird
  - add visitor book with signature
+ - !! reduce padding for container in article wrapper on mobile / tablet !!
 -->
 
 <!-- script -->
@@ -174,6 +175,7 @@ TODO:
 			outline: 0;
 			font-family: 'Dosis', Arial, sans-serif;
 			cursor: var(--cursor-idle) 0 12, pointer;
+			-webkit-tap-highlight-color: transparent;
 		}
 		*:hover {
 			cursor: var(--cursor-idle) 0 12, pointer;

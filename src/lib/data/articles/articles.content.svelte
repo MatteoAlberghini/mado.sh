@@ -285,7 +285,7 @@
   }
 
   /* media queries */
-  @media only screen and (max-width: 900px) {
+  @container (width < 900px) {
     .image-container {
       display: none;
     }
@@ -294,13 +294,21 @@
       padding-right: 12px;
       padding-bottom: 6px;
     }
+    .container {
+      padding-right: 16px;
+      padding-left: 8px;
+    }
   }
-  @media only screen and (max-width: 599px) {
+  @container (width < 599px) {
     h3 {
       font-size: 24px;
     }
     .exerpt {
       font-size: 18px;
+    }
+    .container {
+      padding-right: 16px;
+      padding-left: 4px;
     }
   }
 </style>

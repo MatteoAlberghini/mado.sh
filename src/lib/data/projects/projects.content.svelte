@@ -102,4 +102,17 @@
     padding-right: 8px;
     margin-left: 3px;
   }
+
+  @container (width < 900px) {
+    .container {
+      padding-right: 16px;
+      padding-left: 8px;
+    }
+  }
+  @container (width < 599px) {
+    .container {
+      padding-right: 16px;
+      padding-left: 4px;
+    }
+  }
 </style>
