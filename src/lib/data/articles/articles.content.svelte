@@ -26,9 +26,10 @@
     filteredArticles = ARTICLES.filter((a) => a.category.includes(value as Category))
   }
   /**
- * on click, prevent single click
- * @param e mouse event
- */
+   * on click, prevent single click
+   * @param e mouse event
+   * @param path
+   */
   function onClick(e: Event, path: string) {
     e.preventDefault()
     goto(path)
@@ -36,6 +37,7 @@
   /**
    * on key down, handles enter event
    * @param e keyboard event
+   * @param path
    */
   function onKeyDown(e: KeyboardEvent, path: string) {
     if (e.key === 'Enter') {
@@ -48,7 +50,7 @@
   /* effects */
   /**
    * set correct content based on url path changes
-  */
+   */
   $effect(() => {
     if (page.url.pathname.includes(BASE_ARTICLES.path)) {
       if (page.url.pathname === BASE_ARTICLES.path) {

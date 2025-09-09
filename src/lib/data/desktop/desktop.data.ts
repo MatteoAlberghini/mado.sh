@@ -28,7 +28,7 @@ export const DESKTOP_ICONS: DesktopButtonProps[] = [
     type: 'folder',
     text: BASE_ARTICLES.text,
     url: BASE_ARTICLES.path,
-    modal: { left: '1216px', top: '846px', width: '1224px', height: '790px', color: 'oklch(0.3118 0.0934 258.7)' },
+    modal: { left: '300px', top: '150px', width: '1270px', height: '890px', color: 'oklch(0.3118 0.0934 258.7)' },
     position: { row: '1', column: '1' },
     pathname: [
       BASE_ARTICLES,
@@ -42,7 +42,7 @@ export const DESKTOP_ICONS: DesktopButtonProps[] = [
     type: 'folder',
     text: BASE_PROJECTS.text,
     url: BASE_PROJECTS.path,
-    modal: { left: '1216px', top: '946px', width: '1000px', height: '730px', color: 'oklch(0.3118 0.0934 258.7)' },
+    modal: { left: '500px', top: '200px', width: '1000px', height: '730px', color: 'oklch(0.3118 0.0934 258.7)' },
     position: { row: '2', column: '1' },
     pathname: [
       BASE_PROJECTS,
@@ -56,7 +56,7 @@ export const DESKTOP_ICONS: DesktopButtonProps[] = [
     type: 'mail',
     text: 'contact.sh',
     url: '/contact',
-    modal: { left: '966px', top: '786px', width: '750px', height: '570px', color: 'oklch(0.3732 0.0635 258.28)' },
+    modal: { left: '400px', top: '350px', width: '750px', height: '570px', color: 'oklch(0.3732 0.0635 258.28)' },
     position: { row: '3', column: '1' },
     pathname: [{ text: 'contact.sh', path: '/contact' }],
     // @ts-expect-error svelte cannot figure out that the two types are the same 
@@ -67,7 +67,7 @@ export const DESKTOP_ICONS: DesktopButtonProps[] = [
     type: 'pc',
     text: 'settings.sh',
     url: '/settings',
-    modal: { left: '745px', top: '816px', width: '900px', height: '600px', color: 'oklch(0.3024 0.0839 293.21)' },
+    modal: { left: '300px', top: '400px', width: '900px', height: '600px', color: 'oklch(0.3024 0.0839 293.21)' },
     position: { row: '4', column: '1' },
     pathname: [{ text: 'settings.sh', path: '/settings' }],
     // @ts-expect-error svelte cannot figure out that the two types are the same 
@@ -76,7 +76,7 @@ export const DESKTOP_ICONS: DesktopButtonProps[] = [
   {
     id: DesktopUniqueID.github,
     type: 'external',
-    text: 'github.link',
+    text: 'github.me',
     url: 'https://github.com/MatteoAlberghini',
     modal: {},
     position: { row: '1', column: '-2' },
@@ -85,7 +85,7 @@ export const DESKTOP_ICONS: DesktopButtonProps[] = [
   {
     id: DesktopUniqueID.linkedin,
     type: 'external',
-    text: 'linkedin.link',
+    text: 'linkedin.me',
     url: 'https://www.linkedin.com/in/0x6d61646f/',
     modal: {},
     position: { row: '2', column: '-2' },

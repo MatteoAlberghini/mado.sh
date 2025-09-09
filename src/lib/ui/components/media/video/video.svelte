@@ -74,7 +74,6 @@
   /* containers */
   .container {
     position: relative;
-    max-width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;

@@ -29,8 +29,8 @@
     let rect: { width: number, height: number, left: number, top: number, bottom: number, right: number } | null = null
     let x: number | null = null
     let y: number | null = null
-    const adjustedTop: string = `clamp(16px, ${Math.random() * (34 - 10) + 10}%, calc(100vh - ${top}))`
-    const adjustedLeft: string = `clamp(16px, ${Math.random() * (32 - 5) + 5}%, calc(100vw - ${left}))`
+    const adjustedTop: string = `clamp(0px, ${top}, calc(100dvh - ${height} - 16px))`
+    const adjustedLeft: string = `clamp(16px, ${left}, calc(100dvw - ${width} - 16px))`
 
     /* states */
     let isFullScreen: boolean = $state(false)
@@ -214,10 +214,10 @@
     tabindex="-1"
     role="dialog"
     bind:this={container}
-    style:width={width}
-    style:height={height}
-    style:top={adjustedTop}
-    style:left={adjustedLeft}
+    style:width={`min(100%, ${width})`}
+    style:height={`min(100%, ${height})`}
+    style:top={parseInt(height.replace('px', ''), 10) > window.innerHeight ? '0px' : adjustedTop}
+    style:left={parseInt(width.replace('px', ''), 10) > window.innerWidth ? '0px' : adjustedLeft}
     style:z-index={49}
     style:background-color={color}
     style:box-shadow={`${color}30 1px 1px 1px 1px`}

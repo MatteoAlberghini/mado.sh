@@ -161,6 +161,9 @@
     right: -1px;
     z-index: 2;
   }
+  .tooltip span {
+    text-transform: none;
+  }
   span {
     font-size: 17px;
     font-weight: 400;

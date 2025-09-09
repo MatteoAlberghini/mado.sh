@@ -6,12 +6,14 @@ import globals from 'globals'
 import { fileURLToPath } from 'node:url'
 import ts from 'typescript-eslint'
 import svelteConfig from './svelte.config.js'
+import { jsdoc } from 'eslint-plugin-jsdoc'
 
 const gitignorePath = fileURLToPath(new URL('./.gitignore', import.meta.url))
 
 export default ts.config(
 	includeIgnoreFile(gitignorePath),
 	js.configs.recommended,
+	jsdoc({ config: 'flat/recommended-typescript' }),
 	...ts.configs.recommended,
 	...svelte.configs.recommended,
 	prettier,
@@ -29,7 +31,7 @@ export default ts.config(
 			'no-console': 1, // warning on console usage
 			quotes: ['error', 'single'], // error on usage of non-single quotes
 			'prefer-template': ['error'], // prefer template to concat strings
-			'svelte/no-at-html-tags': 'off'
+			'svelte/no-at-html-tags': 'off',
 		}
 	},
 	{

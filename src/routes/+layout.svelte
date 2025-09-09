@@ -44,7 +44,7 @@ TODO:
 	/**
 	 * set initial values for store upon page load
 	 */
-	onMount(() => {
+	onMount(async () => {
 		setScreenSaver(getScreenSaverID())
 		setSoundActive(getSoundActive())
 		setSoundVolume(getSoundVolume())
@@ -135,9 +135,9 @@ TODO:
 		--shadow-secondary-color: #f60099;
 	}
 	[data-theme='pistachio']:root {
-		--background-color: #a4cf5f;
+		--background-color: #95be53;
 		--secondary-background-color: #19323c;
-		--primary-color: #e8492c;
+		--primary-color: #FCB97D;
 		--secondary-color: #ffd200;
 		--text-color: #0d0a17;
 		--shadow-primary-color: #5ab1bb;
@@ -197,7 +197,7 @@ TODO:
 		button,
 		ul,
 		li {
-			text-shadow: 1px 0px var(--shadow-primary-color), 0px -1px var(--shadow-secondary-color);
+    	text-shadow: 0.5px 0px var(--shadow-primary-color), 0px -1px var(--shadow-secondary-color);
 		}
 	}
 

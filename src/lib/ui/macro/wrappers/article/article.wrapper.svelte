@@ -56,10 +56,11 @@
     color: var(--primary-color);
   }
   article :global(h3) {
-    font-size: 25px;
+    font-size: 26px;
     font-weight: 400;
     color: var(--primary-color);
     margin-top: 16px;
+    margin-bottom: 4px;
   }
   article :global(h3:hover::after) {
     visibility: visible;
@@ -77,8 +78,7 @@
     margin-top: 24px;
   }
   article :global(span) {
-    color: var(--secondary-color);
-    text-shadow: 0.5px 0px var(--shadow-primary-color), 0px -1px var(--shadow-secondary-color);
+    color: var(--primary-color);
   }
   article :global(code span) {
     text-shadow: 0px 0px var(--shadow-primary-color), 0px 0px var(--shadow-secondary-color);
