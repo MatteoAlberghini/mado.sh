@@ -12,7 +12,7 @@ export interface Picture {
 /**
  * props for image component
  */
-export type ImageProps = {
+export interface ImageProps {
   src: Picture,
   alt: string,
   lazy?: boolean,

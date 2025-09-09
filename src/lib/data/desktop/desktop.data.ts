@@ -16,8 +16,9 @@ export enum DesktopUniqueID {
   contact = 1,
   settings = 2,
   articles = 3,
-  linkedin = 100,
   github = 99,
+  linkedin = 100,
+  image = 999,
 }
 /**
  * array used to render all icons on the desktop, connects to content folder

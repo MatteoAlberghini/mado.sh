@@ -32,6 +32,7 @@ export default ts.config(
 			quotes: ['error', 'single'], // error on usage of non-single quotes
 			'prefer-template': ['error'], // prefer template to concat strings
 			'svelte/no-at-html-tags': 'off',
+			'svelte/no-navigation-without-resolve': ['off'], // its super buggy
 		}
 	},
 	{

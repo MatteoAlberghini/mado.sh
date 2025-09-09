@@ -182,7 +182,7 @@
       justify-content: flex-start;
     }
     h2 {
-      font-size: 36px;
+      font-size: 34px;
     }
     .tooltip {
       left: -1px;

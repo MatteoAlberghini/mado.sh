@@ -30,7 +30,7 @@ export const ARTICLE_DETAILS: Record<id, Article> = {
     path: '/articles/piped-on-proxmox',
     category: ['selfhost'],
     image: PipedImage,
-    date: 'AUG 18, 2025',
+    date: 'SEP 10, 2025',
     // @ts-expect-error svelte cannot figure out that the two types are the same 
     element: Piped,
   },

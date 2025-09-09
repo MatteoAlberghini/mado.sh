@@ -75,7 +75,7 @@
     flex-wrap: wrap;
     row-gap: 12px;
     column-gap: 12px;
-    margin-top: 24px;
+    margin-top: 16px;
   }
   article :global(span) {
     color: var(--primary-color);

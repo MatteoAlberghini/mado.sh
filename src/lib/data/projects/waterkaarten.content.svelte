@@ -3,7 +3,7 @@
   /* imports */
   import Header from '$lib/ui/macro/headers/horizontal-header/horizontal.header.svelte'
   import Hero from '$lib/images/projects/waterkaarten.webp?enhanced'
-	import HeroImage from '$lib/ui/components/media/hero-image/hero-image.svelte'
+	import HeroImage from '$lib/ui/components/media/hero-image/hero.image.svelte'
 	import Article from '$lib/ui/macro/wrappers/article/article.wrapper.svelte'
 </script>
 

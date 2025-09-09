@@ -3,11 +3,11 @@
   /* imports */
 	import { ARTICLE_DETAILS } from '$lib/data/articles/articles.data'
   import Code from '$lib/ui/components/code/code.svelte'
-	import HeroImage from '$lib/ui/components/media/hero-image/hero-image.svelte'
-	import Image from '$lib/ui/components/media/image/image.svelte'
+	import HeroImage from '$lib/ui/components/media/hero-image/hero.image.svelte'
   import Header from '$lib/ui/macro/headers/horizontal-header/horizontal.header.svelte'
 	import Article from '$lib/ui/macro/wrappers/article/article.wrapper.svelte'
-  import PipedProxyConfig from '$lib/images/articles/piped_proxy_proxy_config.webp?enhanced'
+  import PipedProxyConfig from '$lib/images/articles/piped_config.webp?enhanced'
+	import ContentImage from '$lib/ui/components/media/content-image/content.image.svelte'
 
   /* constants */
   let data = ARTICLE_DETAILS['piped']
@@ -128,10 +128,13 @@ nginx
     <h3>REVERSE PROXY SETUP</h3>
     <p>I personally use <a href="https://nginxproxymanager.com/" target="_blank" draggable="false">Nginx Proxy Manager</a> but any reverse proxy will do.</p>
     <p>Add a new proxy host, remember to substitute "yourdomain.com" and the IP:</p>
-    <div class="image">
-      <Image
+    <div class="media-container">
+      <ContentImage
+        name="nginx_config.img"
+        text="piped confing on nginx proxy manager"
         src={PipedProxyConfig}
         alt="piped proxy config on nginx proxy manager"
+        lazy
       />
     </div>
     <p>on a sidenote, you can find the ip of your container using:</p>
@@ -234,21 +237,5 @@ POSTGRES_DB=piped`}
     font-weight: 400;
     text-align: left;
     color: var(--primary-color);
-  }
-  .image {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-shrink: 0;
-    border: 2px solid var(--primary-color);
-    border-bottom-width: 4px;
-    width: max-content;
-    max-width: 100%;
-  }
-  .image :global(figure) {
-    object-fit: contain;
-    max-width: 450px;
-    height: 100%;
   }
 </style>
