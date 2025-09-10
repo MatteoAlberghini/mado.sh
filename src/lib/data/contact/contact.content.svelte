@@ -126,4 +126,16 @@
     --shadow-secondary-color: var(--text-color);
     color: var(--red-color);
   }
+  @container (width < 900px) {
+    .content {
+      padding-right: 16px;
+      padding-left: 8px;
+    }
+  }
+  @container (width < 599px) {
+    .content {
+      padding-right: 16px;
+      padding-left: 4px;
+    }
+  }
 </style>

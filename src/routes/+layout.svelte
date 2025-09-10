@@ -12,6 +12,7 @@ TODO:
  - mobile for article archive is kinda weird
  - add visitor book with signature
  - test mobile padding on settings/etc
+ - add inline code block
 -->
 
 <!-- script -->
