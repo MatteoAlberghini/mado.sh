@@ -60,7 +60,7 @@
     height: 100%;
     padding-left: 20px;
     padding-right: 20px;
-    padding-top: 20px;
+    padding-top: 16px;
     padding-bottom: 16px;
     column-gap: 16px;
     row-gap: 16px;

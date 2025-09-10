@@ -57,7 +57,7 @@ export const DESKTOP_ICONS: DesktopButtonProps[] = [
     type: 'mail',
     text: 'contact.sh',
     url: '/contact',
-    modal: { left: '400px', top: '350px', width: '750px', height: '570px', color: 'oklch(0.3732 0.0635 258.28)' },
+    modal: { left: '400px', top: '350px', width: '907px', height: '635px', color: 'oklch(0.3732 0.0635 258.28)' },
     position: { row: '3', column: '1' },
     pathname: [{ text: 'contact.sh', path: '/contact' }],
     // @ts-expect-error svelte cannot figure out that the two types are the same 
@@ -68,7 +68,7 @@ export const DESKTOP_ICONS: DesktopButtonProps[] = [
     type: 'pc',
     text: 'settings.sh',
     url: '/settings',
-    modal: { left: '300px', top: '400px', width: '900px', height: '600px', color: 'oklch(0.3024 0.0839 293.21)' },
+    modal: { left: '300px', top: '400px', width: '1060px', height: '644px', color: 'oklch(0.3024 0.0839 293.21)' },
     position: { row: '4', column: '1' },
     pathname: [{ text: 'settings.sh', path: '/settings' }],
     // @ts-expect-error svelte cannot figure out that the two types are the same 
@@ -81,7 +81,7 @@ export const DESKTOP_ICONS: DesktopButtonProps[] = [
     url: 'https://github.com/MatteoAlberghini',
     modal: {},
     position: { row: '1', column: '-2' },
-    pathname: [{ text: 'github.link', path: '/external-github' }],
+    pathname: [{ text: 'github.me', path: '/external-github' }],
   },
   {
     id: DesktopUniqueID.linkedin,
@@ -90,7 +90,7 @@ export const DESKTOP_ICONS: DesktopButtonProps[] = [
     url: 'https://www.linkedin.com/in/0x6d61646f/',
     modal: {},
     position: { row: '2', column: '-2' },
-    pathname: [{ text: 'linkedin.link', path: '/external-linkedin' }],
+    pathname: [{ text: 'linkedin.me', path: '/external-linkedin' }],
   },
 ]
 /**
