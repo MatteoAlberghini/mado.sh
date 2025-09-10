@@ -23,13 +23,13 @@
     border-top-width: 0px;
     font-size: 19px;
     font-weight: 400;
-    line-height: 125%;
+    line-height: 135%;
     color: var(--white-color);
     padding-left: 10px;
     padding-right: 10px;
     padding-top: 8px;
     padding-bottom: 8px;
-    row-gap: 7px;
+    row-gap: 10px;
     user-select: text;
   }
   article :global(a) {
@@ -56,11 +56,11 @@
     color: var(--primary-color);
   }
   article :global(h3) {
-    font-size: 26px;
+    font-size: 27px;
     font-weight: 400;
     color: var(--primary-color);
-    margin-top: 16px;
-    margin-bottom: 4px;
+    margin-top: 20px;
+    margin-bottom: 2px;
   }
   article :global(h3:hover::after) {
     visibility: visible;

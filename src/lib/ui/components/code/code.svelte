@@ -3,13 +3,16 @@
   /* imports */
   import { onMount } from 'svelte'
 	import type { CodeProps } from '$lib/ui/components/code/code.types'
-	import FolderConfig from '$lib/ui/icons/folder.config.icon.svelte'
 	import { highlighter } from '$lib/data/articles/articles.data'
 	import { createHighlighter } from 'shiki'
-	import CopyIcon from '$lib/ui/icons/copy.icon.svelte'
+	import CopyIcon from '$lib/ui/icons/code/copy.icon.svelte'
+	import BashIcon from '$lib/ui/icons/code/bash.icon.svelte'
+	import JsonIcon from '$lib/ui/icons/code/json.icon.svelte'
+	import ConsoleIcon from '$lib/ui/icons/code/console.icon.svelte'
+	import ConfigIcon from '$lib/ui/icons/code/config.icon.svelte'
 
   /* props */
-  let { language, code, title }: CodeProps = $props()
+  let { language, code, title, icon }: CodeProps = $props()
 
   /* state */
   let sintax = $state('')
@@ -19,6 +22,9 @@
   let timeout: NodeJS.Timeout | null = null
 
   /* functions */
+  /**
+   * copy to clipboard and change the text after a cd
+   */
   function copy() {
     if (timeout) {
       clearTimeout(timeout)
@@ -33,6 +39,9 @@
   }
 
   /* effects */
+  /**
+   * start highligter with settings 
+   */
   onMount(async () => {
     if ($highlighter === null) {
       highlighter.set(await createHighlighter({
@@ -54,7 +63,15 @@
 <div class="container">
   <div class="filebar">
     <button class="filename" onclick={copy}>
-      <FolderConfig />
+      {#if icon === 'json'}
+        <JsonIcon />
+      {:else if icon === 'bash'}
+        <BashIcon />
+      {:else if icon === 'console'}
+        <ConsoleIcon />
+      {:else if icon === 'config'}
+        <ConfigIcon />
+      {/if}
       <h6>
         {title}
       </h6>
@@ -86,7 +103,7 @@
     justify-content: space-between;
     background-image: var(--background-image);
     padding-left: 6px;
-    column-gap: 7px;
+    column-gap: 6px;
   }
   .filename {
     display: flex;
@@ -103,7 +120,7 @@
     font-family: 'GeistMono';
     font-weight: 400;
     text-shadow: 0px 0px var(--shadow-primary-color), 0px 0px var(--shadow-secondary-color);
-    margin-left: 7px;
+    margin-left: 4px;
   }
   button {
     background-color: transparent;

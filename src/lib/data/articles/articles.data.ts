@@ -26,7 +26,7 @@ export const ARTICLE_DETAILS: Record<id, Article> = {
   'piped': {
     text: 'piped.txt',
     title: 'setting up your own <span>youtube proxy</span> with selfhosted <span>piped</span>',
-    excerpt: 'i\'v been spending the past months degoogling and generally removing big american tech companies from my life. the hardest of this companies was google, and youtube was the worst service to deal with. let me explain to you how you can keep watching youtube and not getting tracked while doing so.',
+    excerpt: 'i\'v been spending the past months degoogling and generally removing big american tech companies from my life. the hardest of this companies was google, and youtube was the worst service to deal with. I will show you how to selfhost your own youtube proxy to keep watching youtube without getting tracked.',
     path: '/articles/selfhosted-piped',
     category: ['selfhost'],
     image: PipedImage,

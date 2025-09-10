@@ -12,9 +12,7 @@
 </script>
 
 <!-- template -->
-<div
-  class="header-buttons"
->
+<div class="header-buttons">
   <ScreenSaverButton />
   <QuitButton />
 </div>
@@ -106,5 +104,26 @@
     padding-left: 8px;
     padding-right: 8px;
     margin-left: 3px;
+  }
+
+  @container (width < 900px) {
+    .header-buttons {
+      margin-right: 16px;
+      margin-left: 8px;
+    }
+    .content {
+      padding-right: 16px;
+      padding-left: 8px;
+    }
+  }
+  @container (width < 599px) {
+    .header-buttons {
+      margin-right: 16px;
+      margin-left: 4px;
+    }
+    .content {
+      padding-right: 16px;
+      padding-left: 4px;
+    }
   }
 </style>
