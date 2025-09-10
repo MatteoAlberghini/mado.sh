@@ -8,10 +8,8 @@ TODO:
  - text in projects should all be shown, its a bit weird that it gets cut.
  - add a image viewer / video viewer app
  - add a toolbar to be able to open different programs
- - add dynamic sitemap generation
  - mobile for article archive is kinda weird
  - add visitor book with signature
- - test mobile padding on settings/etc
  - add inline code block
 -->
 

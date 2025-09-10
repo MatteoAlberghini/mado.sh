@@ -1,6 +1,10 @@
+import { SITEMAP } from '$lib/data/pages.data.js'
+
 /**
  * get request to generate xml based on origin
  * @param param0 request
+ * @param param0.url url of the request
+ * @param param0.setHeaders function to set headers
  * @returns sitemap xml
  */
 export async function GET({ url, setHeaders }) {
@@ -10,60 +14,14 @@ export async function GET({ url, setHeaders }) {
   const base = `${url.origin}/`
   const sitemap = `<?xml version="1.0" encoding="UTF-8" ?>
   <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    <url>
-      <loc>${base}</loc>
-      <lastmod>2024-07-20</lastmod>
-      <changefreq>monthly</changefreq>
-      <priority>0.9</priority>
-    </url>
-    <url>
-      <loc>${base}articles</loc>
-      <lastmod>2025-09-10</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.9</priority>
-    </url>
-    <url>
-      <loc>${base}articles/selfhosted-piped</loc>
-      <lastmod>2025-09-10</lastmod>
-      <changefreq>monthly</changefreq>
-      <priority>0.8</priority>
-    </url>
-    <url>
-      <loc>${base}contact</loc>
-      <lastmod>2024-07-20</lastmod>
-      <changefreq>monthly</changefreq>
-      <priority>0.7</priority>
-    </url>
-    <url>
-      <loc>${base}projects</loc>
-      <lastmod>2024-07-20</lastmod>
-      <changefreq>monthly</changefreq>
-      <priority>0.8</priority>
-    </url>
-    <url>
-      <loc>${base}projects/genuino</loc>
-      <lastmod>2024-07-20</lastmod>
-      <changefreq>monthly</changefreq>
-      <priority>0.7</priority>
-    </url>
-    <url>
-      <loc>${base}projects/waterkaarten</loc>
-      <lastmod>2024-07-20</lastmod>
-      <changefreq>monthly</changefreq>
-      <priority>0.7</priority>
-    </url>
-    <url>
-      <loc>${base}projects/o9solutions</loc>
-      <lastmod>2024-07-20</lastmod>
-      <changefreq>monthly</changefreq>
-      <priority>0.7</priority>
-    </url>
-    <url>
-      <loc>${base}settings</loc>
-      <lastmod>2024-07-20</lastmod>
-      <changefreq>monthly</changefreq>
-      <priority>0.5</priority>
-    </url>
+    ${SITEMAP.map((s) => (`
+      <url>
+        <loc>${base}${s.url}</loc>
+        <lastmod>${s.date}</lastmod>
+        <changefreq>${s.change}</changefreq>
+        <priority>${s.priority}</priority>
+      </url>
+    `)).join('')}
   </urlset>`
   return new Response(sitemap)
 }
