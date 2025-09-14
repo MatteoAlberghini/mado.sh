@@ -3,7 +3,6 @@ TODO:
  - make cursor selection a setting
  - add sparks when clicking
  - finish importing cursor states
- - remove doubleclick, it feels weird. moving an icon breaks tho
  - make icons in projects (in each category) being able to move and swap between eachother
  - text in projects should all be shown, its a bit weird that it gets cut.
  - add a image viewer / video viewer app

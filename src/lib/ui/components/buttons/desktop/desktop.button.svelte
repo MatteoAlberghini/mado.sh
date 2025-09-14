@@ -27,10 +27,13 @@
   /* constants */
   let x: number = 0
   let y: number = 0
+  let startX: number = 0
+  let startY: number = 0
   let dragX: number = 0
   let dragY: number = 0
   let frame: number = 0
   let dragging: boolean = false
+  const delta: number = 6
 
   /* support */
   /**
@@ -59,26 +62,6 @@
     hover = false
   }
   /**
-   * on click, prevent single click
-   * @param e mouse event
-   */
-  function onClick(e: Event) {
-    e.preventDefault()
-    if (window.innerWidth < 1280) {
-      handleButtonClick()
-    }
-  }
-  /**
-   * on double click
-   * @param e mouse event
-   */
-  function onDoubleClick(e: Event) {
-    e.preventDefault()
-    if (window.innerWidth >= 1280) {
-      handleButtonClick()
-    }
-  }
-  /**
    * on key down, handles enter event
    * @param e keyboard event
    */
@@ -97,13 +80,21 @@
     if (!container) return
     x = e.pageX
     y = e.pageY
+    startX = e.pageX
+    startY = e.pageY
     dragging = true
   }
   /**
    * on mouse up, stop drag event
+   * @param e mouse event
    */
-  function onMouseUp() {
+  function onMouseUp(e: MouseEvent) {
     dragging = false
+    const deltaX = Math.abs(e.pageX - startX)
+    const deltaY = Math.abs(e.pageY - startY)
+    if (deltaX < delta && deltaY < delta) {
+      handleButtonClick()
+    }
   }
   /**
    * on mouse move, handles animation frame and drag calculation
@@ -155,19 +146,21 @@
 
 </script>
 
-<!-- template -->
-<svelte:window onmouseup={onMouseUp} onmousemove={onMouseMove} />
+<!-- template
+  onclick={onClick}
+  ondblclick={onDoubleClick} 
+-->
+<svelte:window onmousemove={onMouseMove} />
 <button
   bind:this={container}
   aria-label={text}
   onmouseenter={onHover}
   onmouseleave={onBlur}
-  onclick={onClick}
-  ondblclick={onDoubleClick}
   onfocus={onHover}
   onblur={onBlur}
   onkeydown={onKeyDown}
   onmousedown={onMouseDown}
+  onmouseup={onMouseUp}
   style:grid-row={position.row}
   style:grid-column={position.column}
 >
