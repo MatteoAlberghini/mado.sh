@@ -56,9 +56,9 @@
     icon="json"
     title="piped_specs.json"
     code={`{
-disk: "32Gib",
-cpu: "2 cores",
-ram: "3GiB allocated + 512MiB swap",
+  disk: "32Gib",
+  cpu: "2 cores",
+  ram: "3GiB allocated + 512MiB swap",
 }`}
   />
   <p>
