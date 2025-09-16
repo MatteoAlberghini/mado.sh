@@ -10,6 +10,7 @@ TODO:
  - mobile for article archive is kinda weird
  - add visitor book with signature
  - add inline code block
+ - click on heading to add to url / add to clipboard?
 -->
 
 <!-- script -->
@@ -26,7 +27,7 @@ TODO:
 	import { getSoundActive, getSoundVolume, setSoundActive, setSoundVolume, soundActive, clickSoundElement, soundVolume } from '$lib/data/settings/sound.data'
 	import { getIconSize, setIconSize } from '$lib/data/settings/icon.data'
 	import Topbar from '$lib/ui/macro/topbar/topbar.svelte'
-	import { generateHighlighter } from '$lib/data/articles/articles.data';
+	import { generateHighlighter } from '$lib/data/articles/articles.data'
 
 	/* props */
 	let { children }: { children?: Snippet } = $props()
@@ -105,7 +106,7 @@ TODO:
 		--shadow-primary-color: #0fd2ff;
 		--shadow-secondary-color: #f60099;
 
-		--code-background-color: #1E1E2E;
+		--code-background-color: oklch(0.3118 0.0934 288.96);
 
 		--red-color: #f44336;
 		--white-color: #fff4e9;
