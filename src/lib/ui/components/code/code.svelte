@@ -1,10 +1,8 @@
 <!-- script -->
 <script lang="ts">
   /* imports */
-  import { onMount } from 'svelte'
 	import type { CodeProps } from '$lib/ui/components/code/code.types'
 	import { highlighter } from '$lib/data/articles/articles.data'
-	import { createHighlighter } from 'shiki'
 	import CopyIcon from '$lib/ui/icons/code/copy.icon.svelte'
 	import BashIcon from '$lib/ui/icons/code/bash.icon.svelte'
 	import JsonIcon from '$lib/ui/icons/code/json.icon.svelte'
@@ -20,6 +18,9 @@
 
   /* constansts */
   let timeout: NodeJS.Timeout | null = null
+
+  /* refs */
+  let container: HTMLDivElement
 
   /* functions */
   /**
@@ -40,21 +41,16 @@
 
   /* effects */
   /**
-   * start highligter with settings 
+   * start highligter with settings when the highlighter is ready
    */
-  onMount(async () => {
-    if ($highlighter === null) {
-      highlighter.set(await createHighlighter({
-        themes: ['synthwave-84'],
-        langs: ['typescript', 'javascript', 'shellscript', 'apache'],
-      }))
-    }
-    sintax = $highlighter!.codeToHtml(code, {
+  $effect(() => {
+    if (!$highlighter) return
+    sintax = $highlighter?.codeToHtml(code, {
       lang: language,
       theme: 'synthwave-84',
       colorReplacements: {
-        '#262335': 'oklch(0.3118 0.0934 288.96)',
-      }
+        '#262335': 'transparent',
+      },
     })
   })
 </script>
@@ -81,7 +77,9 @@
     </button>
     <div class="tooltip">{tooltip}</div>
   </div>
-  {@html sintax}
+  <div class="sintax" bind:this={container}>
+    {@html sintax}
+  </div>
 </div>
 
 <!-- styles -->
@@ -91,6 +89,14 @@
     border: 1px solid var(--primary-color);
     border-bottom-width: 3px;
     position: relative;
+  }
+  .sintax {
+    background-image: var(--background-image);
+    background-color: var(--code-background-color);
+    padding-left: 6px;
+    padding-right: 2px;
+    padding-top: 4px;
+    padding-bottom: 4px;
   }
   .filebar {
     width: 100%;
@@ -148,17 +154,15 @@
     visibility: visible;
   }
   :global(pre) {
-    white-space: pre-wrap;
     text-shadow: 0px 0px var(--shadow-primary-color), 0px 0px var(--shadow-secondary-color);
     font-size: 17px;
-    padding-left: 6px;
-    padding-right: 2px;
-    padding-top: 4px;
-    padding-bottom: 2px;
-    background-image: var(--background-image);
     font-family: 'GeistMono';
     letter-spacing: 1px;
+    white-space: pre-wrap;
     word-break: break-word;
+  }
+  :global(code) {
+    padding-right: 4px;
   }
   .tooltip {
     position: absolute;
@@ -176,6 +180,12 @@
     right: -1px;
     z-index: 2;
     font-size: 16px;
+  }
+
+  @container (width < 900px) {
+    :global(pre) {
+      padding-bottom: 4px;
+    }
   }
 </style>
 

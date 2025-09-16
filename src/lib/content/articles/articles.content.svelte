@@ -280,12 +280,27 @@
   /* media queries */
   @container (width < 900px) {
     .image-container {
-      display: none;
+      width: 100%;
+      max-width: 100%;
+      border-right-width: 0px;
+      border-bottom: 1px solid var(--background-color);
     }
     .article-content {
       padding-left: 12px;
       padding-right: 12px;
-      padding-bottom: 6px;
+      padding-bottom: 10px;
+    }
+    .article {
+      flex-direction: column;
+    }
+    hr {
+      margin-right: 0px;
+    }
+    .under-title {
+      padding-right: 0px;
+    }
+    .exerpt {
+      padding-right: 0px;
     }
   }
   @container (width < 599px) {

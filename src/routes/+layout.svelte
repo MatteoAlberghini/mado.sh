@@ -10,6 +10,7 @@ TODO:
  - mobile for article archive is kinda weird
  - add visitor book with signature
  - add inline code block
+ - click on heading to add to url / add to clipboard?
 -->
 
 <!-- script -->
@@ -26,6 +27,7 @@ TODO:
 	import { getSoundActive, getSoundVolume, setSoundActive, setSoundVolume, soundActive, clickSoundElement, soundVolume } from '$lib/data/settings/sound.data'
 	import { getIconSize, setIconSize } from '$lib/data/settings/icon.data'
 	import Topbar from '$lib/ui/macro/topbar/topbar.svelte'
+	import { generateHighlighter } from '$lib/data/articles/articles.data'
 
 	/* props */
 	let { children }: { children?: Snippet } = $props()
@@ -54,13 +56,14 @@ TODO:
 		setSoundActive(getSoundActive())
 		setSoundVolume(getSoundVolume())
 		setIconSize(getIconSize())
+		await generateHighlighter()
 	})
 </script>
 
 <!-- template -->
 <svelte:head>
 	<link rel="preload" as="image" href="/cursors/bg2/cursor.png" />
-	<link rel="preload" as="image" href="/cursors/bg2/cursor_click.png" />
+	<link as="image" href="/cursors/bg2/cursor_click.png" />
 	<link rel="preload" as="image" href="/images/general/bg-texture.png" />
 </svelte:head>
 
@@ -103,7 +106,7 @@ TODO:
 		--shadow-primary-color: #0fd2ff;
 		--shadow-secondary-color: #f60099;
 
-		--code-background-color: #1E1E2E;
+		--code-background-color: oklch(0.3118 0.0934 288.96);
 
 		--red-color: #f44336;
 		--white-color: #fff4e9;

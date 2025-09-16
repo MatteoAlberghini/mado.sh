@@ -56,9 +56,9 @@
     icon="json"
     title="piped_specs.json"
     code={`{
-disk: "32Gib",
-cpu: "2 cores",
-ram: "3GiB allocated + 512MiB swap",
+  disk: "32Gib",
+  cpu: "2 cores",
+  ram: "3GiB allocated + 512MiB swap",
 }`}
   />
   <p>
@@ -144,8 +144,7 @@ Enter a hostname for the Proxy (eg: pipedproxy.kavin.rocks):
 pipedproxy.yourdomain.com
 
 Enter the reverse proxy you would like to use (either caddy or nginx):
-nginx
-`}
+nginx`}
   />
   <h3>REVERSE PROXY SETUP</h3>
   <p>
@@ -271,11 +270,6 @@ POSTGRES_DB=piped`}
 <!-- styles -->
 <style>
   /* containers */
-  .container {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-  }
   .date {
     font-size: 17px;
     text-transform: uppercase;

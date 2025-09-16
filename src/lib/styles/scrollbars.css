@@ -10,7 +10,7 @@
 /* track */
 .simplebar-track.simplebar-vertical {
   background-color: var(--background-color);
-  background-image: url(/images/general/bg-texture.png);
+  background-image: var(--background-image);
   margin-top: 1px;
   margin-bottom: 1px;
 }
