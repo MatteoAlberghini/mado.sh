@@ -1,8 +1,8 @@
 /* imports  */
-import Contact from '$lib/data/contact/contact.content.svelte'
-import Projects from '$lib/data/projects/projects.content.svelte'
-import Settings from '$lib/data/settings/settings.content.svelte'
-import Articles from '$lib/data/articles/articles.content.svelte'
+import Contact from '$lib/content/contact/contact.content.svelte'
+import Projects from '$lib/content/projects/projects.content.svelte'
+import Settings from '$lib/content/settings/settings.content.svelte'
+import Articles from '$lib/content/articles/articles.content.svelte'
 import type { DesktopButtonProps } from '$lib/ui/components/buttons/desktop/desktop.button.types'
 import { BASE_PROJECTS, PROJECTS } from '$lib/data/projects/projects.data'
 import type { MultilevelSelectorItem } from '$lib/ui/components/selectors/selector.types'
@@ -77,7 +77,7 @@ export const DESKTOP_ICONS: DesktopButtonProps[] = [
   {
     id: DesktopUniqueID.github,
     type: 'external',
-    text: 'github.me',
+    text: 'github.link',
     url: 'https://github.com/MatteoAlberghini',
     modal: {},
     position: { row: '1', column: '-2' },
@@ -86,7 +86,7 @@ export const DESKTOP_ICONS: DesktopButtonProps[] = [
   {
     id: DesktopUniqueID.linkedin,
     type: 'external',
-    text: 'linkedin.me',
+    text: 'linkedin.link',
     url: 'https://www.linkedin.com/in/0x6d61646f/',
     modal: {},
     position: { row: '2', column: '-2' },
@@ -111,7 +111,9 @@ export const DESKTOP_NAVIGATION: MultilevelSelectorItem[] = [
     items: PROJECTS.map((p) => ({ label: p.text, value: p.path }))
   }
 ]
-
+/**
+ * array used for storing today's messages
+ */
 export const MESSAGES_OF_THE_DAY: string[] = [
   'happy to see you here :)',
   'check out my <a href="/projects" draggable="false">projects :D</a>',

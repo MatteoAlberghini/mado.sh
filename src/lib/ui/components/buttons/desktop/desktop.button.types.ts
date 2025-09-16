@@ -34,6 +34,6 @@ export type ModalProps = {
   top?: `${number}px`,
   left?: `${number}px`,
   children?: Snippet,
-  color?: `#${string}`,
+  color?: `#${string}` | `oklch${string}`,
   close: () => void,
 }

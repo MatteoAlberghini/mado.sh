@@ -7,7 +7,8 @@ import type { Handle } from '@sveltejs/kit'
 
 /**
  * handles requests and modifies them based on user cookies before sending html back
- * @param param0 request object from sveltekit
+ * @param param0.event
+ * @param param0.resolve
  */
 export const handle: Handle = async({ event, resolve }) => {
   return resolve(event, {

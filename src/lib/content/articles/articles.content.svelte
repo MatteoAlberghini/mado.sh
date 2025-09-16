@@ -6,6 +6,7 @@
 	import { Categories, type Article, type Category } from '$lib/data/articles/articles.types'
 	import { ARTICLES, BASE_ARTICLES } from '$lib/data/articles/articles.data'
 	import Image from '$lib/ui/components/media/image/image.svelte'
+	import Container from '$lib/ui/macro/wrappers/container/container.wrapper.svelte'
 
   /* state */
   let filteredArticles: Article[] = $state(ARTICLES)
@@ -65,7 +66,7 @@
 </script>
 
 <!-- template -->
-<div class="container">
+<Container>
   {#if content === null}
   <div class="filters">
     <span>FILTERS</span>
@@ -113,19 +114,11 @@
   {:else if content.element}
     {@render content.element()}
   {/if}
-</div>
+</Container>
 
 <!-- styles -->
 <style>
   /* filter */
-  .container {
-    display: flex;
-    flex-direction: column;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 20px;
-    padding-bottom: 16px;
-  }
   .filters {
     position: relative;
     display: flex;
@@ -294,10 +287,6 @@
       padding-right: 12px;
       padding-bottom: 6px;
     }
-    .container {
-      padding-right: 16px;
-      padding-left: 8px;
-    }
   }
   @container (width < 599px) {
     h3 {
@@ -305,10 +294,6 @@
     }
     .exerpt {
       font-size: 18px;
-    }
-    .container {
-      padding-right: 16px;
-      padding-left: 4px;
     }
   }
 </style>

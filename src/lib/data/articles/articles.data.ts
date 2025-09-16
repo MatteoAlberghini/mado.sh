@@ -1,7 +1,7 @@
 import { writable, type Writable } from 'svelte/store'
 import type { BundledLanguage, BundledTheme, HighlighterGeneric } from 'shiki'
 import type { Article } from '$lib/data/articles/articles.types'
-import Piped from '$lib/data/articles/piped.content.svelte'
+import Piped from '$lib/content/articles/piped.content.svelte'
 import PipedImage from '$lib/images/articles/piped.webp?enhanced'
 
 /**
@@ -26,7 +26,7 @@ export const ARTICLE_DETAILS: Record<id, Article> = {
   'piped': {
     text: 'piped.txt',
     title: 'setting up your own <span>youtube proxy</span> with selfhosted <span>piped</span>',
-    excerpt: 'i\'v been spending the past months degoogling and generally removing big american tech companies from my life. the hardest of this companies was google, and youtube was the worst service to deal with. I will show you how to selfhost your own youtube proxy to keep watching youtube without getting tracked.',
+    excerpt: 'i\'v been spending the past months degoogling and generally removing big american tech companies from my life. the hardest of this companies was google, and youtube was the worst app to deal with. let me explain to you how you can keep watching youtube anonymously using Piped as a proxy.',
     path: '/articles/selfhosted-piped',
     category: ['selfhost'],
     image: PipedImage,

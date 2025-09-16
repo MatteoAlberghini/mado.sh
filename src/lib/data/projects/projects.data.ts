@@ -1,7 +1,7 @@
 /* imports */
-import Genuino from '$lib/data/projects/genuino.content.svelte'
-import O9solutions from '$lib/data/projects/o9solutions.content.svelte'
-import Waterkaarten from '$lib/data/projects/waterkaarten.content.svelte'
+import Genuino from '$lib/content/projects/genuino.content.svelte'
+import O9solutions from '$lib/content/projects/o9solutions.content.svelte'
+import Waterkaarten from '$lib/content/projects/waterkaarten.content.svelte'
 import type { Project } from './projects.types'
 
 /**
@@ -45,5 +45,9 @@ export const REPOSITORIES: Project[] = [
   {
     text: 'geonames_scripts.link',
     path: 'https://github.com/MatteoAlberghini/geonames.scripts',
+  },
+  {
+    text: 'utility_scripts.link',
+    path: 'https://github.com/MatteoAlberghini/utility.scripts',
   }
 ]

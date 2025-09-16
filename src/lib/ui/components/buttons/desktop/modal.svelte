@@ -43,7 +43,7 @@
     function onKeyDown(e: KeyboardEvent) {
       if (e.key === 'Escape') {
         e.preventDefault()
-        close()
+        close() 
       }
       if (e.key === 'F11') {
         e.preventDefault()

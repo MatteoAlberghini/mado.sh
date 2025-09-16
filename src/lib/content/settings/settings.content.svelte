@@ -8,36 +8,39 @@
 	import SoundCheckbox from '$lib/ui/components/checkboxes/sound/sound.checkbox.svelte'
 	import SoundSlider from '$lib/ui/components/slider/sound/sound.slider.svelte'
 	import IconSlider from '$lib/ui/components/slider/icon/icon.slider.svelte'
+	import Container from '$lib/ui/macro/wrappers/container/container.wrapper.svelte'
 
 </script>
 
 <!-- template -->
-<div class="header-buttons">
-  <ScreenSaverButton />
-  <QuitButton />
-</div>
-<div class="content">
-  <div class="section">
-    <span>THEME</span>
-    <div class="section-content">
-      <ThemeSelector />
-      <ScreenSelector />
+<Container>
+  <div class="header-buttons">
+    <ScreenSaverButton />
+    <QuitButton />
+  </div>
+  <div class="content">
+    <div class="section">
+      <span>THEME</span>
+      <div class="section-content">
+        <ThemeSelector />
+        <ScreenSelector />
+      </div>
+    </div>
+    <div class="section">
+      <span>ICONS</span>
+      <div class="section-content mt">
+        <IconSlider />
+      </div>
+    </div>
+    <div class="section">
+      <span>SOUNDS</span>
+      <div class="section-content mt">
+        <SoundCheckbox />
+        <SoundSlider />
+      </div>
     </div>
   </div>
-  <div class="section">
-    <span>ICONS</span>
-    <div class="section-content mt">
-      <IconSlider />
-    </div>
-  </div>
-  <div class="section">
-    <span>SOUNDS</span>
-    <div class="section-content mt">
-      <SoundCheckbox />
-      <SoundSlider />
-    </div>
-  </div>
-</div>
+</Container>
 
 <!-- styles -->
 <style>
@@ -47,21 +50,13 @@
     justify-content: flex-start;
     align-items: flex-start;
     align-self: flex-start;
-    margin-left: 20px;
-    margin-right: 20px;
-    padding-top: 16px;
   }
   .content {
     display: flex;
     justify-content: flex-start;
     flex-direction: row;
     flex-wrap: wrap;
-    width: 100%;
-    height: 100%;
-    padding-left: 20px;
-    padding-right: 20px;
     padding-top: 16px;
-    padding-bottom: 16px;
     column-gap: 16px;
     row-gap: 16px;
   }
