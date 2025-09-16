@@ -5,6 +5,7 @@
 	import Button from '$lib/ui/components/buttons/button.svelte'
   import Input from '$lib/ui/components/input/input.svelte'
 	import TextArea from '$lib/ui/components/text-area/text.area.svelte'
+	import Container from '$lib/ui/macro/wrappers/container/container.wrapper.svelte'
 
   /* state */
   let loading: boolean = $state(false)
@@ -42,7 +43,7 @@
 </script>
 
 <!-- template -->
-<div class="content">
+<Container>
   <form onsubmit={onSubmit}>
     <div class="input-container">
       <Input
@@ -77,23 +78,11 @@
       {/if}
     </div>
   </form>
-</div>
+</Container>
 
 <!-- styles -->
 <style>
   /* containers */
-  .content {
-    width: 100%;
-    display: flex;
-    justify-content: flex-start;
-    align-self: center;
-    flex-direction: column;
-    flex-wrap: wrap;
-    padding-left: 16px;
-    padding-right: 16px;
-    padding-top: 8px;
-    padding-bottom: 24px;
-  }
   .input-container {
     display: flex;
     align-self: flex-start;
@@ -125,17 +114,5 @@
     --shadow-primary-color: var(--selection-background-color);
     --shadow-secondary-color: var(--text-color);
     color: var(--red-color);
-  }
-  @container (width < 900px) {
-    .content {
-      padding-right: 16px;
-      padding-left: 8px;
-    }
-  }
-  @container (width < 599px) {
-    .content {
-      padding-right: 16px;
-      padding-left: 4px;
-    }
   }
 </style>

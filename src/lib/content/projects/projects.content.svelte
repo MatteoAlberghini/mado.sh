@@ -5,6 +5,7 @@
 	import { BASE_PROJECTS, PROJECTS, REPOSITORIES } from '$lib/data/projects/projects.data'
 	import type { Project } from '$lib/data/projects/projects.types'
   import FolderButton from '$lib/ui/components/buttons/folder/folder.button.svelte'
+	import Container from '$lib/ui/macro/wrappers/container/container.wrapper.svelte'
 
   /* state */
   let content: Project | null = $state(null)
@@ -26,7 +27,7 @@
 </script>
 
 <!-- template -->
-<div class="container">
+<Container>
   {#if content === null}
     <div class="projects-container">
       <span>WORK</span>
@@ -51,23 +52,11 @@
   {:else if content.element}
     {@render content.element()}
   {/if}
-</div>
+</Container>
 
 <!-- style -->
 <style>
   /* containers */
-  .container {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: flex-start;
-    flex-direction: column;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 16px;
-    padding-bottom: 16px;
-    row-gap: 1px;
-  }
   .projects-container {
     display: flex;
     justify-content: flex-start;
@@ -101,18 +90,5 @@
     padding-left: 8px;
     padding-right: 8px;
     margin-left: 3px;
-  }
-
-  @container (width < 900px) {
-    .container {
-      padding-right: 16px;
-      padding-left: 8px;
-    }
-  }
-  @container (width < 599px) {
-    .container {
-      padding-right: 16px;
-      padding-left: 4px;
-    }
   }
 </style>
