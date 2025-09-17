@@ -1,6 +1,7 @@
 <!-- script -->
 <script lang="ts">
   /* imports */
+  import SimpleBar from 'simplebar'
 	import type { CodeProps } from '$lib/ui/components/code/code.types'
 	import { highlighter } from '$lib/data/articles/articles.data'
 	import CopyIcon from '$lib/ui/icons/code/copy.icon.svelte'
@@ -52,6 +53,8 @@
         '#262335': 'transparent',
       },
     })
+    if (!container) return
+    new SimpleBar(container, { autoHide: true })
   })
 </script>
 
@@ -97,6 +100,7 @@
     padding-right: 2px;
     padding-top: 4px;
     padding-bottom: 4px;
+    overflow-x: auto;
   }
   .filebar {
     width: 100%;
@@ -158,8 +162,6 @@
     font-size: 17px;
     font-family: 'GeistMono';
     letter-spacing: 1px;
-    white-space: pre-wrap;
-    word-break: break-word;
   }
   :global(code) {
     padding-right: 4px;
