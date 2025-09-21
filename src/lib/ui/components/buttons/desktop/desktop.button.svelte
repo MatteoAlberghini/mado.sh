@@ -22,7 +22,7 @@
   let currentPath: [{ text: string, path: string }, ...{ text: string, path: string }[]] = $state([pathname[0]])
 
   /* refs */
-  let container: HTMLButtonElement
+  let container: HTMLAnchorElement
 
   /* constants */
   let x: number = 0
@@ -151,7 +151,8 @@
   ondblclick={onDoubleClick} 
 -->
 <svelte:window onmousemove={onMouseMove} />
-<button
+<a
+  href={type === 'external' ? url : pathname[0].path}
   bind:this={container}
   aria-label={text}
   onmouseenter={onHover}
@@ -161,8 +162,10 @@
   onkeydown={onKeyDown}
   onmousedown={onMouseDown}
   onmouseup={onMouseUp}
+  onclick={(e) => e.preventDefault()}
   style:grid-row={position.row}
   style:grid-column={position.column}
+  draggable="false"
 >
   {#if type === 'folder'}
     <FolderIcon animate={hover} />
@@ -186,7 +189,7 @@
   <span>
     {text}
   </span>
-</button>
+</a>
 <div class="tooltip">{`${type === 'external' ? 'goto' : 'open'} >> ${text}`}</div>
 
 {#if open}
@@ -202,7 +205,7 @@
 
 <!-- styles -->
 <style>
-  button {
+  a {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -217,12 +220,13 @@
     padding-bottom: 4px;
     user-select: none;
     background: transparent;
+    text-decoration: none;
   }
-  button:hover, button:focus {
+  a:hover, a:focus {
     outline: 2px var(--primary-color) dashed;
     background-color: color-mix(in srgb, var(--primary-color) var(--opacity-low), transparent);
   }
-  button:hover + .tooltip, button:focus + .tooltip {
+  a:hover + .tooltip, a:focus + .tooltip {
     visibility: visible;
   }
   span {
@@ -250,7 +254,7 @@
     padding-top: 1px;
     border: 1px solid var(--primary-color);
     border-bottom-width: 2px;
-    left: 0px;
+    right: 0px;
     bottom: 0px;
     z-index: 2;
     font-size: 17px;
@@ -260,7 +264,7 @@
 
   /* media queries */
   @media only screen and (max-width: 1279px) {
-    button {
+    a {
       grid-row: auto !important;
       grid-column: auto !important;
     }
@@ -271,7 +275,7 @@
       font-size: 18px;
       margin-top: 4px;
     }
-    button > :global(svg) {
+    a > :global(svg) {
       max-width: 65px;
     }
   }

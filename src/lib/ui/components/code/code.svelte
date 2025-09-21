@@ -19,9 +19,6 @@
   /* constansts */
   let timeout: NodeJS.Timeout | null = null
 
-  /* refs */
-  let container: HTMLDivElement
-
   /* functions */
   /**
    * copy to clipboard and change the text after a cd
@@ -77,7 +74,7 @@
     </button>
     <div class="tooltip">{tooltip}</div>
   </div>
-  <div class="sintax" bind:this={container}>
+  <div class="sintax">
     {@html sintax}
   </div>
 </div>

@@ -6,8 +6,8 @@
 	import HeroImage from '$lib/ui/components/media/hero-image/hero.image.svelte'
   import Header from '$lib/ui/macro/headers/horizontal-header/horizontal.header.svelte'
 	import Article from '$lib/ui/macro/wrappers/article/article.wrapper.svelte'
-  import PipedProxyConfig from '$lib/images/articles/piped_config.webp?enhanced'
 	import ContentImage from '$lib/ui/components/media/content-image/content.image.svelte'
+  import PipedProxyConfig from '$lib/images/articles/piped_config.webp?enhanced'
 
   /* constants */
   let data = ARTICLE_DETAILS['piped']
@@ -15,14 +15,11 @@
 
 <!-- template -->
 <HeroImage src={data.image} alt="selfhosted piped screenshot" position="0% 0%" />
-
 <Header
   title={data.title}
   tags={[{ type: 'backend', text: 'selfhost' }]}
 />
-
-<Article>
-  <p class="date">{data.date}</p>
+<Article date={data.date}>
   <h3>OPENING THOUGHTS</h3>
   <p>
     <span>old youtube was cool</span> // it was an online space dedicated to weird, funny and unique videos that generated a forum-like community. 
@@ -266,15 +263,3 @@ POSTGRES_DB=piped`}
   </p>
   <p>if you're on android you can use <a href="https://libretube.dev/" target="_blank" draggable="false">LibreTube</a>, it connects to your own Piped and can sync your subscriptions on all your devices.</p>
 </Article>
-
-<!-- styles -->
-<style>
-  /* containers */
-  .date {
-    font-size: 17px;
-    text-transform: uppercase;
-    font-weight: 400;
-    text-align: left;
-    color: var(--primary-color);
-  }
-</style>
