@@ -13,18 +13,6 @@
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   let hover: boolean = $state(false)
 
-  /* support */
-  /**
-   * handle click of the button to open link if external, or go to pathname if internal
-   */
-  function handleButtonClick() {
-    if (external) {
-      window.open(path, '_blank')
-      return
-    }
-    goto(path)
-  }
-
   /* callbacks */
   /**
    * mouse hover
@@ -38,35 +26,16 @@
   function onBlur() {
     hover = false
   }
-  /**
-   * on click, prevent single click
-   * @param e mouse event
-   */
-  function onClick(e: Event) {
-    handleButtonClick()
-  }
-  /**
-   * on key down, handles enter event
-   * @param e keyboard event
-   */
-  function onKeyDown(e: KeyboardEvent) {
-    if (e.key === 'Enter') {
-      e.preventDefault()
-      handleButtonClick()
-      return
-    }
-  }
 </script>
 
 <!-- template -->
-<button
+<a
+  href={path}
   aria-label={text}
-  onclick={onClick}
   onmouseenter={onHover}
   onmouseleave={onBlur}
   onfocus={onHover}
   onblur={onBlur}
-  onkeydown={onKeyDown}
 >
   {#if external}
     <GlobeIcon />
@@ -75,12 +44,12 @@
   {/if}
   <span>{text}</span>
   <div class="tooltip">{`${external ? 'goto' : 'open'} >> ${text}`}</div>
-</button>
+</a>
 
 <!-- styles -->
 <style>
   /* buttons */
-  button {
+  a {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -96,12 +65,13 @@
     width: 110px;
     height: 110px;
     aspect-ratio: 1 / 1;
+    text-decoration: none;
   }
-  button:hover, button:focus {
+  a:hover, a:focus {
     outline: 2px var(--primary-color) dashed;
     background-color: color-mix(in srgb, var(--primary-color) 30%, transparent);
   }
-  button:hover > .tooltip, button:focus > .tooltip {
+  a:hover > .tooltip, a:focus > .tooltip {
     visibility: visible;
   }
 

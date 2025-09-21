@@ -1,7 +1,6 @@
 <script lang="ts">
   /* imports  */
   import { page } from '$app/state'
-	import { goto } from '$app/navigation'
   import Selector from '$lib/ui/components/selectors/selector.svelte'
 	import { Categories, type Article, type Category } from '$lib/data/articles/articles.types'
 	import { ARTICLES, BASE_ARTICLES } from '$lib/data/articles/articles.data'
@@ -25,27 +24,6 @@
       return
     }
     filteredArticles = ARTICLES.filter((a) => a.category.includes(value as Category))
-  }
-  /**
-   * on click, prevent single click
-   * @param e mouse event
-   * @param path
-   */
-  function onClick(e: Event, path: string) {
-    e.preventDefault()
-    goto(path)
-  }
-  /**
-   * on key down, handles enter event
-   * @param e keyboard event
-   * @param path
-   */
-  function onKeyDown(e: KeyboardEvent, path: string) {
-    if (e.key === 'Enter') {
-      e.preventDefault()
-      goto(path)
-      return
-    }
   }
 
   /* effects */
@@ -82,10 +60,9 @@
   </div>
   <div class="content">
     {#each filteredArticles as a (a.path)}
-      <button
+      <a
+        href={a.path}
         class="article"
-        onclick={(e) => onClick(e, a.path)}
-        onkeydown={(e) => onKeyDown(e, a.path)}
       >
         <div class="image-container">
           <Image src={a.image} alt={a.text} position="0% 0%"/>
@@ -108,7 +85,7 @@
           </div>
         </div>
         <div class="tooltip">open >> {a.text}</div>
-      </button>
+      </a>
     {/each}
   </div>
   {:else if content.element}
@@ -119,6 +96,9 @@
 <!-- styles -->
 <style>
   /* filter */
+  a {
+    text-decoration: none;
+  }
   .filters {
     position: relative;
     display: flex;

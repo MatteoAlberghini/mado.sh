@@ -13,6 +13,11 @@ export type Category = 'selfhost' | 'mobile' | 'web'
 export type Month = 'JAN' | 'FEB' | 'MAR' | 'APR' | 'MAY' | 'JUN' | 'JUL' | 'AUG' | 'SEP' | 'OCT' | 'NOV' | 'DEC'
 
 /**
+ * date type
+ */
+export type Date = `${Month} ${number}, ${number}`
+
+/**
  * all potential categories
  */
 export const Categories = new Map<string, string>([
@@ -29,7 +34,7 @@ export type Article = {
   excerpt: string,
   path: string,
   image: Picture,
-  date: `${Month} ${number}, ${number}`,
+  date: Date,
   element?: Snippet,
   category: Category[],
 }

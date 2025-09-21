@@ -4,11 +4,14 @@
   import type { ArticleWrapper } from '$lib/ui/macro/wrappers/article/article.wrapper.types'
 
   /* props */
-  let { children }: ArticleWrapper = $props()
+  let { children, date }: ArticleWrapper = $props()
 </script>
 
 <!-- template -->
 <article>
+  {#if date}
+    <p class="date">{date}</p>
+  {/if}
   {@render children?.()}
 </article>
 
@@ -82,5 +85,12 @@
   }
   article :global(code span) {
     text-shadow: 0px 0px var(--shadow-primary-color), 0px 0px var(--shadow-secondary-color);
+  }
+  .date {
+    font-size: 17px;
+    text-transform: uppercase;
+    font-weight: 400;
+    text-align: left;
+    color: var(--primary-color);
   }
 </style>
