@@ -36,6 +36,7 @@
   onmouseleave={onBlur}
   onfocus={onHover}
   onblur={onBlur}
+  draggable="false"
 >
   {#if external}
     <GlobeIcon />

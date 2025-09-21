@@ -63,6 +63,7 @@
       <a
         href={a.path}
         class="article"
+        draggable="false"
       >
         <div class="image-container">
           <Image src={a.image} alt={a.text} position="0% 0%"/>
