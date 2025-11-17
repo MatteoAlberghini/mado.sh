@@ -42,12 +42,21 @@ export const REPOSITORIES: Project[] = [
     text: 'website_frontend.link',
     path: 'https://github.com/MatteoAlberghini/0x6d61646f.website',
   },
+]
+/**
+ * List of all scripts
+ */
+export const SCRIPTS: Project[] = [
   {
-    text: 'geonames_scripts.link',
+    text: 'geonames.scripts',
     path: 'https://github.com/MatteoAlberghini/geonames.scripts',
   },
   {
-    text: 'utility_scripts.link',
+    text: 'linkding.scripts',
+    path: 'https://github.com/MatteoAlberghini/linkding.scripts',
+  },
+  {
+    text: 'linux_utility.scripts',
     path: 'https://github.com/MatteoAlberghini/utility.scripts',
   }
 ]
