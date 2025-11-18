@@ -63,8 +63,8 @@ TODO:
 <!-- template -->
 <svelte:head>
 	<link rel="preload" as="image" href="/cursors/bg2/cursor.png" />
-	<link as="image" href="/cursors/bg2/cursor_click.png" />
 	<link rel="preload" as="image" href="/images/general/bg-texture.png" />
+	<link rel="preload" as="image" href="/cursors/bg2/cursor_click.png" />
 </svelte:head>
 
 <svelte:window onclick={onClick} />
@@ -174,7 +174,7 @@ TODO:
 			padding: 0;
 			border: 0;
 			outline: 0;
-			font-family: 'Dosis', Arial, sans-serif;
+			font-family: 'Dosis', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 			cursor: var(--cursor-idle) 0 12, pointer;
 			-webkit-tap-highlight-color: transparent;
 		}

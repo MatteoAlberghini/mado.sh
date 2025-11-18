@@ -146,10 +146,7 @@
 
 </script>
 
-<!-- template
-  onclick={onClick}
-  ondblclick={onDoubleClick} 
--->
+<!-- template -->
 <svelte:window onmousemove={onMouseMove} />
 <a
   href={type === 'external' ? url : pathname[0].path}
