@@ -2,7 +2,7 @@
 <script lang="ts">
   /* imports */
   import { page } from '$app/state'
-	import { BASE_PROJECTS, PROJECTS, REPOSITORIES, SCRIPTS } from '$lib/data/projects/projects.data'
+	import { BASE_PROJECTS, PROJECTS, REPOSITORIES, SCRIPTS, THEMES } from '$lib/data/projects/projects.data'
 	import type { Project } from '$lib/data/projects/projects.types'
   import FolderButton from '$lib/ui/components/buttons/folder/folder.button.svelte'
 	import Container from '$lib/ui/macro/wrappers/container/container.wrapper.svelte'
@@ -52,6 +52,16 @@
     <div class="projects-container">
       <span>REPOSITORIES</span>
       {#each REPOSITORIES as p (p.path)}
+        <FolderButton
+          text={p.text}
+          path={p.path}
+          external={true}
+        />
+      {/each}
+    </div>
+    <div class="projects-container">
+      <span>THEMES</span>
+      {#each THEMES as p (p.path)}
         <FolderButton
           text={p.text}
           path={p.path}

@@ -35,7 +35,7 @@ export const PROJECTS: Project[] = [
   },
 ]
 /**
- * List of all external repositories
+ * list of all external repositories
  */
 export const REPOSITORIES: Project[] = [
   {
@@ -44,7 +44,7 @@ export const REPOSITORIES: Project[] = [
   },
 ]
 /**
- * List of all scripts
+ * list of all scripts
  */
 export const SCRIPTS: Project[] = [
   {
@@ -58,5 +58,18 @@ export const SCRIPTS: Project[] = [
   {
     text: 'linux_utility.scripts',
     path: 'https://github.com/MatteoAlberghini/utility.scripts',
+  }
+]
+/**
+ * list of all themes 
+ */
+export const THEMES: Project[] = [
+  {
+    text: 'vscodium_vaporwave.theme',
+    path: 'https://github.com/MatteoAlberghini/vaporwave.vscodium',
+  },
+  {
+    text: 'brave_vaporwave.theme',
+    path: 'https://github.com/MatteoAlberghini/vaporwave.brave',
   }
 ]

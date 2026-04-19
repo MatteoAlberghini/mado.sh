@@ -121,6 +121,7 @@ TODO:
 
 		--opacity-v-low: 8%;
 		--opacity-low: 30%;
+		--opacity-medium: 40%;
 
 		--background-image: url(/images/general/bg-texture.png);
 	}

@@ -24,7 +24,7 @@
     border: 1px solid var(--background-color);
     border-bottom-width: 3px;
     border-top-width: 0px;
-    font-size: 19px;
+    font-size: 20px;
     font-weight: 400;
     line-height: 135%;
     color: var(--white-color);
@@ -32,7 +32,7 @@
     padding-right: 10px;
     padding-top: 8px;
     padding-bottom: 8px;
-    row-gap: 10px;
+    row-gap: 14px;
     user-select: text;
   }
   article :global(a) {
@@ -51,10 +51,6 @@
   article :global(li) {
     list-style-position: inside;
   }
-  article :global(li:before) {
-    content: '';
-    margin-left: -12px;
-  }
   article :global(li::marker) {
     color: var(--primary-color);
   }
@@ -62,8 +58,7 @@
     font-size: 27px;
     font-weight: 400;
     color: var(--primary-color);
-    margin-top: 20px;
-    margin-bottom: 2px;
+    margin-top: 24px;
   }
   article :global(h3:hover::after) {
     visibility: visible;
