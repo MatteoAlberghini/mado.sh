@@ -9,7 +9,6 @@
 	import SoundSlider from '$lib/ui/components/slider/sound/sound.slider.svelte'
 	import IconSlider from '$lib/ui/components/slider/icon/icon.slider.svelte'
 	import Container from '$lib/ui/macro/wrappers/container/container.wrapper.svelte'
-
 </script>
 
 <!-- template -->

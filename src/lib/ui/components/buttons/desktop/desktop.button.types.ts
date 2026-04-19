@@ -18,7 +18,7 @@ export type DesktopButtonProps = {
   type: Icon,
   text: string,
   url: string,
-  modal: { width?: `${number}px`, height?: `${number}px`, top?: `${number}px`, left?: `${number}px`, color?: `oklch${string}` },
+  modal: { home?: boolean, fullscreen?: boolean, width?: `${number}px`, height?: `${number}px`, top?: `${number}px`, left?: `${number}px`, right?: `${number}px`, bottom?: `${number}px`, color?: `oklch${string}` },
   position: { row: `${number}`, column: `${number}`},
   pathname: [{ text: string, path: string }, ...{ text: string, path: string }[]],
   children?: Snippet,
@@ -26,14 +26,18 @@ export type DesktopButtonProps = {
 /**
  * props for modal component
  */
-export type ModalProps = {
+export interface ModalProps {
   id: DesktopUniqueID,
   path: [{ text: string, path: string }, ...{ text: string, path: string }[]],
   width?: `${number}px`,
   height?: `${number}px`,
   top?: `${number}px`,
   left?: `${number}px`,
+  right?: `${number}px`,
+  bottom?: `${number}px`,
   children?: Snippet,
   color?: `#${string}` | `oklch${string}`,
   close: () => void,
+  home?: boolean,
+  fullscreen?: boolean,
 }
