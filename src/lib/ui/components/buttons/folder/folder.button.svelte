@@ -1,41 +1,19 @@
 <!-- scripts -->
 <script lang="ts">
   /* imports */
-  import { goto } from '$app/navigation'
   import type { FolderButtonProps } from '$lib/ui/components/buttons/folder/folder.types'
   import GlobeIcon from '$lib/ui/icons/globe.icon.svelte'
   import TextIcon from '$lib/ui/icons/text.icon.svelte'
 
   /* props */
   let { text, path, external }: FolderButtonProps = $props()
-
-  /* state */
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  let hover: boolean = $state(false)
-
-  /* callbacks */
-  /**
-   * mouse hover
-   */
-  function onHover() {
-    hover = true
-  }
-  /**
-   * mouse blur
-   */
-  function onBlur() {
-    hover = false
-  }
 </script>
 
 <!-- template -->
 <a
   href={path}
+  target={external ? '_blank' : '_self'}
   aria-label={text}
-  onmouseenter={onHover}
-  onmouseleave={onBlur}
-  onfocus={onHover}
-  onblur={onBlur}
   draggable="false"
 >
   {#if external}

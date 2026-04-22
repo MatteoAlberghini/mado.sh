@@ -8,29 +8,39 @@
 </script>
 
 <!-- template -->
-<label for={id}>
-  {label}
-  {#if side}
-    <span>{side}</span>
-  {/if}
-</label>
-<textarea id={id} name={id} maxlength={max} required={required}></textarea>
+<div class="container">
+  <label for={id}>
+    {label}
+    {#if side}
+      <span>{side}</span>
+    {/if}
+  </label>
+  <textarea id={id} name={id} maxlength={max} required={required}></textarea>
+</div>
 
 <!-- styles -->
 <style>
+  /* containers */
+  .container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
   /* text */
   label {
     font-size: 17px;
     font-weight: 400;
     color: var(--primary-color);
     display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
+    align-items: center;
   }
   span {
-    font-size: 15px;
+    font-size: 13px;
     font-weight: 400;
-    color: var(--primary-color);
+    color: var(--red-color);
+    margin-left: 6px;
+    margin-top: 2px;
   }
 
   /* input */
@@ -38,7 +48,7 @@
     padding-left: 7px;
     padding-right: 7px;
     padding-top: 6px;
-    margin-top: 4px;
+    margin-top: 6px;
     height: 176px;
     resize: vertical;
     background-color: var(--background-color);

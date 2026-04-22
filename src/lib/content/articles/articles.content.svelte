@@ -47,7 +47,10 @@
 <Container>
   {#if content === null}
   <div class="filters">
-    <span>FILTERS</span>
+    <span class="title">FILTERS</span>
+    <span class="data">
+      {filteredArticles.length} entries >> last update {ARTICLES[ARTICLES.length - 1].date}
+    </span>
     <div class="filter">
       <Selector
         label="category"
@@ -82,7 +85,7 @@
                 {/each}
               </div>
             </div>
-            <p class="exerpt">{a.excerpt}</p>
+            <p class="excerpt">{a.excerpt}</p>
           </div>
         </div>
         <div class="tooltip">open >> {a.text}</div>
@@ -110,6 +113,7 @@
     border-bottom-width: 3px;
     padding-top: 12px;
     padding-bottom: 12px;
+    margin-top: 6px;
   }
   .filter {
     display: flex;
@@ -120,7 +124,7 @@
     padding-top: 6px;
     max-width: 400px;
   }
-  span {
+  .title {
     font-size: 18px;
     font-weight: 400;
     position: absolute;
@@ -131,6 +135,19 @@
     padding-left: 8px;
     padding-right: 8px;
     margin-left: 3px;
+  }
+  .data {
+    font-size: 16px;
+    font-weight: 400;
+    position: absolute;
+    top: -14px;
+    right: 0px;
+    color: var(--primary-color);
+    background-color: var(--modal-background-color);
+    background-image: url(/images/general/bg-texture.png);
+    padding-left: 8px;
+    padding-right: 8px;
+    margin-right: 3px;
   }
 
   /* content */
@@ -212,7 +229,7 @@
     font-size: 16px;
     color: var(--primary-color);
   }
-  .exerpt {
+  .excerpt {
     margin-top: 16px;
     padding-right: 20px;
     font-size: 19px;
@@ -280,7 +297,7 @@
     .under-title {
       padding-right: 0px;
     }
-    .exerpt {
+    .excerpt {
       padding-right: 0px;
     }
   }
@@ -288,8 +305,11 @@
     h3 {
       font-size: 24px;
     }
-    .exerpt {
+    .excerpt {
       font-size: 18px;
+    }
+    .data {
+      display: none;
     }
   }
 </style>

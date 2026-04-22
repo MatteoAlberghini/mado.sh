@@ -10,9 +10,10 @@
     import ExpandIcon from '$lib/ui/icons/expand.icon.svelte'
     import ShrinkIcon from '$lib/ui/icons/shrink.icon.svelte'
 	  import HomeIcon from '$lib/ui/icons/home.icon.svelte'
+	  import { scale } from 'svelte/transition'
 
     /* props */
-    let { id, width = '550px', height = '550px', top = '0px', left = '0px', color = '#312454', path, close,  children }: ModalProps = $props()
+    let { id, width = '550px', height = '550px', top, left, right, bottom, color = '#312454', path, home = true, fullscreen = true, close,  children }: ModalProps = $props()
 
     /* refs */
     let container: HTMLDivElement
@@ -29,8 +30,8 @@
     let rect: { width: number, height: number, left: number, top: number, bottom: number, right: number } | null = null
     let x: number | null = null
     let y: number | null = null
-    const adjustedTop: string = `clamp(0px, ${top}, calc(100dvh - ${height} - 16px))`
-    const adjustedLeft: string = `clamp(16px, ${left}, calc(100dvw - ${width} - 16px))`
+    const adjustedY: string = `clamp(0px, ${top || bottom || '0px'}, calc(100dvh - ${height} - 16px))`
+    const adjustedX: string = `clamp(16px, ${left || right || '0px'}, calc(100dvw - ${width} - 16px))`
 
     /* states */
     let isFullScreen: boolean = $state(false)
@@ -167,8 +168,8 @@
       if (!container) return
       if (isFullScreen) {
         isFullScreen = false
-        container.style.left = adjustedLeft
-        container.style.top = adjustedTop
+        container.style.left = adjustedX
+        container.style.top = adjustedY
         container.style.width = width
         container.style.height = height
         return
@@ -216,8 +217,10 @@
     bind:this={container}
     style:width={`min(100%, ${width})`}
     style:height={`min(100%, ${height})`}
-    style:top={parseInt(height.replace('px', ''), 10) > window.innerHeight ? '0px' : adjustedTop}
-    style:left={parseInt(width.replace('px', ''), 10) > window.innerWidth ? '0px' : adjustedLeft}
+    style:top={top ? parseInt(height.replace('px', ''), 10) > window.innerHeight ? '0px' : adjustedY : undefined}
+    style:bottom={bottom ? parseInt(height.replace('px', ''), 10) > window.innerHeight ? '0px' : adjustedY : undefined}
+    style:left={left ? parseInt(width.replace('px', ''), 10) > window.innerWidth ? '0px' : adjustedX : undefined}
+    style:right={right ? parseInt(width.replace('px', ''), 10) > window.innerWidth ? '0px' : adjustedX : undefined}
     style:z-index={49}
     style:background-color={color}
     style:box-shadow={`${color}30 1px 1px 1px 1px`}
@@ -225,6 +228,7 @@
     class="container"
     onkeydown={onKeyDown}
     onmousedown={(e) => onMouseDown(e, 'container')}
+    transition:scale={{ duration: 220 }}
   >
     <div
       class="top-bar"
@@ -236,13 +240,15 @@
         onmousedown={(e) => onMouseDown(e, 'top')}
       >
         <div class="buttons">
-          <button
-            onclick={navigateHome}
-            class="br"
-            style:border-color={color}
-          >
-            <HomeIcon />
-          </button>
+          {#if home === true}
+            <button
+              onclick={navigateHome}
+              class="br"
+              style:border-color={color}
+            >
+              <HomeIcon />
+            </button>
+          {/if}
           <span class="title">
             {#each path as p, i (p.path)}
               {#if i > 0}
@@ -258,17 +264,19 @@
         </div>
       </div>
       <div class="buttons">
-        <button
-          onclick={toggleFullScreen}
-          class="fullscreen-button"
-          style:border-color={color}
-        >
-          {#if isFullScreen}
-            <ShrinkIcon />
-          {:else}
-            <ExpandIcon />
-          {/if}
-        </button>
+        {#if fullscreen === true}
+          <button
+            onclick={toggleFullScreen}
+            class="fullscreen-button"
+            style:border-color={color}
+          >
+            {#if isFullScreen}
+              <ShrinkIcon />
+            {:else}
+              <ExpandIcon />
+            {/if}
+          </button>
+        {/if}
         <button
           onclick={close}
           style:border-color={color}
@@ -300,6 +308,7 @@
       grid-template-rows: 30px calc(100% - 34px) 4px;
       border: 1px solid var(--text-color);
       container-type: size;
+      outline-offset: 2px;
     }
     .content {
       display: flex;
@@ -387,9 +396,8 @@
       border-bottom: 0px;
     }
     button:hover, button:focus, button:focus-visible {
-      outline-offset: -2px;
+      background-color: color-mix(in srgb, var(--primary-color) var(--opacity-medium), transparent);
       outline: 2px var(--primary-color) dashed;
-      background-color: color-mix(in srgb, var(--primary-color) var(--opacity-low), transparent);
     }
     .br {
       border-left-width: 0px;

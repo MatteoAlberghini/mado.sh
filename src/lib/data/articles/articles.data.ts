@@ -5,6 +5,7 @@ import Piped from '$lib/content/articles/piped.content.svelte'
 import PipedImage from '$lib/images/articles/piped.webp?enhanced'
 import ObsidianSync from '$lib/content/articles/obsidian.sync.content.svelte'
 import ObsidianSyncImage from '$lib/images/articles/obsidian.webp?enhanced'
+import PhoneDegoogling from '$lib/content/articles/phone.degoogling.content.svelte'
 
 /**
  * store to handle sintax highliting with shiki
@@ -29,7 +30,7 @@ export const BASE_ARTICLES: { text: string, path: string } = {
 /**
  * potential ids used for articles
  */
-type id = 'piped' | 'obsidian-sync'
+type id = 'piped' | 'obsidian-sync' | 'phone-degoogling'
 /**
  * list of all articles data
  */
@@ -55,6 +56,17 @@ export const ARTICLE_DETAILS: Record<id, Article> = {
     date: 'SEP 17, 2025',
     // @ts-expect-error svelte cannot figure out that the two types are the same 
     element: ObsidianSync,
+  },
+  'phone-degoogling': {
+    text: 'phone-degoogling.txt',
+    title: 'how I <span>removed all big tech apps</span> from my phone',
+    excerpt: 'what I did to move away from big tech mobile apps and services, and which alternatives I found the best.',
+    path: '/articles/phone-degoogling',
+    category: ['selfhost', 'mobile'],
+    image: ObsidianSyncImage,
+    date: 'MAR 25, 2026',
+    // @ts-expect-error svelte cannot figure out that the two types are the same 
+    element: PhoneDegoogling,
   }
 }
 /**
@@ -62,4 +74,5 @@ export const ARTICLE_DETAILS: Record<id, Article> = {
  */
 export const ARTICLES: Article[] = [
   ARTICLE_DETAILS['piped'],
+  // ARTICLE_DETAILS['phone-degoogling']
 ]

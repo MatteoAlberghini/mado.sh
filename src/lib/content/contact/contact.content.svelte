@@ -3,9 +3,11 @@
 	/* imports */
   import { request, URLs } from '$lib/managers/request.manager'
 	import Button from '$lib/ui/components/buttons/button.svelte'
+	import DummyInput from '$lib/ui/components/input/dummy.input.svelte'
   import Input from '$lib/ui/components/input/input.svelte'
 	import TextArea from '$lib/ui/components/text-area/text.area.svelte'
 	import Container from '$lib/ui/macro/wrappers/container/container.wrapper.svelte'
+	import { scale } from 'svelte/transition';
 
   /* state */
   let loading: boolean = $state(false)
@@ -38,23 +40,46 @@
       return
     }
     loading = false
-    message = { error: false, text: '[ submission has been registered correctly ]' }
+    message = { error: false, text: '[ success ]' }
   }
 </script>
 
 <!-- template -->
 <Container>
   <form onsubmit={onSubmit}>
-    <div class="input-container">
+    <div class="button">
+      <Button
+        type="submit"
+        loading={loading}
+        width={120}
+        height={39}
+      >
+        <span>submit</span>
+      </Button>
+    </div>
+    <div class="inputs">
+      <p class="title">
+        CONTACT ME
+        {#if message.text !== ''}
+          <span
+            class="message"
+            data-error={message.error}
+          >
+            {message.text}
+          </span>
+        {/if}
+      </p>
+      <DummyInput
+        label="to"
+        value="me@matteoalberghini.com"
+      />
       <Input
         id="username"
-        label="nick/alias/mail"
+        label="nick/alias/email"
         type="username"
         side="[ required ]"
         max={50}
       />
-    </div>
-    <div class="input-container">
       <TextArea
         id="message"
         label="your message"
@@ -62,42 +87,37 @@
         max={600}
       />
     </div>
-    <div class="input-container button">
-      <Button
-        type="submit"
-        loading={loading}
-        width={300}
-        height={41}
-      >
-        <span>submit</span>
-      </Button>
-    </div>
-    <div class="input-container mt-4">
-      {#if message.text !== ''}
-        <p class="message" data-error={message.error}>{message.text}</p>
-      {/if}
-    </div>
   </form>
 </Container>
 
 <!-- styles -->
 <style>
   /* containers */
-  .input-container {
+  .inputs {
+    position: relative;
     display: flex;
+    flex-direction: column;
+    gap: 10px;
     align-self: flex-start;
     flex-direction: column;
-    width: calc(100% - 10px);
-    max-width: 500px;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-top: 10px;
+    width: 100%;
+    padding-left: 17px;
+    padding-right: 17px;
+    margin-top: 26px;
+    padding-bottom: 12px;
+    padding-top: 14px;
+    border: 1px solid var(--background-color);
+    border-bottom-width: 3px;
   }
   .button {
-    margin-top: 32px;
+    padding-right: 17px;
+    display: flex;
+    width: 100%;
+    justify-items: center;
+    align-items: center;
   }
-  .mt-4 {
-    margin-top: 4px;
+  .mt {
+    margin-top: -4px;
   }
 
   /* text */
@@ -105,10 +125,23 @@
     font-size: 17px;
     font-weight: 400;
   }
+  .title {
+    font-size: 18px;
+    font-weight: 400;
+    position: absolute;
+    top: -14px;
+    color: var(--primary-color);
+    background-color: var(--modal-background-color);
+    background-image: url(/images/general/bg-texture.png);
+    padding-left: 8px;
+    padding-right: 8px;
+    margin-left: -8px;
+  }
   .message {
     font-size: 16px;
     font-weight: 400;
     color: var(--primary-color);
+    margin-left: 2px;
   }
   .message[data-error=true] {
     --shadow-primary-color: var(--selection-background-color);

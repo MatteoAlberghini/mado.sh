@@ -11,7 +11,8 @@
   import GlobeIcon from '$lib/ui/icons/globe.icon.svelte'
   import TextIcon from '$lib/ui/icons/text.icon.svelte'
   import Modal from '$lib/ui/components/buttons/desktop/modal.svelte'
-	import { focusedModal } from '$lib/ui/components/buttons/desktop/modal.store'
+	import NewsIcon from '$lib/ui/icons/news.icon.svelte'
+  import { focusedModal } from '$lib/ui/components/buttons/desktop/modal.store'
 
   /* props */
   let { id, type, text, url, modal, position, pathname, children }: DesktopButtonProps = $props()
@@ -181,6 +182,9 @@
   {/if}
   {#if type === 'text'}
     <TextIcon />
+  {/if}
+  {#if type === 'news'}
+    <NewsIcon />
   {/if}
 
   <span>
