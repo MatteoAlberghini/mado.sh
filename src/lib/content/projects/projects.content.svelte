@@ -13,7 +13,7 @@
   /* effects */
   /**
    * set correct content based on url path changes
-  */
+   */
   $effect(() => {
     if (page.url.pathname.includes(BASE_PROJECTS.path)) {
       if (page.url.pathname === BASE_PROJECTS.path) {

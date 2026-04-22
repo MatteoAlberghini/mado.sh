@@ -39,34 +39,57 @@
   /* effects */
   /**
    * start animation on mount
-  */
+   */
   onMount(() => {
     startAnimation()
   })
 </script>
 
 <!-- template -->
-<figure>
-  <enhanced:img
-    src={src}
-    alt={alt}
-    loading={lazy ? 'lazy' : undefined}
-    draggable="false"
-    onload={onLoad}
-    style:opacity={loading ? '0' : '1'}
-    style:object-position={position}
-  />
-  {#if loading}
-    <div class="loading-container">
-      <span>THE IMAGE IS LOADING...</span>
-      <div class="loading-bar">
-        {#each loadingTags as t, i (i)}
-          <div class="loading-tag" data-tag={t}></div>
-        {/each}
+{#if typeof src === 'string'}
+  <div class="figure">
+    <img
+      src={src}
+      alt={alt}
+      loading={lazy ? 'lazy' : undefined}
+      draggable="false"
+      onload={onLoad}
+      style:opacity={loading ? '0' : '1'}
+      style:object-position={position}
+    />
+    {#if loading}
+      <div class="loading-container">
+        <div class="loading-bar" style:height="22px">
+          {#each loadingTags as t, i (i)}
+            <div class="loading-tag" data-tag={t}></div>
+          {/each}
+        </div>
       </div>
-    </div>
-  {/if}
-</figure>
+    {/if}
+  </div>
+  {:else}
+  <figure>
+      <enhanced:img
+        src={src}
+        alt={alt}
+        loading={lazy ? 'lazy' : undefined}
+        draggable="false"
+        onload={onLoad}
+        style:opacity={loading ? '0' : '1'}
+        style:object-position={position}
+      />
+    {#if loading}
+      <div class="loading-container">
+        <span>THE IMAGE IS LOADING...</span>
+        <div class="loading-bar">
+          {#each loadingTags as t, i (i)}
+            <div class="loading-tag" data-tag={t}></div>
+          {/each}
+        </div>
+      </div>
+    {/if}
+  </figure>
+{/if}
 
 <!-- styles -->
 <style>
@@ -83,6 +106,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+  .figure {
+    position: relative;
+    max-width: 100%;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
   }
   :global(picture) {
     width: 100%;

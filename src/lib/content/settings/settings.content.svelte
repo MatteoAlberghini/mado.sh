@@ -102,21 +102,17 @@
 
   @container (width < 900px) {
     .header-buttons {
-      margin-right: 16px;
       margin-left: 8px;
     }
     .content {
-      padding-right: 16px;
       padding-left: 8px;
     }
   }
   @container (width < 599px) {
     .header-buttons {
-      margin-right: 16px;
       margin-left: 4px;
     }
     .content {
-      padding-right: 16px;
       padding-left: 4px;
     }
   }

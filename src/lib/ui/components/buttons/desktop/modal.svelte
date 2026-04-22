@@ -10,6 +10,7 @@
     import ExpandIcon from '$lib/ui/icons/expand.icon.svelte'
     import ShrinkIcon from '$lib/ui/icons/shrink.icon.svelte'
 	  import HomeIcon from '$lib/ui/icons/home.icon.svelte'
+	  import { scale } from 'svelte/transition'
 
     /* props */
     let { id, width = '550px', height = '550px', top, left, right, bottom, color = '#312454', path, home = true, fullscreen = true, close,  children }: ModalProps = $props()
@@ -227,6 +228,7 @@
     class="container"
     onkeydown={onKeyDown}
     onmousedown={(e) => onMouseDown(e, 'container')}
+    transition:scale={{ duration: 220 }}
   >
     <div
       class="top-bar"
@@ -306,6 +308,7 @@
       grid-template-rows: 30px calc(100% - 34px) 4px;
       border: 1px solid var(--text-color);
       container-type: size;
+      outline-offset: 2px;
     }
     .content {
       display: flex;
@@ -394,6 +397,7 @@
     }
     button:hover, button:focus, button:focus-visible {
       background-color: color-mix(in srgb, var(--primary-color) var(--opacity-medium), transparent);
+      outline: 2px var(--primary-color) dashed;
     }
     .br {
       border-left-width: 0px;

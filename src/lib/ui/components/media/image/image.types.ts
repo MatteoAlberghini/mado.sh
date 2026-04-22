@@ -13,7 +13,7 @@ export interface Picture {
  * props for image component
  */
 export interface ImageProps {
-  src: Picture,
+  src: Picture | string,
   alt: string,
   lazy?: boolean,
   position?: `${number}% ${number}%`,

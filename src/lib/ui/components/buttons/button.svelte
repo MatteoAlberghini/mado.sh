@@ -35,20 +35,20 @@
    */
   function startAnimation() {
     loadingTags = [...loadingTags, 0]
-    if (loadingTags.length === 15) {
+    if (loadingTags.length === 5) {
       if (timeout) { clearTimeout(timeout) }
       return
     }
     timeout = setTimeout(() => {
       startAnimation()
-    }, 300)
+    }, 400)
   }
   /**
    * recursive function to add more animation values to the loader
    * @param callback function as callback
    */
   function endAnimation(callback: () => void) {
-    if (loadingTags.length === 15) {
+    if (loadingTags.length === 5) {
       if (timeout) { clearTimeout(timeout) }
       callback()
       return
@@ -56,7 +56,7 @@
     loadingTags = [...loadingTags, 0]
     timeout = setTimeout(() => {
       endAnimation(callback)
-    }, 50)
+    }, 100)
   }
   /**
    * start loading and start animation

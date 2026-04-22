@@ -12,4 +12,15 @@ export type InputProps = {
   side?: string,
   max?: number,
   height?: number,
+  value?: string,
+  interactable?: boolean,
+}
+
+/**
+ * props for dummy input component
+ */
+export type DummyInputProps = {
+  label: string,
+  value: string,
+  height?: number,
 }

@@ -22,6 +22,7 @@ export enum DesktopUniqueID {
   linkedin = 100,
   image = 999,
 }
+// more colors to test: oklch(0.30 0.075 178) oklch(0.32 0.065 145) oklch(0.31 0.072 340)
 /**
  * array used to render all icons on the desktop, connects to content folder
  */
@@ -59,7 +60,7 @@ export const DESKTOP_ICONS: DesktopButtonProps[] = [
     type: 'mail',
     text: 'contact.sh',
     url: '/contact',
-    modal: { home: false, left: '400px', top: '350px', width: '907px', height: '635px', color: 'oklch(0.3732 0.0635 258.28)' },
+    modal: { home: false, left: '400px', top: '350px', width: '847px', height: '635px', color: 'oklch(0.3732 0.0635 258.28)' },
     position: { row: '3', column: '1' },
     pathname: [{ text: 'contact.sh', path: '/contact' }],
     // @ts-expect-error svelte cannot figure out that the two types are the same 
@@ -70,7 +71,7 @@ export const DESKTOP_ICONS: DesktopButtonProps[] = [
     type: 'pc',
     text: 'settings.sh',
     url: '/settings',
-    modal: { home: false, left: '300px', top: '400px', width: '1060px', height: '644px', color: 'oklch(0.3024 0.0839 293.21)' },
+    modal: { home: false, left: '300px', top: '400px', width: '874px', height: '644px', color: 'oklch(0.3024 0.0839 293.21)' },
     position: { row: '4', column: '1' },
     pathname: [{ text: 'settings.sh', path: '/settings' }],
     // @ts-expect-error svelte cannot figure out that the two types are the same 
@@ -78,10 +79,10 @@ export const DESKTOP_ICONS: DesktopButtonProps[] = [
   },
   {
     id: DesktopUniqueID.rss,
-    type: 'pc',
+    type: 'news',
     text: 'rss.sh',
     url: '/rss',
-    modal: { home: false, fullscreen: false, right: '0px', bottom: '0px', width: '300px', height: '644px', color: 'oklch(0.3024 0.0839 360)' },
+    modal: { home: false, fullscreen: false, right: '0px', bottom: '32px', width: '550px', height: '644px', color: 'oklch(0.26 0.075 272)' },
     position: { row: '5', column: '1' },
     pathname: [{ text: 'rss.sh', path: '/rss' }],
     // @ts-expect-error svelte cannot figure out that the two types are the same 

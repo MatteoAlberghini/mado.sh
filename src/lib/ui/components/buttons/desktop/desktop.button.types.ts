@@ -5,7 +5,7 @@ import type { DesktopUniqueID } from '$lib/data/desktop/desktop.data'
 /**
  * all possible icons used 
  */
-type Icon = 'text' | 'pc' | 'folder' | 'mail' | 'music' | 'external'
+type Icon = 'text' | 'pc' | 'folder' | 'mail' | 'music' | 'external' | 'news'
 /**
  * drag types
  */
