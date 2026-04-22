@@ -2,28 +2,12 @@
 <script lang="ts">
   /* imports */
   import { page } from '$app/state'
-	import { BASE_PROJECTS, PROJECTS, REPOSITORIES, SCRIPTS, THEMES } from '$lib/data/projects/projects.data'
-	import type { Project } from '$lib/data/projects/projects.types'
+	import { PROJECTS, REPOSITORIES, SCRIPTS, THEMES } from '$lib/data/projects/projects.data'
   import FolderButton from '$lib/ui/components/buttons/folder/folder.button.svelte'
 	import Container from '$lib/ui/macro/wrappers/container/container.wrapper.svelte'
 
   /* state */
-  let content: Project | null = $state(null)
-
-  /* effects */
-  /**
-   * set correct content based on url path changes
-   */
-  $effect(() => {
-    if (page.url.pathname.includes(BASE_PROJECTS.path)) {
-      if (page.url.pathname === BASE_PROJECTS.path) {
-        content = null
-        return
-      }
-      const currentContent = PROJECTS.find((p) => p.path === page.url.pathname)
-      if (currentContent) { content = currentContent }
-    }
-  })
+  const content = $derived(PROJECTS.find((p) => p.path === page.url.pathname) ?? null)
 </script>
 
 <!-- template -->

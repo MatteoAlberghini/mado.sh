@@ -3,14 +3,14 @@
   import { page } from '$app/state'
   import Selector from '$lib/ui/components/selectors/selector.svelte'
 	import { Categories, type Article, type Category } from '$lib/data/articles/articles.types'
-	import { ARTICLES, BASE_ARTICLES } from '$lib/data/articles/articles.data'
+	import { ARTICLES } from '$lib/data/articles/articles.data'
 	import Image from '$lib/ui/components/media/image/image.svelte'
 	import Container from '$lib/ui/macro/wrappers/container/container.wrapper.svelte'
 
   /* state */
   let filteredArticles: Article[] = $state(ARTICLES)
   let category: string = $state('everything')
-  let content: Article | null = $state(null)
+  const content = $derived(ARTICLES.find((p) => p.path === page.url.pathname) ?? null)
 
   /* callbacks */
   /**
@@ -25,21 +25,6 @@
     }
     filteredArticles = ARTICLES.filter((a) => a.category.includes(value as Category))
   }
-
-  /* effects */
-  /**
-   * set correct content based on url path changes
-   */
-  $effect(() => {
-    if (page.url.pathname.includes(BASE_ARTICLES.path)) {
-      if (page.url.pathname === BASE_ARTICLES.path) {
-        content = null
-        return
-      }
-      const currentContent = ARTICLES.find((a) => a.path === page.url.pathname)
-      if (currentContent) { content = currentContent }
-    }
-  })
 
 </script>
 
