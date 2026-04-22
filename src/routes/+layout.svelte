@@ -27,7 +27,8 @@ TODO:
 	import { getSoundActive, getSoundVolume, setSoundActive, setSoundVolume, soundActive, clickSoundElement, soundVolume } from '$lib/data/settings/sound.data'
 	import { getIconSize, setIconSize } from '$lib/data/settings/icon.data'
 	import Topbar from '$lib/ui/macro/topbar/topbar.svelte'
-	import { generateHighlighter } from '$lib/data/articles/articles.data'
+	import { generateHighlighter, highlighter } from '$lib/data/articles/articles.data'
+	import { get } from 'svelte/store'
 
 	/* props */
 	let { children }: { children?: Snippet } = $props()
@@ -56,7 +57,9 @@ TODO:
 		setSoundActive(getSoundActive())
 		setSoundVolume(getSoundVolume())
 		setIconSize(getIconSize())
-		await generateHighlighter()
+		if (get(highlighter) === null) {
+			await generateHighlighter()
+		}
 	})
 </script>
 

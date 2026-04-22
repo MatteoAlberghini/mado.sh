@@ -1,6 +1,6 @@
 <!-- seo -->
 <svelte:head>
-  <title>mado.sh >> projects >> waterkaarten</title>
+  <title>mado.sh >> projects >> genuino</title>
   <meta
     name="description"
     content="

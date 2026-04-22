@@ -10,20 +10,28 @@
 </script>
 
 <!-- template -->
-<a
-  href={path}
-  target={external ? '_blank' : '_self'}
-  aria-label={text}
-  draggable="false"
->
-  {#if external}
-    <GlobeIcon />
-  {:else}
-    <TextIcon />
-  {/if}
-  <span>{text}</span>
-  <div class="tooltip">{`${external ? 'goto' : 'open'} >> ${text}`}</div>
-</a>
+{#if external}
+  <a
+    href={path}
+    target="_blank"
+    aria-label={text}
+    draggable="false"
+  >
+      <GlobeIcon />
+    <span>{text}</span>
+    <div class="tooltip">{`${external ? 'goto' : 'open'} >> ${text}`}</div>
+  </a>
+{:else}
+  <a
+    href={path}
+    aria-label={text}
+    draggable="false"
+  >
+      <TextIcon />
+    <span>{text}</span>
+    <div class="tooltip">{`${external ? 'goto' : 'open'} >> ${text}`}</div>
+  </a>
+{/if}
 
 <!-- styles -->
 <style>

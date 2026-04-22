@@ -116,9 +116,6 @@
     justify-items: center;
     align-items: center;
   }
-  .mt {
-    margin-top: -4px;
-  }
 
   /* text */
   span {
