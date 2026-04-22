@@ -74,5 +74,5 @@ export const ARTICLE_DETAILS: Record<id, Article> = {
  */
 export const ARTICLES: Article[] = [
   ARTICLE_DETAILS['piped'],
-  ARTICLE_DETAILS['phone-degoogling']
+  // ARTICLE_DETAILS['phone-degoogling']
 ]
