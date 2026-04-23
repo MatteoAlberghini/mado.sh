@@ -41,7 +41,7 @@
     }
     timeout = setTimeout(() => {
       startAnimation()
-    }, 400)
+    }, 600)
   }
   /**
    * recursive function to add more animation values to the loader
