@@ -16,7 +16,6 @@
 	"devDependencies": {
 		"@eslint/compat": "^1.4.1",
 		"@eslint/js": "^9.39.4",
-		"@neondatabase/serverless": "^1.0.2",
 		"@sveltejs/adapter-vercel": "^5.10.3",
 		"@sveltejs/enhanced-img": "^0.6.1",
 		"@sveltejs/kit": "^2.57.1",
