@@ -21,6 +21,7 @@
 		"@sveltejs/enhanced-img": "^0.6.1",
 		"@sveltejs/kit": "^2.57.1",
 		"@sveltejs/vite-plugin-svelte": "^5.1.1",
+		"@types/nodemailer": "^8.0.0",
 		"@types/prismjs": "^1.26.6",
 		"eslint": "^9.39.4",
 		"eslint-config-prettier": "^10.1.8",
@@ -44,6 +45,7 @@
 	},
 	"dependencies": {
 		"@vercel/analytics": "^1.6.1",
+		"nodemailer": "^8.0.5",
 		"simplebar": "^6.3.3"
 	}
 }
