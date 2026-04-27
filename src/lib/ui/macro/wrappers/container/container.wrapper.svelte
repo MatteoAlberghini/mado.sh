@@ -25,6 +25,7 @@
     padding-top: 16px;
     padding-bottom: 16px;
     row-gap: 1px;
+    position: relative;
   }
   @container (width < 900px) {
     div {

@@ -7,7 +7,7 @@ import { setCookie } from '$lib/utils/cookies'
 export const THEMES = new Map<string, string>([
   ['lavender', 'lavender'],
   ['jordy-blue', 'jordy blue'],
-  ['pistachio', 'pistachio'],
+  // ['pistachio', 'pistachio'],
 ])
 
 /**

@@ -11,11 +11,11 @@
 	import ServerIcon from '$lib/ui/icons/server.icon.svelte'
 
   /* props */
-  let { title, external, tags }: HeaderProps = $props()
+  let { title, external, tags, image = true }: HeaderProps = $props()
 </script>
 
 <!-- template -->
-<header>
+<header data-image={image}>
   <h2>{@html title}</h2>
 
   <div class="info-container">
@@ -80,6 +80,9 @@
     column-gap: 8px;
     row-gap: 2px;
     position: relative;
+  }
+  header[data-image=false] {
+    margin-top: 0px;
   }
   .info-container {
     display: flex;
@@ -153,8 +156,8 @@
     background-image: url(/images/general/bg-texture.png);
     padding-left: 4px;
     padding-right: 4px;
-    padding-bottom: 3px;
-    padding-top: 1px;
+    padding-bottom: 2px;
+    padding-top: 0px;
     border: 1px solid var(--primary-color);
     border-bottom-width: 2px;
     top: -28px;

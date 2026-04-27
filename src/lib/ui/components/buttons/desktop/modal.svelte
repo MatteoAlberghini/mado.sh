@@ -236,6 +236,7 @@
       <div
         role="button"
         class="draggable-top-bar"
+        data-draggable="true"
         tabindex="-1"
         onmousedown={(e) => onMouseDown(e, 'top')}
       >
@@ -290,11 +291,11 @@
       {@render children?.()}
     </div>
 
-    <div role="button" tabindex="-1" class="left-bar" bind:this={leftBar} onmousedown={(e) => onMouseDown(e, 'left')} data-direction="left" style:pointer-events={isFullScreen ? 'none' : 'auto'}></div>
-    <div role="button" tabindex="-1" class="right-bar" bind:this={rightBar} onmousedown={(e) => onMouseDown(e, 'right')} data-direction="right" style:pointer-events={isFullScreen ? 'none' : 'auto'}></div>
-    <div role="button" tabindex="-1" class="bottom-bar" bind:this={bottomBar} onmousedown={(e) => onMouseDown(e, 'bottom')} data-direction="bottom" style:pointer-events={isFullScreen ? 'none' : 'auto'}></div>
-    <div role="button" tabindex="-1" class="bottom-right-handle" bind:this={bottomRightHandle} onmousedown={(e) => onMouseDown(e, 'bottom-right')} data-direction="bottom-right" style:pointer-events={isFullScreen ? 'none' : 'auto'}></div>
-    <div role="button" tabindex="-1" class="bottom-left-handle" bind:this={bottomLeftHandle} onmousedown={(e) => onMouseDown(e, 'bottom-left')} data-direction="bottom-left" style:pointer-events={isFullScreen ? 'none' : 'auto'}></div>
+    <div role="button" tabindex="-1" class="left-bar" data-draggable="true" bind:this={leftBar} onmousedown={(e) => onMouseDown(e, 'left')} data-direction="left" style:pointer-events={isFullScreen ? 'none' : 'auto'}></div>
+    <div role="button" tabindex="-1" class="right-bar" data-draggable="true" bind:this={rightBar} onmousedown={(e) => onMouseDown(e, 'right')} data-direction="right" style:pointer-events={isFullScreen ? 'none' : 'auto'}></div>
+    <div role="button" tabindex="-1" class="bottom-bar" data-draggable="true" bind:this={bottomBar} onmousedown={(e) => onMouseDown(e, 'bottom')} data-direction="bottom" style:pointer-events={isFullScreen ? 'none' : 'auto'}></div>
+    <div role="button" tabindex="-1" class="bottom-right-handle" data-draggable="true" bind:this={bottomRightHandle} onmousedown={(e) => onMouseDown(e, 'bottom-right')} data-direction="bottom-right" style:pointer-events={isFullScreen ? 'none' : 'auto'}></div>
+    <div role="button" tabindex="-1" class="bottom-left-handle" data-draggable="true" bind:this={bottomLeftHandle} onmousedown={(e) => onMouseDown(e, 'bottom-left')} data-direction="bottom-left" style:pointer-events={isFullScreen ? 'none' : 'auto'}></div>
   </div>
 
   <!-- styles -->
@@ -337,6 +338,7 @@
       align-items: center;
       user-select: none;
       border-bottom: 1px solid var(--text-color);
+      cursor: var(--cursor-grab) 0 10, grab;
     }
     .draggable-top-bar {
       display: flex;
@@ -344,12 +346,6 @@
       align-items: center;
       width: 100%;
       height: 100%;
-    }
-    .draggable-top-bar:hover {
-      cursor: grab;
-    }
-    .draggable-top-bar:active {
-      cursor: grabbing;
     }
     .title {
       color: var(--text-color);
@@ -412,7 +408,6 @@
       border-bottom: 3px solid var(--background-color);
       background-image: url(/images/general/bg-texture.png);
       margin-bottom: 1px;
-      cursor: s-resize;
     }
     .left-bar {
       grid-column: 1;
@@ -423,7 +418,6 @@
       background-image: url(/images/general/bg-texture.png);
       margin-bottom: 4px;
       margin-top: 1px;
-      cursor: w-resize;
     }
     .right-bar {
       grid-column: 3;
@@ -433,7 +427,6 @@
       border-right: 2px solid var(--background-color);
       background-image: url(/images/general/bg-texture.png);
       margin-top: 1px;
-      cursor: w-resize;
     }
     .bottom-right-handle {
       position: absolute;
@@ -444,18 +437,36 @@
       height: 19px;
       background-color: transparent;
       background-image: url(/images/general/bg-texture.png);
-      cursor: nwse-resize;
     }
     .bottom-left-handle {
       position: absolute;
       bottom: 0;
       left: 0;
       z-index: 5;
-      width: 16px;
-      height: 1px;
+      width: 19px;
+      height: 19px;
       background-color: transparent;
       background-image: url(/images/general/bg-texture.png);
-      cursor: nesw-resize;
+    }
+    .bottom-left-handle:hover, .bottom-left-handle:active {
+      outline: 2px var(--primary-color) dashed;
+      background-color: color-mix(in srgb, var(--primary-color) var(--opacity-low), transparent);
+    }
+    .bottom-right-handle:hover, .bottom-right-handle:active {
+      outline: 2px var(--primary-color) dashed;
+      background-color: color-mix(in srgb, var(--primary-color) var(--opacity-low), transparent);
+    }
+    .right-bar:hover, .right-bar:active {
+      outline: 2px var(--primary-color) dashed;
+      background-color: color-mix(in srgb, var(--primary-color) var(--opacity-low), transparent);
+    }
+    .left-bar:hover, .left-bar:active {
+      outline: 2px var(--primary-color) dashed;
+      background-color: color-mix(in srgb, var(--primary-color) var(--opacity-low), transparent);
+    }
+    .bottom-bar:hover, .bottom-bar:active {
+      outline: 2px var(--primary-color) dashed;
+      background-color: color-mix(in srgb, var(--primary-color) var(--opacity-low), transparent);
     }
 
     /* media queries */

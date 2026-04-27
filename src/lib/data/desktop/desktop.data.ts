@@ -3,9 +3,9 @@ import Contact from '$lib/content/contact/contact.content.svelte'
 import Projects from '$lib/content/projects/projects.content.svelte'
 import Settings from '$lib/content/settings/settings.content.svelte'
 import Articles from '$lib/content/articles/articles.content.svelte'
-import Rss from '$lib/content/rss/rss.content.svelte'
+import News from '$lib/content/news/news.content.svelte'
 import type { DesktopButtonProps } from '$lib/ui/components/buttons/desktop/desktop.button.types'
-import { BASE_PROJECTS, PROJECTS } from '$lib/data/projects/projects.data'
+import { BASE_PROJECTS, PROJECTS, SCRIPTS } from '$lib/data/projects/projects.data'
 import type { MultilevelSelectorItem } from '$lib/ui/components/selectors/selector.types'
 import { ARTICLES, BASE_ARTICLES } from '$lib/data/articles/articles.data'
 
@@ -17,7 +17,7 @@ export enum DesktopUniqueID {
   contact = 1,
   settings = 2,
   articles = 3,
-  rss = 4,
+  news = 4,
   codeberg = 99,
   linkedin = 100,
   image = 999,
@@ -51,6 +51,7 @@ export const DESKTOP_ICONS: DesktopButtonProps[] = [
     pathname: [
       BASE_PROJECTS,
       ...PROJECTS,
+      ...SCRIPTS,
     ],
     // @ts-expect-error svelte cannot figure out that the two types are the same 
     children: Projects,
@@ -78,15 +79,15 @@ export const DESKTOP_ICONS: DesktopButtonProps[] = [
     children: Settings,
   },
   {
-    id: DesktopUniqueID.rss,
+    id: DesktopUniqueID.news,
     type: 'news',
-    text: 'rss.sh',
-    url: '/rss',
-    modal: { home: false, fullscreen: false, right: '0px', bottom: '32px', width: '550px', height: '644px', color: 'oklch(0.26 0.075 272)' },
+    text: 'news.sh',
+    url: '/news',
+    modal: { home: false, fullscreen: false, right: '32px', bottom: '24px', width: '550px', height: '644px', color: 'oklch(0.26 0.075 272)' },
     position: { row: '5', column: '1' },
-    pathname: [{ text: 'rss.sh', path: '/rss' }],
+    pathname: [{ text: 'news.sh', path: '/news' }],
     // @ts-expect-error svelte cannot figure out that the two types are the same 
-    children: Rss,
+    children: News,
   },
   {
     id: DesktopUniqueID.codeberg,

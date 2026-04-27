@@ -3,13 +3,34 @@
   /* imports */
   import type { FolderButtonProps } from '$lib/ui/components/buttons/folder/folder.types'
   import GlobeIcon from '$lib/ui/icons/globe.icon.svelte'
+	import PaintIcon from '$lib/ui/icons/paint.icon.svelte'
   import TextIcon from '$lib/ui/icons/text.icon.svelte'
+  import ScriptIcon from '$lib/ui/icons/script.icon.svelte'
 
   /* props */
-  let { text, path, external }: FolderButtonProps = $props()
+  let { text, path, external, icon }: FolderButtonProps = $props()
 </script>
 
 <!-- template -->
+{#snippet inner()}
+  {#if icon === 'globe'}
+    <GlobeIcon />
+    <span>{text}</span>
+  {/if}
+  {#if icon === 'text'}
+    <TextIcon />
+    <span>{text}</span>
+  {/if}
+  {#if icon === 'paint'}
+    <PaintIcon />
+    <span>{text}</span>
+  {/if}
+  {#if icon === 'script'}
+    <ScriptIcon />
+    <span>{text}</span>
+  {/if}
+{/snippet}
+
 {#if external}
   <a
     href={path}
@@ -17,9 +38,7 @@
     aria-label={text}
     draggable="false"
   >
-      <GlobeIcon />
-    <span>{text}</span>
-    <div class="tooltip">{`${external ? 'goto' : 'open'} >> ${text}`}</div>
+    {@render inner()}
   </a>
 {:else}
   <a
@@ -27,9 +46,7 @@
     aria-label={text}
     draggable="false"
   >
-      <TextIcon />
-    <span>{text}</span>
-    <div class="tooltip">{`${external ? 'goto' : 'open'} >> ${text}`}</div>
+    {@render inner()}
   </a>
 {/if}
 
@@ -58,30 +75,6 @@
     outline: 2px var(--primary-color) dashed;
     background-color: color-mix(in srgb, var(--primary-color) 30%, transparent);
   }
-  a:hover > .tooltip, a:focus > .tooltip {
-    visibility: visible;
-  }
-
-  /* tooltip */
-  .tooltip {
-    position: absolute;
-    visibility: hidden;
-    width: max-content;
-    background-color: var(--modal-background-color);
-    background-image: url(/images/general/bg-texture.png);
-    padding-left: 4px;
-    padding-right: 4px;
-    padding-bottom: 3px;
-    padding-top: 1px;
-    border: 1px solid var(--primary-color);
-    border-bottom-width: 2px;
-    top: -28px;
-    right: -1px;
-    z-index: 2;
-    font-size: 17px;
-    font-weight: 400;
-    color: var(--primary-color);
-  }
 
   /* text */
   span {
@@ -93,5 +86,6 @@
     overflow: hidden;
     white-space: wrap;
     text-align: center;
+    margin-top: 2px;
   }
 </style>

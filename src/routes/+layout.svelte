@@ -65,9 +65,17 @@ TODO:
 
 <!-- template -->
 <svelte:head>
-	<link rel="preload" as="image" href="/cursors/bg2/cursor.png" />
+	<!-- initial cursor -->
+	<link rel="preload" as="image" href="/cursors/bg2/web/cursor.png" />
+	<link rel="preload" as="image" href="/cursors/bg2/web/cursor_click.png" />
+	<link rel="preload" as="image" href="/cursors/bg2/web/cursor_grab.png" />	
+	<link rel="preload" as="image" href="/cursors/bg2/web/cursor_grabbing.png" />
+	<link rel="preload" as="image" href="/cursors/bg2/web/cursor_text.png" />
+	<link rel="preload" as="image" href="/cursors/bg2/web/cursor_h_resize.png" />
+	<link rel="preload" as="image" href="/cursors/bg2/web/cursor_v_resize.png" />
+	<link rel="preload" as="image" href="/cursors/bg2/web/cursor_move.png" />
+	<!-- background images -->
 	<link rel="preload" as="image" href="/images/general/bg-texture.png" />
-	<link rel="preload" as="image" href="/cursors/bg2/cursor_click.png" />
 </svelte:head>
 
 <svelte:window onclick={onClick} />
@@ -100,7 +108,7 @@ TODO:
 	/* global */
 	:root {
 		--background-color: oklch(76.982% 0.10133 260.605);
-		--secondary-background-color: oklch(46.196% 0.07141 255.565);
+		--secondary-background-color: oklch(0.3118 0.0934 258.7);
 		--primary-color: #ffd200;
 		--secondary-color: #e8492c;
 		--text-color: #27213c;
@@ -115,8 +123,14 @@ TODO:
 		--white-color: #fff4e9;
 		--gray-color: #b8b8b8;
 
-		--cursor-idle: url(/cursors/bg2/cursor.png);
-		--cursor-click: url(/cursors/bg2/cursor_click.png);
+		--cursor-idle: url(/cursors/bg2/web/cursor.png);
+		--cursor-click: url(/cursors/bg2/web/cursor_click.png);
+		--cursor-grab: url(/cursors/bg2/web/cursor_grab.png);
+		--cursor-grabbing: url(/cursors/bg2/web/cursor_grabbing.png);
+		--cursor-text: url(/cursors/bg2/web/cursor_text.png);
+		--cursor-h-resize: url(/cursors/bg2/web/cursor_h_resize.png);
+		--cursor-v-resize: url(/cursors/bg2/web/cursor_v_resize.png);
+		--cursor-move: url(/cursors/bg2/web/cursor_move.png);
 
 		--transition-timing-fast: 85ms;
 		--transition-timing-medium: 120ms;
@@ -139,7 +153,7 @@ TODO:
 	}
 	[data-theme='jordy-blue']:root {
 		--background-color: oklch(76.982% 0.10133 260.605);
-		--secondary-background-color: oklch(46.196% 0.07141 255.565);
+		--secondary-background-color: oklch(0.3118 0.0934 258.7);
 		--primary-color: #ffd200;
 		--secondary-color: #e8492c;
 		--text-color: #27213c;
@@ -171,6 +185,8 @@ TODO:
 			text-rendering: optimizeLegibility;
 			scroll-behavior: smooth;
 			overflow: hidden;
+			cursor: var(--cursor-idle) 0 10, pointer;
+			user-select: none;
 		}
 		* {
 			box-sizing: border-box;
@@ -179,14 +195,13 @@ TODO:
 			border: 0;
 			outline: 0;
 			font-family: 'Dosis', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-			cursor: var(--cursor-idle) 0 12, pointer;
 			-webkit-tap-highlight-color: transparent;
 		}
 		*:hover {
-			cursor: var(--cursor-idle) 0 12, pointer;
+			cursor: var(--cursor-idle) 0 10, pointer;
 		}
 		*:active {
-			cursor: var(--cursor-click) 0 12, pointer;
+			cursor: var(--cursor-click) 0 10, pointer;
 		}
 		*:focus-visible {
 			outline: 2px var(--primary-color) dashed;
@@ -195,6 +210,12 @@ TODO:
 			color: var(--selection-color);
 			background-color: var(--selection-background-color);
 		}
+		*[data-draggable=true]:hover, *[data-draggable=true]:hover * {
+      cursor: var(--cursor-grab) 0 12, grab;
+    }
+    *[data-draggable=true]:active, *[data-draggable=true]:active * {
+      cursor: var(--cursor-grabbing) 0 12, grabbing;
+    }
 		span,
 		p,
 		a,

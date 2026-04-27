@@ -26,7 +26,10 @@
     flex-direction: column;
     width: 100%;
   }
-
+  .container, .container > * {
+    cursor: var(--cursor-text) 0 16, auto;
+  }
+  
   /* text */
   label {
     font-size: 17px;

@@ -1,13 +1,13 @@
 <script lang="ts">
 	/* imports */
 	import Container from '$lib/ui/macro/wrappers/container/container.wrapper.svelte'
-	import { RSS_ARTICLES, RSS_INFO } from '$lib/data/rss/rss.data'
-	import { Categories, type Category, type RSSArticle } from '$lib/data/rss/rss.types'
+	import { NEWS, NEWS_INFO } from '$lib/data/news/news.data'
+	import { Categories, type Category, type News } from '$lib/data/news/news.types'
 	import Selector from '$lib/ui/components/selectors/selector.svelte'
 	import Image from '$lib/ui/components/media/image/image.svelte'
 
 	/* state */
-	let filteredArticles: RSSArticle[] = $state(RSS_ARTICLES)
+	let filteredArticles: News[] = $state(NEWS)
 	let category: string = $state('everything')
 
 	/* callbacks */
@@ -18,10 +18,10 @@
 	function onCategoryClick(value: string) {
 		category = value
 		if (value === 'everything') {
-			filteredArticles = RSS_ARTICLES
+			filteredArticles = NEWS
 			return
 		}
-		filteredArticles = RSS_ARTICLES.filter((a) => a.category.includes(value as Category))
+		filteredArticles = NEWS.filter((a) => a.category.includes(value as Category))
 	}
 </script>
 
@@ -30,7 +30,7 @@
   <div class="filters">
     <span class="title">FILTERS</span>
     <span class="data">
-      {filteredArticles.length} entries >> last update {RSS_INFO.date}
+      {filteredArticles.length} entries<span class="data-additional"> >> last update {NEWS_INFO.date}</span>
     </span>
     <div class="filter">
       <Selector
@@ -200,7 +200,7 @@
     .article {
       height: 110px;
     }
-    .data {
+    .data-additional {
       display: none;
     }
   }

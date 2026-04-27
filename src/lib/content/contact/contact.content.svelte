@@ -109,6 +109,9 @@
     border: 1px solid var(--background-color);
     border-bottom-width: 3px;
   }
+  .inputs, .inputs > * {
+    cursor: var(--cursor-text) 0 16, auto;
+  }
   .button {
     padding-right: 17px;
     display: flex;

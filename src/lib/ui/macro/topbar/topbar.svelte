@@ -141,13 +141,6 @@
 
 <!-- styles -->
 <style>
-  /* keyframes */
-  @keyframes bg-color {
-    0% { background-color: #402f6e; }
-    50% { background-color: #312454; }
-    100% { background-color: #402f6e; }
-  }
-
   /* header */
   header {
     position: absolute;

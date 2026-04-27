@@ -35,10 +35,11 @@
     position: relative;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     flex-shrink: 0;
     width: max-content;
     max-width: 100%;
+    user-select: none;
   }
   div :global(img) {
     border: 2px solid var(--primary-color);
