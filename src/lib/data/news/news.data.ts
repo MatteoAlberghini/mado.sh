@@ -1,9 +1,9 @@
-import type { RSSArticle, RSSInfo } from '$lib/data/rss/rss.types'
+import type { News, NewsInfo } from '$lib/data/news/news.types'
 
 /**
  * list of all articles to show
  */
-export const RSS_ARTICLES: RSSArticle[] = [
+export const NEWS: News[] = [
   {
     title: 'Sam Altman’s <span>Dirty DRAM</span> Deal',
     href: 'https://www.mooreslawisdead.com/post/sam-altman-s-dirty-dram-deal',
@@ -51,6 +51,6 @@ export const RSS_ARTICLES: RSSArticle[] = [
 /**
  * info used when rendering rss feed
  */
-export const RSS_INFO: RSSInfo = {
+export const NEWS_INFO: NewsInfo = {
   date: 'APR 22, 2026',
 }

@@ -9,5 +9,5 @@
   />
   <meta property="og:title" content="mado.sh >> contact" />
   <meta property="og:description" content="contact page for matteo alberghini website" />
-  <meta property="og:url" content="https://mado.sh/projects/contact" />
+  <meta property="og:url" content="https://mado.sh/contact" />
 </svelte:head>

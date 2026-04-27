@@ -124,6 +124,7 @@
   onmousedown={onMouseDown}
   onfocusin={onFocus}
   onfocusout={onBlur}
+  data-draggable="true"
 >
   <div class="clock">
     <div class="face"></div>

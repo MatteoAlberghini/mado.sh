@@ -19,7 +19,7 @@ export const Categories = new Map<string, string>([
 /**
  * single rss article
  */
-export type RSSArticle = {
+export type News = {
   title: string,
   href: string,
   path: string,
@@ -30,6 +30,6 @@ export type RSSArticle = {
 /**
  * rss infos
  */
-export type RSSInfo = {
+export type NewsInfo = {
   date: Date,
 }

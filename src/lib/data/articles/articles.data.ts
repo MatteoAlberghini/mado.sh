@@ -17,7 +17,7 @@ export const highlighter: Writable<HighlighterGeneric<BundledLanguage, BundledTh
 export async function generateHighlighter() {
   highlighter.set(await createHighlighter({
     themes: ['synthwave-84'],
-    langs: ['typescript', 'javascript', 'shellscript', 'apache'],
+    langs: ['typescript', 'javascript', 'shellscript', 'apache', 'python'],
   }))
 }
 /**

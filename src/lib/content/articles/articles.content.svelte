@@ -3,14 +3,14 @@
   import { page } from '$app/state'
   import Selector from '$lib/ui/components/selectors/selector.svelte'
 	import { Categories, type Article, type Category } from '$lib/data/articles/articles.types'
-	import { ARTICLES } from '$lib/data/articles/articles.data'
+	import { ARTICLES, BASE_ARTICLES } from '$lib/data/articles/articles.data'
 	import Image from '$lib/ui/components/media/image/image.svelte'
 	import Container from '$lib/ui/macro/wrappers/container/container.wrapper.svelte'
 
   /* state */
   let filteredArticles: Article[] = $state(ARTICLES)
   let category: string = $state('everything')
-  const content = $derived(ARTICLES.find((p) => p.path === page.url.pathname) ?? null)
+  let content: Article | null = $state(null)
 
   /* callbacks */
   /**
@@ -26,6 +26,21 @@
     filteredArticles = ARTICLES.filter((a) => a.category.includes(value as Category))
   }
 
+  /* effects */
+  /**
+   * set correct content based on url path changes
+   */
+  $effect(() => {
+    if (page.url.pathname.includes(BASE_ARTICLES.path)) {
+      if (page.url.pathname === BASE_ARTICLES.path) {
+        content = null
+        return
+      }
+      const currentContent = ARTICLES.find((a) => a.path === page.url.pathname)
+      if (currentContent) { content = currentContent }
+    }
+  })
+
 </script>
 
 <!-- template -->
@@ -34,7 +49,7 @@
   <div class="filters">
     <span class="title">FILTERS</span>
     <span class="data">
-      {filteredArticles.length} entries >> last update {ARTICLES[ARTICLES.length - 1].date}
+      {filteredArticles.length} entries<span class="data-additional"> >> last update {ARTICLES[ARTICLES.length - 1].date}</span>
     </span>
     <div class="filter">
       <Selector
@@ -73,7 +88,6 @@
             <p class="excerpt">{a.excerpt}</p>
           </div>
         </div>
-        <div class="tooltip">open >> {a.text}</div>
       </a>
     {/each}
   </div>
@@ -172,9 +186,6 @@
     outline: 2px var(--primary-color) dashed;
     background-color: color-mix(in srgb, var(--primary-color) var(--opacity-v-low), transparent);
   }
-  .article:hover > .tooltip, .article:focus > .tooltip {
-    visibility: visible;
-  }
   .image-container {
     max-width: 36%;
     min-width: 36%;
@@ -239,27 +250,6 @@
     color: var(--primary-color);
   }
 
-  /* tooltip */
-  .tooltip {
-    position: absolute;
-    visibility: hidden;
-    width: max-content;
-    background-color: var(--modal-background-color);
-    background-image: url(/images/general/bg-texture.png);
-    padding-left: 4px;
-    padding-right: 4px;
-    padding-bottom: 3px;
-    padding-top: 1px;
-    border: 1px solid var(--primary-color);
-    border-bottom-width: 2px;
-    bottom: -3px;
-    right: 0px;
-    z-index: 2;
-    font-size: 17px;
-    font-weight: 400;
-    color: var(--primary-color);
-  }
-
   /* media queries */
   @container (width < 900px) {
     .image-container {
@@ -293,7 +283,7 @@
     .excerpt {
       font-size: 18px;
     }
-    .data {
+    .data-additional {
       display: none;
     }
   }

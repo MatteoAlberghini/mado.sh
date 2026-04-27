@@ -58,7 +58,7 @@
     font-size: 27px;
     font-weight: 400;
     color: var(--primary-color);
-    margin-top: 24px;
+    margin-top: 20px;
   }
   article :global(h3:hover::after) {
     visibility: visible;

@@ -191,7 +191,6 @@
     {text}
   </span>
 </a>
-<div class="tooltip">{`${type === 'external' ? 'goto' : 'open'} >> ${text}`}</div>
 
 {#if open}
   <Modal
@@ -227,9 +226,6 @@
     outline: 2px var(--primary-color) dashed;
     background-color: color-mix(in srgb, var(--primary-color) var(--opacity-low), transparent);
   }
-  a:hover + .tooltip, a:focus + .tooltip {
-    visibility: visible;
-  }
   span {
     color: var(--text-color);
     font-size: calc(18px * var(--icon-size));
@@ -242,35 +238,11 @@
     margin-top: 3px;
   }
 
-  /* tooltip */
-  .tooltip {
-    position: fixed;
-    visibility: hidden;
-    width: max-content;
-    background-color: var(--secondary-background-color);
-    background-image: url(/images/general/bg-texture.png);
-    padding-left: 4px;
-    padding-right: 4px;
-    padding-bottom: 3px;
-    padding-top: 1px;
-    border: 1px solid var(--primary-color);
-    border-bottom-width: 2px;
-    right: 0px;
-    bottom: 0px;
-    z-index: 2;
-    font-size: 17px;
-    font-weight: 400;
-    color: var(--primary-color);
-  }
-
   /* media queries */
   @media only screen and (max-width: 1279px) {
     a {
       grid-row: auto !important;
       grid-column: auto !important;
-    }
-    .tooltip {
-      display: none;
     }
     span {
       font-size: 18px;

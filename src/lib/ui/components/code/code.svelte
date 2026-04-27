@@ -152,7 +152,7 @@
   }
   :global(pre) {
     text-shadow: 0px 0px var(--shadow-primary-color), 0px 0px var(--shadow-secondary-color);
-    font-size: 17px;
+    font-size: 16px;
     font-family: 'GeistMono';
     letter-spacing: 1px;
     white-space: pre-wrap;

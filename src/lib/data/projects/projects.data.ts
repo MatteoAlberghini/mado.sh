@@ -1,5 +1,6 @@
 /* imports */
 import Genuino from '$lib/content/projects/genuino.content.svelte'
+import LinkdingToBookmarks from '$lib/content/projects/linkding_to_bookmarks.svelte'
 import O9solutions from '$lib/content/projects/o9solutions.content.svelte'
 import Waterkaarten from '$lib/content/projects/waterkaarten.content.svelte'
 import type { Project } from './projects.types'
@@ -35,30 +36,15 @@ export const PROJECTS: Project[] = [
   },
 ]
 /**
- * list of all external repositories
- */
-export const REPOSITORIES: Project[] = [
-  {
-    text: 'website_frontend.link',
-    path: 'https://github.com/MatteoAlberghini/0x6d61646f.website',
-  },
-]
-/**
  * list of all scripts
  */
 export const SCRIPTS: Project[] = [
   {
-    text: 'geonames.scripts',
-    path: 'https://github.com/MatteoAlberghini/geonames.scripts',
+    text: 'linkding_to_bookmarks.py',
+    path: '/projects/linkding-to-bookmarks',
+    // @ts-expect-error svelte cannot figure out that the two types are the same 
+    element: LinkdingToBookmarks,
   },
-  {
-    text: 'linkding.scripts',
-    path: 'https://github.com/MatteoAlberghini/linkding.scripts',
-  },
-  {
-    text: 'linux_utility.scripts',
-    path: 'https://github.com/MatteoAlberghini/utility.scripts',
-  }
 ]
 /**
  * list of all themes 
@@ -66,10 +52,6 @@ export const SCRIPTS: Project[] = [
 export const THEMES: Project[] = [
   {
     text: 'vscodium_vaporwave.theme',
-    path: 'https://github.com/MatteoAlberghini/vaporwave.vscodium',
+    path: 'https://codeberg.org/0x6d61646f/vaporwave.vscodium',
   },
-  {
-    text: 'brave_vaporwave.theme',
-    path: 'https://github.com/MatteoAlberghini/vaporwave.brave',
-  }
 ]

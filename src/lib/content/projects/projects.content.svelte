@@ -2,54 +2,73 @@
 <script lang="ts">
   /* imports */
   import { page } from '$app/state'
-	import { PROJECTS, REPOSITORIES, SCRIPTS, THEMES } from '$lib/data/projects/projects.data'
+	import { PROJECTS, BASE_PROJECTS, SCRIPTS, THEMES } from '$lib/data/projects/projects.data'
+	import type { Project } from '$lib/data/projects/projects.types';
   import FolderButton from '$lib/ui/components/buttons/folder/folder.button.svelte'
 	import Container from '$lib/ui/macro/wrappers/container/container.wrapper.svelte'
 
   /* state */
-  const content = $derived(PROJECTS.find((p) => p.path === page.url.pathname) ?? null)
+  let content: Project | null = $state(null)
+  const COMBINED_PROJECTS = [...PROJECTS, ...SCRIPTS]
+
+  /* effects */
+  /**
+   * set correct content based on url path changes
+   */
+  $effect(() => {
+    if (page.url.pathname.includes(BASE_PROJECTS.path)) {
+      if (page.url.pathname === BASE_PROJECTS.path) {
+        content = null
+        return
+      }
+      const currentContent = COMBINED_PROJECTS.find((p) => p.path === page.url.pathname)
+      if (currentContent) { content = currentContent }
+    }
+  })
 </script>
 
 <!-- template -->
 <Container>
   {#if content === null}
     <div class="projects-container">
-      <span>WORK</span>
+      <span class="title">WORK</span>
+      <span class="data">
+        {PROJECTS.length} files
+      </span>
       {#each PROJECTS as p (p.path)}
         <FolderButton
           text={p.text}
           path={p.path}
           external={false}
+          icon="text"
         />
       {/each}
     </div>
     <div class="projects-container">
-      <span>SCRIPTS</span>
+      <span class="title">SCRIPTS</span>
+      <span class="data">
+        {SCRIPTS.length} files
+      </span>
       {#each SCRIPTS as p (p.path)}
         <FolderButton
           text={p.text}
           path={p.path}
-          external={true}
+          external={false}
+          icon="script"
         />
       {/each}
     </div>
     <div class="projects-container">
-      <span>REPOSITORIES</span>
-      {#each REPOSITORIES as p (p.path)}
-        <FolderButton
-          text={p.text}
-          path={p.path}
-          external={true}
-        />
-      {/each}
-    </div>
-    <div class="projects-container">
-      <span>THEMES</span>
+      <span class="title">THEMES</span>
+      <span class="data">
+        {THEMES.length} files
+      </span>
       {#each THEMES as p (p.path)}
         <FolderButton
           text={p.text}
           path={p.path}
           external={true}
+          icon="paint"
         />
       {/each}
     </div>
@@ -83,7 +102,7 @@
   }
 
   /* text */
-  span {
+  .title {
     font-size: 18px;
     font-weight: 400;
     position: absolute;
@@ -94,5 +113,18 @@
     padding-left: 8px;
     padding-right: 8px;
     margin-left: 3px;
+  }
+  .data {
+    font-size: 16px;
+    font-weight: 400;
+    position: absolute;
+    top: -14px;
+    right: 0px;
+    color: var(--primary-color);
+    background-color: var(--modal-background-color);
+    background-image: url(/images/general/bg-texture.png);
+    padding-left: 8px;
+    padding-right: 8px;
+    margin-right: 3px;
   }
 </style>
